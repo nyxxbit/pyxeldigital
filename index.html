@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="js">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pyxel — Estúdio de sites, landing pages e sistemas</title>
+<meta name="description" content="Pyxel é um estúdio digital que cria sites, landing pages e sistemas sob medida pra pequenos e médios negócios. Do rascunho ao ar em dias, sem template. Interior de SP.">
+<meta name="theme-color" content="#08090C">
+<meta property="og:title" content="Pyxel — Sites feitos à mão, sem template">
+<meta property="og:description" content="Criamos sites, landing pages e sistemas que transformam visita em cliente. Do rascunho ao ar em dias.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 66 99'%3E%3Cg fill='%23F1F3F8'%3E%3Crect x='22' y='0' width='9' height='9' rx='1.5'/%3E%3Crect x='33' y='0' width='9' height='9' rx='1.5'/%3E%3Crect x='44' y='0' width='9' height='9' rx='1.5'/%3E%3Crect x='22' y='11' width='9' height='9' rx='1.5'/%3E%3Crect x='33' y='11' width='9' height='9' rx='1.5'/%3E%3Crect x='44' y='11' width='9' height='9' rx='1.5'/%3E%3Crect x='55' y='11' width='9' height='9' rx='1.5'/%3E%3Crect x='22' y='22' width='9' height='9' rx='1.5'/%3E%3Crect x='33' y='22' width='9' height='9' rx='1.5'/%3E%3Crect x='55' y='22' width='9' height='9' rx='1.5'/%3E%3Crect x='22' y='33' width='9' height='9' rx='1.5'/%3E%3Crect x='33' y='33' width='9' height='9' rx='1.5'/%3E%3Crect x='55' y='33' width='9' height='9' rx='1.5'/%3E%3Crect x='22' y='44' width='9' height='9' rx='1.5'/%3E%3Crect x='33' y='44' width='9' height='9' rx='1.5'/%3E%3Crect x='44' y='44' width='9' height='9' rx='1.5'/%3E%3Crect x='55' y='44' width='9' height='9' rx='1.5'/%3E%3Crect x='22' y='55' width='9' height='9' rx='1.5'/%3E%3Crect x='33' y='55' width='9' height='9' rx='1.5'/%3E%3Crect x='22' y='66' width='9' height='9' rx='1.5'/%3E%3Crect x='33' y='66' width='9' height='9' rx='1.5'/%3E%3Crect x='22' y='77' width='9' height='9' rx='1.5'/%3E%3Crect x='33' y='77' width='9' height='9' rx='1.5'/%3E%3Crect x='22' y='88' width='9' height='9' rx='1.5'/%3E%3Crect x='33' y='88' width='9' height='9' rx='1.5'/%3E%3C/g%3E%3Cg fill='%236E5EFF'%3E%3Crect x='11' y='22' width='6' height='6' rx='1'/%3E%3Crect x='0' y='44' width='6' height='6' rx='1'/%3E%3Crect x='11' y='66' width='6' height='6' rx='1'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#08090C; --bg-2:#0C0E13; --surface:#101319; --surface-2:#161A22;
+  --ink:#F1F3F8; --ink-2:#969CAB; --ink-3:#5B6170;
+  --grid:rgba(255,255,255,.055); --grid-strong:rgba(255,255,255,.10);
+  --line:rgba(255,255,255,.09); --line-2:rgba(255,255,255,.17);
+  --cobalt:#3B2BFF; --cobalt-bright:#7A6BFF; --cobalt-cell:#5B4BFF; --cobalt-soft:rgba(91,75,255,.16);
+  --glow:0 0 0 1px rgba(122,107,255,.5), 0 0 22px rgba(91,75,255,.35);
+  --maxw:1200px; --pad:28px;
+  --ease:cubic-bezier(.2,.8,.2,1);
+  --f-disp:'Clash Display','Space Grotesk',system-ui,sans-serif;
+  --f-body:'Satoshi','Inter',system-ui,sans-serif;
+  --f-mono:'Geist Mono',ui-monospace,'SF Mono',Menlo,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+::selection{background:var(--cobalt);color:#fff}
+html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;overflow-x:hidden;position:relative}
+a{text-decoration:none;color:inherit}
+svg{display:block}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+img{max-width:100%;display:block}
+h1,h2,h3,h4{font-family:var(--f-disp);font-weight:600;letter-spacing:-.02em;line-height:1.04}
+:focus-visible{outline:2px solid var(--cobalt-bright);outline-offset:3px}
+
+/* blueprint bg over black */
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:34px 34px;
+  -webkit-mask-image:radial-gradient(ellipse 110% 75% at 50% 0%,#000 35%,transparent 100%);
+  mask-image:radial-gradient(ellipse 110% 75% at 50% 0%,#000 35%,transparent 100%)}
+body::after{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E")}
+.rails{position:fixed;inset:0;margin:auto;width:min(calc(100% - 2px),var(--maxw));height:100%;z-index:0;pointer-events:none}
+.rails::before,.rails::after{content:"";position:absolute;top:0;bottom:0;width:1px;background:var(--line)}
+.rails::before{left:0}.rails::after{right:0}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);position:relative;z-index:2}
+main{position:relative;z-index:2}
+
+.mono{font-family:var(--f-mono)}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);display:inline-flex;align-items:center;gap:11px}
+.eyebrow .sq{width:8px;height:8px;background:var(--cobalt);box-shadow:0 0 10px var(--cobalt-bright);flex-shrink:0}
+.eyebrow .no{color:var(--cobalt-bright)}
+.ic{width:22px;height:22px;stroke:currentColor;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+.btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:10px;font-family:var(--f-body);font-weight:700;font-size:15px;padding:14px 24px;border-radius:8px;border:1.5px solid transparent;transition:transform .18s var(--ease),box-shadow .22s var(--ease),background .18s,color .18s;white-space:nowrap;will-change:transform}
+.btn::before{content:"";position:absolute;top:0;left:-130%;width:58%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.32),transparent);transform:skewX(-20deg);pointer-events:none}
+.btn:hover::before{animation:shine .8s var(--ease)}
+@keyframes shine{to{left:155%}}
+.btn .ic{width:18px;height:18px;stroke-width:2;transition:transform .25s var(--ease)}
+.btn:hover .ic{transform:translateX(4px)}
+.btn-primary{background:linear-gradient(120deg,#3B2BFF,#6E5EFF 45%,#8B5CF6 70%,#3B2BFF);background-size:240% 100%;color:#fff;animation:btnflow 5s linear infinite}
+@keyframes btnflow{to{background-position:240% 0}}
+.btn-primary:hover{box-shadow:0 10px 34px rgba(91,75,255,.6),0 0 24px rgba(110,94,255,.5),0 0 0 1px var(--cobalt-bright);animation-duration:1.8s}
+.btn-primary:active{transform:scale(.97)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line-2)}
+.btn-ghost:hover{border-color:var(--cobalt-bright);color:#fff;background:rgba(91,75,255,.16);box-shadow:0 6px 24px rgba(91,75,255,.32),0 0 18px rgba(91,75,255,.25)}
+.btn-ghost:active{transform:scale(.98)}
+
+/* header */
+header{position:fixed;top:0;left:0;right:0;z-index:60;transition:background .3s,border-color .3s}
+.nav{display:flex;align-items:center;justify-content:space-between;height:74px;max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+header.scr{background:rgba(8,9,12,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.logo{display:flex;align-items:center;gap:11px}
+.logo .pm{width:24px;height:auto}
+.logo .wm{font-family:var(--f-disp);font-weight:600;font-size:22px;letter-spacing:-.01em;color:var(--ink)}
+.navlinks{display:flex;gap:30px}
+.navlinks a{font-family:var(--f-mono);font-size:12.5px;text-transform:uppercase;letter-spacing:.03em;color:var(--ink-2);position:relative;padding:4px 0;transition:color .2s}
+.navlinks a::after{content:"";position:absolute;left:0;bottom:0;height:1.5px;width:0;background:var(--cobalt-bright);box-shadow:0 0 8px var(--cobalt-bright);transition:width .28s var(--ease)}
+.navlinks a:hover{color:var(--ink)}
+.navlinks a:hover::after{width:100%}
+.navact{display:flex;align-items:center;gap:14px}
+.iglink{width:42px;height:42px;border:1.5px solid var(--line-2);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--ink);transition:transform .18s var(--ease),border-color .18s,color .18s,box-shadow .18s}
+.iglink:hover{border-color:var(--cobalt-bright);color:var(--cobalt-bright);box-shadow:0 0 18px rgba(91,75,255,.3);transform:translateY(-2px) scale(1.06)}
+.iglink:active{transform:scale(.95)}
+.iglink .ic{width:20px;height:20px}
+.nav .btn{padding:11px 18px;font-size:14px}
+
+/* HERO */
+.hero{padding:132px 0 78px;position:relative}
+.herogrid{display:grid;grid-template-columns:1.06fr .94fr;gap:54px;align-items:center}
+.hero .eyebrow{margin-bottom:26px}
+.hero h1{font-size:clamp(41px,6vw,74px);font-weight:600;margin-bottom:26px}
+.hero h1 .ln{display:block;overflow:hidden;padding-bottom:.04em}
+.hero h1 .ln i{display:block;font-style:normal;transform:translateY(0)}
+html.js .hero h1 .ln i{transform:translateY(112%)}
+.hero h1 em{font-style:normal;color:var(--cobalt-bright);position:relative;text-shadow:0 0 26px rgba(122,107,255,.45)}
+.hero .lead{font-size:clamp(17px,1.5vw,19px);color:var(--ink-2);max-width:498px;margin-bottom:24px}
+.terminal{display:inline-flex;align-items:center;gap:9px;font-family:var(--f-mono);font-size:13px;color:var(--ink-2);padding:11px 15px;border:1px solid var(--line);border-radius:8px;background:var(--surface);margin-bottom:30px;min-width:min(340px,100%)}
+.terminal .prompt{color:var(--cobalt-bright)}
+.terminal .caret{display:inline-block;width:8px;height:15px;background:var(--cobalt-bright);box-shadow:0 0 8px var(--cobalt-bright);animation:blink 1.05s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.hero .cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:34px}
+.hspecs{display:flex;gap:8px 22px;flex-wrap:wrap;font-family:var(--f-mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.03em;color:var(--ink-3)}
+.hspecs span{display:inline-flex;align-items:center;gap:9px}
+.hspecs span::before{content:"";width:5px;height:5px;background:var(--cobalt);box-shadow:0 0 6px var(--cobalt-bright)}
+.hvis{position:relative}
+.hvis::before{content:"";position:absolute;inset:6%;border-radius:50%;background:radial-gradient(circle,rgba(91,75,255,.22),transparent 66%);filter:blur(26px);z-index:0}
+.canvasframe{position:relative;aspect-ratio:1/1;width:100%;max-width:470px;margin:0 auto;border:1px solid var(--line);background:linear-gradient(180deg,#0B0D12,#090A0E);z-index:1}
+.canvasframe .cc{position:absolute;width:9px;height:9px;z-index:3}
+.canvasframe .cc::before,.canvasframe .cc::after{content:"";position:absolute;background:var(--cobalt-bright)}
+.canvasframe .cc::before{left:0;right:0;top:4px;height:1px}
+.canvasframe .cc::after{top:0;bottom:0;left:4px;width:1px}
+.cc.tl{top:-5px;left:-5px}.cc.tr{top:-5px;right:-5px}.cc.bl{bottom:-5px;left:-5px}.cc.br{bottom:-5px;right:-5px}
+#heroCanvas{width:100%;height:100%;display:block}
+.canvastag{position:absolute;top:11px;left:13px;z-index:3;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.canvastag b{color:var(--cobalt-bright);font-weight:500}
+
+/* value ruler */
+.ruler{background:var(--bg-2);color:var(--ink);overflow:hidden;position:relative;border-block:1px solid var(--line)}
+.ruler .track{display:flex;align-items:center;width:max-content;animation:roll 30s linear infinite}
+.ruler .it{display:inline-flex;align-items:center;gap:14px;padding:15px 34px;font-family:var(--f-mono);font-size:13px;text-transform:uppercase;letter-spacing:.05em}
+.ruler .it b{color:var(--ink);font-weight:500}
+.ruler .it .dot{width:6px;height:6px;background:var(--cobalt);box-shadow:0 0 8px var(--cobalt-bright)}
+.ruler .it span{color:var(--ink-3)}
+@keyframes roll{to{transform:translateX(-50%)}}
+
+section.blk{padding:104px 0;position:relative}
+.shead{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:52px;flex-wrap:wrap}
+.shead .lft{max-width:640px}
+.shead h2{font-size:clamp(30px,4vw,46px);margin:16px 0 0}
+.shead p{color:var(--ink-2);font-size:17px;margin-top:14px}
+
+/* services */
+.svcs{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+.svc{position:relative;background:var(--surface);border:1px solid var(--line);padding:28px;transition:transform .2s var(--ease),box-shadow .25s var(--ease),border-color .25s,background .25s;display:flex;flex-direction:column;min-height:210px;overflow:hidden}
+.svc::after{content:"";position:absolute;left:0;top:0;height:2px;width:0;background:var(--cobalt-bright);box-shadow:0 0 12px var(--cobalt-bright);transition:width .3s var(--ease)}
+.svc:hover{border-color:var(--line-2);transform:translateY(-4px);background:var(--surface-2);box-shadow:0 0 30px rgba(0,0,0,.4),0 0 24px rgba(91,75,255,.14)}
+.svc:hover::after{width:100%}
+.svc .top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:auto}
+.svc .ico{width:46px;height:46px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--ink);transition:color .2s,border-color .2s,box-shadow .2s,transform .3s var(--ease)}
+.svc:hover .ico{transform:translateY(-3px) scale(1.06) rotate(-3deg)}
+.svc:hover .ico{color:var(--cobalt-bright);border-color:var(--cobalt-bright);box-shadow:0 0 16px rgba(91,75,255,.3)}
+.svc .ico .ic{width:23px;height:23px}
+.svc .idx{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);letter-spacing:.05em}
+.svc h3{font-size:21px;margin:22px 0 9px}
+.svc p{color:var(--ink-2);font-size:14.5px;line-height:1.55}
+.svc .pill{position:absolute;top:22px;right:22px;font-family:var(--f-mono);font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--cobalt-bright);border:1px solid var(--cobalt);padding:4px 9px;border-radius:100px;background:var(--cobalt-soft)}
+.svc.big{grid-column:span 7}.svc.mid{grid-column:span 5}.svc.thr{grid-column:span 4}
+.svc.big h3{font-size:26px}
+
+/* process */
+.proc{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:14px}
+.proc .rail{position:absolute;top:33px;left:6%;right:6%;height:2px;background:var(--line);overflow:hidden}
+.proc .rail i{position:absolute;inset:0;background:var(--cobalt-bright);box-shadow:0 0 10px var(--cobalt-bright);transform-origin:left;transform:scaleX(0)}
+.pstep{position:relative;padding-right:16px}
+.pstep .node{width:66px;height:66px;background:var(--surface);border:1.5px solid var(--line-2);display:flex;align-items:center;justify-content:center;font-family:var(--f-disp);font-weight:600;font-size:24px;position:relative;z-index:2;transition:background .3s var(--ease),color .3s var(--ease),box-shadow .3s,border-color .3s}
+.pstep.on .node{background:var(--cobalt);color:#fff;border-color:var(--cobalt);box-shadow:0 0 24px rgba(91,75,255,.55)}
+.pstep h3{font-size:22px;margin:24px 0 10px}
+.pstep p{color:var(--ink-2);font-size:15px;max-width:300px}
+.pstep .tag{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.05em;margin-top:14px;display:block}
+
+/* PLANOS */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:14px;align-items:stretch}
+.plan{position:relative;background:var(--surface);border:1px solid var(--line);padding:30px 26px 26px;display:flex;flex-direction:column;overflow:hidden;transition:transform .2s var(--ease),box-shadow .25s var(--ease),border-color .25s,background .25s}
+.plan::after{content:"";position:absolute;left:0;top:0;height:2px;width:0;background:var(--cobalt-bright);box-shadow:0 0 12px var(--cobalt-bright);transition:width .3s var(--ease)}
+.plan:hover{border-color:var(--line-2);transform:translateY(-4px);background:var(--surface-2);box-shadow:0 0 30px rgba(0,0,0,.4),0 0 24px rgba(91,75,255,.14)}
+.plan:hover::after{width:100%}
+.plan.feat{border-color:rgba(122,107,255,.45);background:linear-gradient(180deg,rgba(91,75,255,.07),var(--surface) 55%)}
+.plan.feat::after{width:100%}
+.plan .ptop{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:20px}
+.plan .ico{width:46px;height:46px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--ink);transition:color .2s,border-color .2s,box-shadow .2s,transform .3s var(--ease)}
+.plan:hover .ico{color:var(--cobalt-bright);border-color:var(--cobalt-bright);box-shadow:0 0 16px rgba(91,75,255,.3);transform:translateY(-3px) scale(1.06) rotate(-3deg)}
+.plan .ico .ic{width:23px;height:23px}
+.plan .idx{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);letter-spacing:.05em}
+.plan .pill{position:absolute;top:22px;right:22px;font-family:var(--f-mono);font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--cobalt-bright);border:1px solid var(--cobalt);padding:4px 9px;border-radius:100px;background:var(--cobalt-soft)}
+.plan h3{font-size:22px;margin-bottom:8px}
+.plan .pdesc{color:var(--ink-2);font-size:14.5px;line-height:1.55;margin-bottom:22px}
+.plan .prow{border-top:1px solid var(--line);padding-top:20px;margin-top:auto}
+.plan .setup{font-family:var(--f-mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-3);margin-bottom:6px}
+.plan .setup b{color:var(--ink-2);font-weight:500}
+.plan .val{display:flex;align-items:baseline;gap:7px}
+.plan .val .n{font-family:var(--f-disp);font-weight:600;font-size:40px;line-height:1;letter-spacing:-.02em;color:var(--ink)}
+.plan.feat .val .n{color:var(--cobalt-bright);text-shadow:0 0 26px rgba(122,107,255,.4)}
+.plan .val .per{font-family:var(--f-mono);font-size:12.5px;color:var(--ink-3)}
+.plan ul{list-style:none;margin-top:20px;display:flex;flex-direction:column;gap:10px}
+.plan li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--ink-2);line-height:1.45}
+.plan li .ic{width:15px;height:15px;stroke:var(--cobalt-bright);stroke-width:2.6;flex-shrink:0;margin-top:3px}
+.plan .btn{margin-top:24px;justify-content:center;width:100%}
+.pnota{font-size:12.5px;line-height:1.55;color:var(--dim);margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
+.plansnote{font-family:var(--f-mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-3);text-align:center;margin-top:26px}
+
+/* ABOUT */
+.about{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.about-copy h2{font-size:clamp(29px,4vw,44px);margin:16px 0 20px}
+.about-copy h2 em{font-style:normal;color:var(--cobalt-bright);text-shadow:0 0 22px rgba(122,107,255,.35)}
+.about-copy p{color:var(--ink-2);font-size:17px}
+.about-copy p+p{margin-top:15px}
+.pillars{border-top:1px solid var(--line)}
+.pillar{display:flex;gap:16px;align-items:flex-start;padding:20px 2px;border-bottom:1px solid var(--line);transition:background .3s var(--ease),padding .3s var(--ease)}
+.pillar:hover{background:var(--surface);padding-left:14px;padding-right:14px}
+.pico{width:44px;height:44px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--cobalt-bright);flex-shrink:0;transition:box-shadow .3s,border-color .3s}
+.pillar:hover .pico{border-color:var(--cobalt-bright);box-shadow:0 0 16px rgba(91,75,255,.3)}
+.pico .ic{width:21px;height:21px}
+.pillar h4{font-family:var(--f-disp);font-weight:600;font-size:17px;margin-bottom:5px}
+.pillar p{color:var(--ink-2);font-size:14.5px;line-height:1.5}
+
+/* testimonials */
+.quotes{border-top:1px solid var(--line-2)}
+.quote{display:grid;grid-template-columns:64px 1fr auto;gap:28px;align-items:start;padding:40px 0;border-bottom:1px solid var(--line);transition:background .3s}
+.quote:hover{background:var(--surface)}
+.quote .qn{font-family:var(--f-mono);font-size:13px;color:var(--cobalt-bright);padding-top:12px}
+.quote blockquote{font-family:var(--f-disp);font-weight:500;font-size:clamp(20px,2.5vw,29px);line-height:1.28;letter-spacing:-.01em;color:var(--ink)}
+.quote blockquote em{font-style:normal;color:var(--cobalt-bright);text-shadow:0 0 20px rgba(122,107,255,.35)}
+.quote .by{margin-top:18px;font-family:var(--f-mono);font-size:12.5px;text-transform:uppercase;letter-spacing:.03em;color:var(--ink-2)}
+.quote .by b{color:var(--ink);font-weight:500}
+.quote .stars{display:flex;gap:3px;padding-top:14px}
+.quote .stars .ic{width:15px;height:15px;fill:var(--cobalt-bright);stroke:none}
+
+/* faq */
+.faq{max-width:820px}
+.qa{border-bottom:1px solid var(--line)}
+.qa .q{display:flex;align-items:center;justify-content:space-between;gap:20px;width:100%;text-align:left;padding:24px 4px;font-family:var(--f-disp);font-weight:500;font-size:19px;color:var(--ink);transition:color .2s}
+.qa .q:hover{color:var(--cobalt-bright)}
+.qa .qi{position:relative;width:20px;height:20px;flex-shrink:0}
+.qa .qi::before,.qa .qi::after{content:"";position:absolute;background:var(--ink);transition:transform .3s var(--ease),background .3s}
+.qa .qi::before{top:9px;left:0;right:0;height:2px}
+.qa .qi::after{left:9px;top:0;bottom:0;width:2px}
+.qa.open .qi::after{transform:scaleY(0)}
+.qa.open .qi::before{background:var(--cobalt-bright);box-shadow:0 0 8px var(--cobalt-bright)}
+.qa .a{max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
+.qa .a p{padding:0 4px 26px;color:var(--ink-2);font-size:16px;max-width:680px}
+
+/* final */
+.final{position:relative;overflow:hidden;background:linear-gradient(180deg,#0A0B10,#08090C);border-top:1px solid var(--line)}
+.final .wrap{padding-top:100px;padding-bottom:100px;position:relative;z-index:2}
+#ctaCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;opacity:.6}
+.final .inner{max-width:680px}
+.final .eyebrow{color:var(--ink-2)}
+.final h2{font-size:clamp(34px,5vw,58px);color:#fff;margin:22px 0 20px}
+.final h2 em{font-style:normal;color:var(--cobalt-bright);text-shadow:0 0 30px rgba(122,107,255,.5)}
+.final p{color:var(--ink-2);font-size:18px;max-width:520px;margin-bottom:36px}
+.final .cta{display:flex;gap:14px;flex-wrap:wrap}
+
+/* footer */
+footer{background:var(--bg);border-top:1px solid var(--line);position:relative;z-index:2}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;padding:60px 0 30px}
+.fbrand .logo{margin-bottom:16px}
+.fbrand p{color:var(--ink-2);font-size:15px;max-width:300px}
+.fcol h4{font-family:var(--f-mono);font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3);margin-bottom:16px;font-weight:500}
+.fcol a,.fcol .li{display:block;color:var(--ink-2);font-size:15px;margin-bottom:11px;transition:color .2s}
+.fcol a:hover{color:var(--cobalt-bright)}
+.fbot{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;padding:22px 0 46px;border-top:1px solid var(--line);font-family:var(--f-mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.03em;color:var(--ink-3)}
+
+/* fab */
+.fab{position:fixed;bottom:24px;right:24px;z-index:55;display:flex;align-items:center;gap:11px;background:var(--cobalt);color:#fff;padding:13px 20px 13px 15px;border-radius:100px;box-shadow:0 0 0 1px rgba(122,107,255,.5),0 8px 30px rgba(91,75,255,.4);transition:transform .2s var(--ease),box-shadow .2s var(--ease)}
+.fab:hover{transform:translateY(-2px);box-shadow:0 0 0 1px var(--cobalt-bright),0 0 30px rgba(91,75,255,.7)}
+.fab:active{transform:translateY(1px)}
+.fab::after{content:"";position:absolute;inset:0;border-radius:inherit;border:2px solid var(--cobalt-bright);pointer-events:none;animation:fabring 2.6s ease-out infinite}
+@keyframes fabring{0%{opacity:.7;transform:scale(1)}75%,100%{opacity:0;transform:scale(1.5)}}
+.fab .ic{width:22px;height:22px;stroke:#fff;transform-origin:center;animation:wobble 3.6s ease-in-out infinite}
+@keyframes wobble{0%,84%,100%{transform:rotate(0)}88%{transform:rotate(-12deg)}92%{transform:rotate(12deg)}96%{transform:rotate(-6deg)}}
+.fab span{font-family:var(--f-body);font-weight:700;font-size:14px}
+
+html.js .rv{opacity:0;transform:translateY(22px)}
+
+@media(max-width:960px){
+  .herogrid{grid-template-columns:1fr;gap:40px}
+  .hvis{order:-1}
+  .canvasframe{max-width:360px}
+  .about{grid-template-columns:1fr;gap:36px}
+  .navlinks{display:none}
+  .svc.big,.svc.mid,.svc.thr{grid-column:span 6}
+  .plans{grid-template-columns:1fr;gap:14px}
+  .works{grid-template-columns:1fr}
+  .foot{grid-template-columns:1fr 1fr;gap:30px}
+  .fbrand{grid-column:1/-1}
+}
+@media(max-width:620px){
+  :root{--pad:20px}
+  section.blk{padding:74px 0}
+  .hero{padding:112px 0 60px}
+  .proc{grid-template-columns:1fr;gap:34px}
+  .proc .rail{display:none}
+  .svc.big,.svc.mid,.svc.thr{grid-column:span 12}
+  .quote{grid-template-columns:1fr;gap:12px;padding:30px 0}
+  .quote .stars{display:none}
+  .foot{grid-template-columns:1fr}
+  .fab span{display:none}
+  .fab{padding:15px;border-radius:50%}
+  .nav .btn .bt{display:none}
+  .nav .btn{padding:11px 14px}
+  .terminal{font-size:12px}
+}
+/* rede de segurança: se o JS/GSAP não rodar, nada fica invisível */
+html:not(.js) .rv{opacity:1!important;transform:none!important}
+html:not(.js) .hero h1 .ln i{transform:none!important}
+</style>
+</head>
+<body>
+<div class="rails" aria-hidden="true"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pm" viewBox="0 0 66 99">
+<g fill="currentColor">
+<rect x="22" y="0" width="9" height="9" rx="1.5"/><rect x="33" y="0" width="9" height="9" rx="1.5"/><rect x="44" y="0" width="9" height="9" rx="1.5"/>
+<rect x="22" y="11" width="9" height="9" rx="1.5"/><rect x="33" y="11" width="9" height="9" rx="1.5"/><rect x="44" y="11" width="9" height="9" rx="1.5"/><rect x="55" y="11" width="9" height="9" rx="1.5"/>
+<rect x="22" y="22" width="9" height="9" rx="1.5"/><rect x="33" y="22" width="9" height="9" rx="1.5"/><rect x="55" y="22" width="9" height="9" rx="1.5"/>
+<rect x="22" y="33" width="9" height="9" rx="1.5"/><rect x="33" y="33" width="9" height="9" rx="1.5"/><rect x="55" y="33" width="9" height="9" rx="1.5"/>
+<rect x="22" y="44" width="9" height="9" rx="1.5"/><rect x="33" y="44" width="9" height="9" rx="1.5"/><rect x="44" y="44" width="9" height="9" rx="1.5"/><rect x="55" y="44" width="9" height="9" rx="1.5"/>
+<rect x="22" y="55" width="9" height="9" rx="1.5"/><rect x="33" y="55" width="9" height="9" rx="1.5"/>
+<rect x="22" y="66" width="9" height="9" rx="1.5"/><rect x="33" y="66" width="9" height="9" rx="1.5"/>
+<rect x="22" y="77" width="9" height="9" rx="1.5"/><rect x="33" y="77" width="9" height="9" rx="1.5"/>
+<rect x="22" y="88" width="9" height="9" rx="1.5"/><rect x="33" y="88" width="9" height="9" rx="1.5"/>
+</g>
+<g fill="#6E5EFF"><rect x="11" y="22" width="6" height="6" rx="1"/><rect x="0" y="44" width="6" height="6" rx="1"/><rect x="11" y="66" width="6" height="6" rx="1"/></g>
+</symbol></svg>
+
+<header id="hdr">
+  <nav class="nav">
+    <a class="logo" href="#top" aria-label="Pyxel — início"><svg class="pm" style="color:var(--ink)" viewBox="0 0 66 99"><use href="#pm"/></svg><span class="wm">Pyxel</span></a>
+    <div class="navlinks">
+      <a href="#sobre">Sobre</a>
+      <a href="#servicos">Serviços</a>
+      <!-- Unico link do menu que sai da pagina. Antes o trabalhos.html existia
+           e nao era citado em lugar nenhum: ninguem chegava nele. -->
+      <a href="previas.html">Prévias</a>
+      <a href="#processo">Processo</a>
+      <a href="#planos">Planos</a>
+      <a href="#depoimentos">Clientes</a>
+      <a href="#faq">Dúvidas</a>
+    </div>
+    <div class="navact">
+      <a class="iglink" href="https://www.instagram.com/pyxelldigital/" target="_blank" rel="noopener" aria-label="Instagram da Pyxel"><svg class="ic" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+      <a class="btn btn-primary magnetic" href="https://wa.me/5517997452591?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Pyxel%20e%20queria%20um%20or%C3%A7amento%20pro%20meu%20neg%C3%B3cio." target="_blank" rel="noopener" data-wa><span class="bt">Pedir orçamento</span><svg class="ic" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="wrap">
+    <div class="herogrid">
+      <div class="hcopy">
+        <span class="eyebrow rv"><span class="sq"></span><span class="scr" data-text="Pyxel — Estúdio digital">Pyxel — Estúdio digital</span></span>
+        <h1>
+          <span class="ln"><i>Seu negócio merece</i></span>
+          <span class="ln"><i>um site <em>à altura dele.</em></i></span>
+        </h1>
+        <p class="lead rv">Criamos sites, landing pages e sistemas sob medida — do rascunho ao ar em dias. Você cuida do negócio; a parte técnica é com a gente.</p>
+        <div class="terminal rv" aria-hidden="true"><span class="prompt">›</span><span id="termText">pyxel build</span><span class="caret"></span></div>
+        <div class="cta rv">
+          <a class="btn btn-primary magnetic" href="https://wa.me/5517997452591?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Pyxel%20e%20queria%20um%20or%C3%A7amento%20pro%20meu%20neg%C3%B3cio." target="_blank" rel="noopener" data-wa>Quero meu site<svg class="ic" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+          <a class="btn btn-ghost" href="#servicos">Ver serviços</a>
+        </div>
+        <div class="hspecs rv">
+          <span>Resposta rápida no WhatsApp</span>
+          <span>Sem template</span>
+          <span>Interior de SP</span>
+        </div>
+      </div>
+      <div class="hvis rv">
+        <div class="canvasframe">
+          <span class="cc tl"></span><span class="cc tr"></span><span class="cc bl"></span><span class="cc br"></span>
+          <span class="canvastag">RASCUNHO <b>→ NO AR</b></span>
+          <canvas id="heroCanvas" width="940" height="940" role="img" aria-label="Uma malha de pixels se montando e formando o layout de um site"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ruler" aria-label="Nossos diferenciais">
+  <div class="track" id="rulerTrack">
+    <div class="it"><span class="dot"></span><b>Dias, não meses</b><span>entrega ágil</span></div>
+    <div class="it"><span class="dot"></span><b>100% no celular</b><span>mobile-first</span></div>
+    <div class="it"><span class="dot"></span><b>Zero template</b><span>feito à mão</span></div>
+    <div class="it"><span class="dot"></span><b>Suporte direto</b><span>fala com gente</span></div>
+    <div class="it"><span class="dot"></span><b>Dias, não meses</b><span>entrega ágil</span></div>
+    <div class="it"><span class="dot"></span><b>100% no celular</b><span>mobile-first</span></div>
+    <div class="it"><span class="dot"></span><b>Zero template</b><span>feito à mão</span></div>
+    <div class="it"><span class="dot"></span><b>Suporte direto</b><span>fala com gente</span></div>
+  </div>
+</div>
+
+<section class="blk" id="sobre" style="border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="about">
+      <div class="about-copy">
+        <span class="eyebrow rv"><span class="sq"></span><span class="scr" data-text="Quem somos">Quem somos</span></span>
+        <h2 class="rv">Gente que programa de verdade — <em>não que revende template.</em></h2>
+        <p class="rv">A Pyxel é um estúdio digital tocado por desenvolvedores. A gente não pega tema pronto e troca a cor: cria cada site, landing page e sistema do zero, escrevendo o código na mão pra ficar rápido, seguro e com a cara do seu negócio.</p>
+        <p class="rv">Do site institucional ao <b style="color:var(--ink);font-weight:600">SaaS completo</b>, a régua é uma só: padrão 100% profissional, sem atalho. E você fala direto com quem coloca a mão no código — sem intermediário, sem enrolação.</p>
+      </div>
+      <div class="pillars rv">
+        <div class="pillar">
+          <div class="pico"><svg class="ic" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+          <div><h4>Desenvolvedores de verdade</h4><p>Código escrito à mão, não gerador de site no automático.</p></div>
+        </div>
+        <div class="pillar">
+          <div class="pico"><svg class="ic" viewBox="0 0 24 24"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="m22 12.18-9.17 4.16a2 2 0 0 1-1.66 0L2 12.18"/><path d="m22 17.18-9.17 4.16a2 2 0 0 1-1.66 0L2 17.18"/></svg></div>
+          <div><h4>Do site ao SaaS</h4><p>Da vitrine institucional a sistemas e plataformas sob medida.</p></div>
+        </div>
+        <div class="pillar">
+          <div class="pico"><svg class="ic" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+          <div><h4>100% profissional</h4><p>Rápido, seguro e estruturado pra ser achado no Google.</p></div>
+        </div>
+        <div class="pillar">
+          <div class="pico"><svg class="ic" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96 12 12.01l8.73-5.05"/><path d="M12 22.08V12"/></svg></div>
+          <div><h4>Ponta a ponta</h4><p>Design, código, domínio, deploy e manutenção com a gente.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="blk" id="servicos">
+  <div class="wrap">
+    <div class="shead">
+      <div class="lft">
+        <span class="eyebrow rv"><span class="no">01</span> / <span class="scr" data-text="Serviços">Serviços</span></span>
+        <h2 class="rv">O que a gente constrói</h2>
+      </div>
+      <p class="rv" style="max-width:340px">Cada projeto é desenhado do zero pro seu negócio. Nada de modelo pronto com o seu logo em cima.</p>
+    </div>
+    <div class="svcs">
+      <div class="svc big rv">
+        <span class="pill">Mais pedido</span>
+        <div class="top"><div class="ico"><svg class="ic" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M2 7h20"/><path d="M9 21h6"/><path d="M12 17v4"/></svg></div><span class="idx">01</span></div>
+        <h3>Site institucional</h3>
+        <p>Sua empresa profissional na internet, com identidade própria e pronta pra ser achada no Google. A vitrine que passa confiança antes do primeiro contato.</p>
+      </div>
+      <div class="svc mid rv">
+        <div class="top"><div class="ico"><svg class="ic" viewBox="0 0 24 24"><path d="m4 4 7.07 17 2.51-7.39L21 11.07z"/></svg></div><span class="idx">02</span></div>
+        <h3>Landing pages</h3>
+        <p>Páginas focadas 100% em conversão pras suas campanhas e anúncios. Cada bloco pensado pra virar contato.</p>
+      </div>
+      <div class="svc thr rv">
+        <div class="top"><div class="ico"><svg class="ic" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div><span class="idx">03</span></div>
+        <h3>Loja &amp; catálogo</h3>
+        <p>Seus produtos online, com pedido caindo direto no WhatsApp.</p>
+      </div>
+      <div class="svc thr rv">
+        <div class="top"><div class="ico"><svg class="ic" viewBox="0 0 24 24"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="m22 12.18-9.17 4.16a2 2 0 0 1-1.66 0L2 12.18"/><path d="m22 17.18-9.17 4.16a2 2 0 0 1-1.66 0L2 17.18"/></svg></div><span class="idx">04</span></div>
+        <h3>Sistemas &amp; SaaS</h3>
+        <p>Plataformas sob medida pro seu negócio rodar no automático.</p>
+      </div>
+      <div class="svc thr rv">
+        <div class="top"><div class="ico"><svg class="ic" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div><span class="idx">05</span></div>
+        <h3>Manutenção mensal</h3>
+        <p>Atualizações, ajustes e suporte de verdade, todo mês.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="blk" id="processo" style="border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="shead">
+      <div class="lft">
+        <span class="eyebrow rv"><span class="no">02</span> / <span class="scr" data-text="Processo">Processo</span></span>
+        <h2 class="rv">Do briefing ao ar em 3 passos</h2>
+      </div>
+      <p class="rv" style="max-width:340px">Você acompanha cada etapa e aprova antes de publicar. Sem caixa-preta.</p>
+    </div>
+    <div class="proc">
+      <div class="rail"><i id="procFill"></i></div>
+      <div class="pstep rv" data-step><div class="node">01</div><h3>Conversamos</h3><p>Entendemos seu negócio, seu público e o objetivo numa conversa rápida no WhatsApp.</p><span class="tag">≈ 1 dia</span></div>
+      <div class="pstep rv" data-step><div class="node">02</div><h3>Criamos</h3><p>Desenhamos e desenvolvemos seu site. Você vê a prévia e pede ajuste antes de ir pro ar.</p><span class="tag">alguns dias</span></div>
+      <div class="pstep rv" data-step><div class="node">03</div><h3>Publicamos</h3><p>Colocamos no ar, configuramos domínio e cuidamos da manutenção contínua.</p><span class="tag">no ar</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="blk" id="planos" style="border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="shead">
+      <div class="lft">
+        <span class="eyebrow rv"><span class="no">03</span> / <span class="scr" data-text="Planos">Planos</span></span>
+        <h2 class="rv">Preço claro, sem surpresa</h2>
+      </div>
+      <p class="rv" style="max-width:340px">Você sabe exatamente quanto vai pagar antes de começar. Hospedagem, domínio e suporte já inclusos.</p>
+    </div>
+
+    <div class="plans">
+      <div class="plan rv">
+        <span class="pill">Mais vendido</span>
+        <div class="ptop">
+          <div class="ico"><svg class="ic" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
+        </div>
+        <h3>Atendimento automático</h3>
+        <p class="pdesc">Um robô que responde seus clientes no WhatsApp na hora, monta o pedido e calcula o total. Trabalhando 24 horas, todo dia.</p>
+        <ul>
+          <li><svg class="ic" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Responde sozinho, sem você parar o que está fazendo</li>
+          <li><svg class="ic" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Monta o pedido e soma o valor automaticamente</li>
+          <li><svg class="ic" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Passa pra você quando o cliente precisa de gente</li>
+          <li><svg class="ic" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Sem comissão de aplicativo</li>
+        </ul>
+        <div class="prow">
+          <div class="val"><span class="n">R$ 150</span><span class="per">/mês</span></div>
+          <div class="pnota">R$ 100 do atendimento + R$ 50 do servidor que mantém o robô ligado 24h. Sem taxa de instalação.</div>
+        </div>
+        <a class="btn btn-ghost" href="https://wa.me/5517997452591?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Pyxel%20e%20queria%20o%20atendimento%20autom%C3%A1tico%20no%20WhatsApp." target="_blank" rel="noopener">Quero o robô<svg class="ic" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+
+      <div class="plan rv">
+        <div class="ptop">
+          <div class="ico"><svg class="ic" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M2 7h20"/><path d="M9 21h6"/><path d="M12 17v4"/></svg></div>
+        </div>
+        <h3>Site profissional</h3>
+        <p class="pdesc">Seu site feito à mão, com identidade própria, rápido e perfeito no celular. Com sistema de pedido ou agendamento.</p>
+        <ul>
+          <li><svg class="ic" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Design exclusivo, nada de modelo pronto</li>
+          <li><svg class="ic" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Pedido ou agendamento caindo no WhatsApp</li>
+          <li><svg class="ic" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Domínio próprio e hospedagem inclusos</li>
+          <li><svg class="ic" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Ajustes e suporte todo mês</li>
+        </ul>
+        <div class="prow">
+          <div class="setup">Criação · <b>R$ 400</b></div>
+          <div class="val"><span class="n">R$ 150</span><span class="per">/mês</span></div>
+          <div class="pnota">A criação é única. A mensalidade cobre domínio, hospedagem, ajustes de texto e preço, e suporte.</div>
+        </div>
+        <a class="btn btn-ghost" href="https://wa.me/5517997452591?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Pyxel%20e%20queria%20um%20site%20profissional." target="_blank" rel="noopener">Quero meu site<svg class="ic" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+
+      <div class="plan feat rv">
+        <span class="pill">Melhor custo</span>
+        <div class="ptop">
+          <div class="ico"><svg class="ic" viewBox="0 0 24 24"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="m22 12.18-9.17 4.16a2 2 0 0 1-1.66 0L2 12.18"/><path d="m22 17.18-9.17 4.16a2 2 0 0 1-1.66 0L2 17.18"/></svg></div>
+        </div>
+        <h3>Site + atendimento</h3>
+        <p class="pdesc">O pacote completo: seu site trabalhando junto com o robô de atendimento. O cliente entra, pede e é atendido na hora.</p>
+        <ul>
+          <li><svg class="ic" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Tudo do site profissional</li>
+          <li><svg class="ic" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Tudo do atendimento automático</li>
+          <li><svg class="ic" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Site e robô conversando entre si</li>
+          <li><svg class="ic" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Prioridade no suporte</li>
+        </ul>
+        <div class="prow">
+          <div class="setup">Criação · <b>R$ 400</b></div>
+          <div class="val"><span class="n">R$ 270</span><span class="per">/mês</span></div>
+          <div class="pnota">Separado sairia R$ 300. Junto fica R$ 270 — economia de R$ 360 por ano, e o pedido do site cai direto no robô.</div>
+        </div>
+        <a class="btn btn-primary" href="https://wa.me/5517997452591?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Pyxel%20e%20queria%20o%20combo%20de%20site%20com%20atendimento%20autom%C3%A1tico." target="_blank" rel="noopener">Quero o pacote<svg class="ic" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+
+      <div class="plan rv">
+        <div class="ptop">
+          <div class="ico"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="3.6"/><path d="M17.5 6.5h.01"/></svg></div>
+        </div>
+        <h3>Posts para redes sociais</h3>
+        <p class="pdesc">Dois posts por semana no perfil do seu negócio, feitos com as suas fotos e os seus preços. Você aprova antes de ir pro ar.</p>
+        <ul>
+          <li><svg class="ic" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Oito posts por mês, dois por semana</li>
+          <li><svg class="ic" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Arte e legenda escritas pro seu público</li>
+          <li><svg class="ic" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Você aprova cada um antes de publicar</li>
+          <li><svg class="ic" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Sem fidelidade, cancela quando quiser</li>
+        </ul>
+        <div class="prow">
+          <div class="val"><span class="n">R$ 350</span><span class="per">/mês</span></div>
+          <div class="pnota">Com site, os dois juntos saem por R$ 450/mês em vez de R$ 500. É só pedir o combo no WhatsApp.</div>
+        </div>
+        <a class="btn btn-ghost" href="https://wa.me/5517997452591?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Pyxel%20e%20queria%20os%20posts%20para%20redes%20sociais." target="_blank" rel="noopener">Quero os posts<svg class="ic" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+    </div>
+
+    <p class="plansnote rv">Sem fidelidade · Cancela quando quiser · Projeto sob medida tem orçamento próprio</p>
+  </div>
+</section>
+
+<section class="blk" id="depoimentos" style="border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="shead">
+      <div class="lft">
+        <span class="eyebrow rv"><span class="no">04</span> / <span class="scr" data-text="Trabalho">Trabalho</span></span>
+        <h2 class="rv">O trabalho fala</h2>
+      </div>
+      <p class="rv" style="max-width:330px">O que já está no ar. Interior de SP.</p>
+    </div>
+    <div class="quotes">
+      <div class="quote rv">
+        <div class="qn">01</div>
+        <div>
+          <blockquote>Cardápio que monta o pedido e <em>manda pronto no WhatsApp</em> da cozinha. Sem print, sem pedido pela metade.</blockquote>
+          <div class="by"><b>Taverna Bar&#39;n Burguer</b> — Hamburgueria · Santa Adélia</div>
+        </div>
+      </div>
+      <div class="quote rv">
+        <div class="qn">02</div>
+        <div>
+          <blockquote>Pote, bola, sabor e cobertura, <em>com a conta certa no fim.</em> Três bolas de dois sabores o site resolve sozinho.</blockquote>
+          <div class="by"><b>Sorveteria Santa Adélia</b> — Sorveteria · Santa Adélia</div>
+        </div>
+      </div>
+      <div class="quote rv">
+        <div class="qn">03</div>
+        <div>
+          <blockquote>A Pyxel é nova. Você fala <em>direto com quem programa</em> — sem atendente, sem chamado, sem fila.</blockquote>
+          <div class="by"><b>E vê o site pronto antes de pagar</b> — é assim com todo mundo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="blk" id="faq" style="border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="shead">
+      <div class="lft">
+        <span class="eyebrow rv"><span class="no">05</span> / <span class="scr" data-text="Dúvidas">Dúvidas</span></span>
+        <h2 class="rv">Perguntas frequentes</h2>
+      </div>
+    </div>
+    <div class="faq">
+      <div class="qa rv"><button class="q" aria-expanded="false">Quanto tempo leva pra ficar pronto?<span class="qi"></span></button><div class="a"><p>Sites simples ficam prontos em poucos dias. Projetos maiores a gente alinha o prazo logo na primeira conversa — sempre com transparência, sem sumir no meio.</p></div></div>
+      <div class="qa rv"><button class="q" aria-expanded="false">Preciso entender de tecnologia?<span class="qi"></span></button><div class="a"><p>Zero. Cuidamos de domínio, hospedagem, criação e manutenção. Você manda as informações e aprova — o resto é com a gente.</p></div></div>
+      <div class="qa rv"><button class="q" aria-expanded="false">Funciona bem no celular?<span class="qi"></span></button><div class="a"><p>Sempre. Construímos primeiro pro celular, onde está a maior parte dos seus clientes. Fica perfeito em qualquer tela.</p></div></div>
+      <div class="qa rv"><button class="q" aria-expanded="false">E depois que o site fica pronto?<span class="qi"></span></button><div class="a"><p>A gente continua cuidando com o plano mensal: atualizações, ajustes, segurança e suporte sempre que precisar. Você nunca fica na mão.</p></div></div>
+      <div class="qa rv"><button class="q" aria-expanded="false">Quanto custa?<span class="qi"></span></button><div class="a"><p>Nossos valores estão logo acima, na seção <b>Planos</b>: o atendimento automático sai por R$ 150/mês, o site profissional por R$ 400 de criação + R$ 150/mês (hospedagem, domínio e suporte inclusos), e os posts para redes sociais por R$ 350/mês. Projeto maior e sob medida tem orçamento próprio — é só chamar no WhatsApp.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="final" id="contato">
+  <canvas id="ctaCanvas" width="1400" height="600" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="inner">
+      <span class="eyebrow rv"><span class="sq"></span><span class="scr" data-text="Bora começar">Bora começar</span></span>
+      <h2 class="rv">Pronto pra ter um site que <em>trabalha por você?</em></h2>
+      <p class="rv">Chama no WhatsApp ou no Instagram. Sem compromisso, sem enrolação — só uma conversa pra entender seu projeto e te passar um orçamento.</p>
+      <div class="cta rv">
+        <a class="btn btn-primary magnetic" href="https://wa.me/5517997452591?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Pyxel%20e%20queria%20come%C3%A7ar%20meu%20projeto." target="_blank" rel="noopener" data-wa>Pedir orçamento<svg class="ic" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        <a class="btn btn-ghost" href="https://www.instagram.com/pyxelldigital/" target="_blank" rel="noopener">Ver o Instagram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div class="fbrand">
+        <a class="logo" href="#top" aria-label="Pyxel"><svg class="pm" style="color:var(--ink)" viewBox="0 0 66 99"><use href="#pm"/></svg><span class="wm">Pyxel</span></a>
+        <p>Estúdio digital que constrói sites, landing pages e sistemas pra quem quer ser levado a sério online.</p>
+      </div>
+      <div class="fcol">
+        <h4>Navegação</h4>
+        <a href="#sobre">Sobre</a><a href="#servicos">Serviços</a><a href="previas.html">Prévias</a><a href="#planos">Planos</a><a href="#processo">Processo</a><a href="#faq">Dúvidas</a>
+      </div>
+      <div class="fcol">
+        <h4>Contato</h4>
+        <a href="https://wa.me/5517997452591?text=Ol%C3%A1!%20Queria%20um%20or%C3%A7amento%20com%20a%20Pyxel." target="_blank" rel="noopener" data-wa>WhatsApp (17) 99745-2591</a>
+        <a href="https://www.instagram.com/pyxelldigital/" target="_blank" rel="noopener">@pyxelldigital</a>
+        <span class="li">Interior de São Paulo</span>
+      </div>
+    </div>
+    <div class="fbot">
+      <span>© 2026 Pyxel — Estúdio digital</span>
+      <span>Feito à mão · sem template</span>
+    </div>
+  </div>
+</footer>
+
+<a class="fab magnetic" href="https://wa.me/5517997452591?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Pyxel%20e%20queria%20conversar." target="_blank" rel="noopener" data-wa aria-label="Falar no WhatsApp"><svg class="ic" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg><span>Falar com a gente</span></a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js" defer></script>
+<script>
+window.addEventListener("DOMContentLoaded", function(){
+  "use strict";
+  /* animações SEMPRE ativas: muita máquina vem com "reduzir movimento" ligado
+     de fábrica e isso matava todo o movimento do site. */
+  var reduce = false;
+  var fine = window.matchMedia && window.matchMedia("(pointer:fine)").matches;
+
+  var hdr=document.getElementById("hdr");
+  function onScroll(){hdr.classList.toggle("scr",(window.scrollY||document.documentElement.scrollTop)>16);}
+  window.addEventListener("scroll",onScroll,{passive:true});onScroll();
+
+  /* FAQ */
+  document.querySelectorAll(".qa").forEach(function(qa){
+    var b=qa.querySelector(".q");
+    b.addEventListener("click",function(){
+      var open=qa.classList.contains("open");
+      document.querySelectorAll(".qa").forEach(function(o){o.classList.remove("open");o.querySelector(".a").style.maxHeight=null;o.querySelector(".q").setAttribute("aria-expanded","false");});
+      if(!open){qa.classList.add("open");var a=qa.querySelector(".a");a.style.maxHeight=a.scrollHeight+"px";b.setAttribute("aria-expanded","true");}
+    });
+  });
+
+  /* magnetic */
+  if(fine && !reduce){
+    document.querySelectorAll(".magnetic").forEach(function(el){
+      el.addEventListener("mousemove",function(e){
+        var r=el.getBoundingClientRect();
+        el.style.transform="translate("+((e.clientX-(r.left+r.width/2))*0.28)+"px,"+((e.clientY-(r.top+r.height/2))*0.4)+"px) scale(1.06)";
+      });
+      el.addEventListener("mouseleave",function(){el.style.transform="";});
+    });
+  }
+
+  /* ===== kinetic text: scramble ===== */
+  var CH="ABCDEFGHIJKLMNPQRSTUVWXYZabcdefgh0123456789#%&/<>";
+  function scrambleTo(el,text,dur){
+    if(reduce){el.textContent=text;return;}
+    var t0=null,L=text.length;
+    function step(ts){
+      if(t0===null)t0=ts;
+      var p=Math.min(1,(ts-t0)/dur), rev=p*L, s="";
+      for(var i=0;i<L;i++){
+        var ch=text.charAt(i);
+        if(ch===" "||ch==="—"||ch==="/"){s+=ch;continue;}
+        s+= i<rev? ch : CH.charAt((Math.random()*CH.length)|0);
+      }
+      el.textContent=s;
+      if(p<1)requestAnimationFrame(step); else el.textContent=text;
+    }
+    requestAnimationFrame(step);
+    setTimeout(function(){el.textContent=text;},dur+140);
+  }
+
+  /* scramble eyebrows on view */
+  document.querySelectorAll(".scr").forEach(function(el){
+    el.dataset.done="0";
+  });
+  function runScr(el){
+    if(el.dataset.done==="1")return; el.dataset.done="1";
+    scrambleTo(el, el.getAttribute("data-text"), 620);
+  }
+
+  /* terminal build console */
+  var termLines=["pyxel build --start","desenhando o layout","otimizando pro mobile","publicando no ar","pronto pra vender"];
+  var ti=0, termEl=document.getElementById("termText");
+  function cycleTerm(){
+    if(!termEl)return;
+    scrambleTo(termEl,termLines[ti],700);
+    ti=(ti+1)%termLines.length;
+    setTimeout(cycleTerm, reduce?4000:2700);
+  }
+
+  /* canvastag cycle */
+  var tagStates=[["RASCUNHO","NO AR"],["PIXEL","PRODUTO"],["IDEIA","SITE"],["VISITA","CLIENTE"]];
+  var tagi=0, tagEl=document.querySelector(".canvastag");
+  function cycleTag(){
+    if(!tagEl)return;
+    var st=tagStates[tagi];
+    tagEl.innerHTML=st[0]+' <b>→ '+st[1]+'</b>';
+    tagi=(tagi+1)%tagStates.length;
+    setTimeout(cycleTag, 3200);
+  }
+
+  /* ===== HERO CANVAS ===== */
+  (function(){
+    var cv=document.getElementById("heroCanvas");if(!cv)return;
+    var ctx=cv.getContext("2d");if(!ctx)return;
+    var W=cv.width,H=cv.height, COLS=22, ROWS=22;
+    var pad=W*0.06, cell=(W-pad*2)/COLS, gap=cell*0.16, sz=cell-gap;
+    var C={ grid:"rgba(255,255,255,.10)", struct:"rgba(255,255,255,.16)", ink:"#F1F3F8", cobalt:"#5B4BFF", soft:"rgba(91,75,255,.32)" };
+    var map={};
+    function fill(c0,r0,w,h,t){for(var r=r0;r<r0+h;r++)for(var c=c0;c<c0+w;c++){if(c>=0&&c<COLS&&r>=0&&r<ROWS)map[c+"_"+r]=t;}}
+    fill(1,1,2,1,"cobalt"); fill(16,1,2,1,"struct"); fill(19,1,2,1,"struct");
+    fill(1,4,9,1,"ink"); fill(1,5,8,1,"ink"); fill(1,6,5,1,"ink");
+    fill(1,8,6,1,"struct"); fill(1,9,4,1,"struct");
+    fill(1,11,4,1,"cobalt");
+    fill(12,4,9,8,"soft"); fill(18,9,2,2,"cobalt");
+    fill(1,15,6,5,"struct"); fill(8,15,6,5,"struct"); fill(15,15,6,5,"struct");
+    fill(2,16,3,1,"ink"); fill(9,16,3,1,"ink"); fill(16,16,3,1,"ink");
+    fill(2,18,2,1,"cobalt"); fill(9,18,2,1,"struct"); fill(16,18,2,1,"struct");
+    fill(1,21,20,1,"struct");
+    var cells=[], cx=(COLS-1)/2, cy=(ROWS-1)/2, maxD=Math.sqrt(cx*cx+cy*cy);
+    for(var r=0;r<ROWS;r++)for(var c=0;c<COLS;c++){
+      var t=map[c+"_"+r]||null;
+      var d=Math.sqrt((c-cx)*(c-cx)+(r-cy)*(r-cy))/maxD;
+      cells.push({c:c,r:r,t:t,px:pad+c*cell+gap/2,py:pad+r*cell+gap/2,meshAt:d*0.42,fillAt:0.5+(c+r)/(COLS+ROWS)*0.6});
+    }
+    function col(t){return t==="ink"?C.ink:t==="cobalt"?C.cobalt:t==="soft"?C.soft:C.struct;}
+    function rrect(x,y,w,h,rad){ctx.beginPath();ctx.moveTo(x+rad,y);ctx.arcTo(x+w,y,x+w,y+h,rad);ctx.arcTo(x+w,y+h,x,y+h,rad);ctx.arcTo(x,y+h,x,y,rad);ctx.arcTo(x,y,x+w,y,rad);ctx.closePath();}
+    var mouse={x:-9999,y:-9999}, rect=cv.getBoundingClientRect();
+    function updRect(){rect=cv.getBoundingClientRect();}
+    window.addEventListener("resize",updRect,{passive:true});window.addEventListener("scroll",updRect,{passive:true});
+    if(fine && !reduce){
+      cv.addEventListener("mousemove",function(e){mouse.x=(e.clientX-rect.left)*(W/rect.width);mouse.y=(e.clientY-rect.top)*(H/rect.height);});
+      cv.addEventListener("mouseleave",function(){mouse.x=-9999;mouse.y=-9999;});
+    }
+    function ease(x){return x<0?0:x>1?1:1-Math.pow(1-x,3);}
+    function render(prog){
+      ctx.clearRect(0,0,W,H);
+      var mr=cell*2.1, dotS=sz*0.16;
+      for(var i=0;i<cells.length;i++){
+        var p=cells[i], mesh=ease((prog-p.meshAt)/0.3);
+        if(mesh<=0)continue;
+        if(!p.t){ctx.globalAlpha=0.55*mesh;ctx.fillStyle=C.grid;ctx.fillRect(p.px+(sz-dotS)/2,p.py+(sz-dotS)/2,dotS*mesh,dotS*mesh);ctx.globalAlpha=1;continue;}
+        var f=ease((prog-p.fillAt)/0.32);
+        if(f<1){ctx.globalAlpha=0.55*mesh*(1-f);ctx.fillStyle=C.grid;ctx.fillRect(p.px+(sz-dotS)/2,p.py+(sz-dotS)/2,dotS,dotS);ctx.globalAlpha=1;}
+        if(f<=0)continue;
+        var cxp=p.px+sz/2, cyp=p.py+sz/2, md=Math.hypot(cxp-mouse.x,cyp-mouse.y), near=md<mr?(1-md/mr):0;
+        var color=col(p.t); if(near>0.35 && p.t!=="cobalt")color=C.cobalt;
+        var scale=f*(1+near*0.16), s=sz*scale, ox=(sz-s)/2;
+        ctx.globalAlpha=1; ctx.fillStyle=color;
+        if(near>0.3||p.t==="cobalt"){ctx.shadowColor="#6E5EFF";ctx.shadowBlur=cell*(near>0.3?0.6:0.32);}
+        rrect(p.px+ox,p.py+ox,s,s,Math.max(1,s*0.14)); ctx.fill(); ctx.shadowBlur=0;
+      }
+      ctx.globalAlpha=1;
+    }
+    if(reduce){render(1.4);return;}
+    var t0=null, rafAlive=false, lastP=0, DUR=1.35;
+    function frame(ts){rafAlive=true;if(t0===null)t0=ts;lastP=Math.min(1.4,(ts-t0)/1000/DUR*1.4);render(lastP);requestAnimationFrame(frame);}
+    requestAnimationFrame(frame);
+    setTimeout(function(){if(!rafAlive)render(1.4);},240);
+    /* se o tempo travar (aba em 2º plano etc), desenha o estado final */
+    setTimeout(function(){if(lastP<0.05)render(1.4);},1600);
+  })();
+
+  /* CTA pixel field */
+  (function(){
+    var cv=document.getElementById("ctaCanvas");if(!cv)return;var ctx=cv.getContext("2d");if(!ctx)return;
+    var W=cv.width,H=cv.height,step=24;
+    ctx.clearRect(0,0,W,H);
+    for(var y=0;y<H;y+=step)for(var x=0;x<W;x+=step){
+      var on=((x*7+y*13)%101)<7;
+      ctx.fillStyle=on?"#5B4BFF":"rgba(255,255,255,.05)";
+      if(on){ctx.shadowColor="#6E5EFF";ctx.shadowBlur=6;}else{ctx.shadowBlur=0;}
+      ctx.fillRect(x,y,on?4:2,on?4:2);
+    }
+    ctx.shadowBlur=0;
+  })();
+
+  /* GSAP + Lenis */
+  if(typeof gsap==="undefined"){document.documentElement.classList.remove("js");runScr&&document.querySelectorAll(".scr").forEach(function(e){e.textContent=e.getAttribute("data-text");});if(termEl)termEl.textContent="pronto pra vender";return;}
+  if(reduce){document.documentElement.classList.remove("js");cycleTerm();cycleTag();return;}
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* rede de segurança: se algo travar, o conteúdo aparece de qualquer jeito */
+  setTimeout(function(){
+    document.querySelectorAll(".rv").forEach(function(el){
+      if(getComputedStyle(el).opacity === "0"){ el.style.opacity = "1"; el.style.transform = "none"; }
+    });
+  }, 4000);
+
+  if(typeof Lenis!=="undefined"){
+    try{
+      var lenis=new Lenis({lerp:0.12,wheelMultiplier:1,smoothWheel:true});
+      lenis.on("scroll",ScrollTrigger.update);
+      gsap.ticker.add(function(time){lenis.raf(time*1000);});
+      gsap.ticker.lagSmoothing(0);
+    }catch(e){}
+  }
+
+  gsap.to(".hero h1 .ln i",{y:"0%",duration:.9,stagger:.09,ease:"power4.out",delay:.15});
+  gsap.utils.toArray(".hero .rv").forEach(function(el,i){gsap.to(el,{opacity:1,y:0,duration:.7,ease:"power3.out",delay:.5+i*0.08});});
+  gsap.utils.toArray(".rv").forEach(function(el){
+    if(el.closest(".hero"))return;
+    gsap.to(el,{opacity:1,y:0,duration:.55,ease:"power2.out",scrollTrigger:{trigger:el,start:"top 90%"}});
+  });
+
+  /* scramble triggers */
+  document.querySelectorAll(".scr").forEach(function(el){
+    ScrollTrigger.create({trigger:el,start:"top 92%",onEnter:function(){runScr(el);}});
+  });
+
+  var fillEl=document.getElementById("procFill");
+  if(fillEl){
+    gsap.to(fillEl,{scaleX:1,ease:"none",scrollTrigger:{trigger:".proc",start:"top 72%",end:"bottom 60%",scrub:.6}});
+    document.querySelectorAll("[data-step]").forEach(function(st){
+      ScrollTrigger.create({trigger:st,start:"top 74%",onEnter:function(){st.classList.add("on");},onLeaveBack:function(){st.classList.remove("on");}});
+    });
+  }
+
+  /* start kinetic loops */
+  setTimeout(cycleTerm,900);
+  cycleTag();
+});
+</script>
+</body>
+</html>

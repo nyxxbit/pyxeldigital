@@ -1,0 +1,792 @@
+/* ===================================================================
+   Taverna Bar'n Burguer — cardápio
+   ===================================================================
+
+   Este site é SÓ cardápio. Não tem bot, não tem painel, não tem
+   pedido gravado em lugar nenhum. A pessoa monta, o site escreve a
+   mensagem e abre o WhatsApp da Taverna. Quem está no balcão fecha.
+
+   A linguagem visual saiu dos stories deles: pergaminho, tinta
+   marrom, tabuleta de madeira, xilogravura. É o "decreto real" que
+   eles já postam. O site escuro que a gente fez continua de pé em
+   tavernabarnburger.squareweb.app e não foi tocado.
+
+   Regra de dinheiro do projeto vale aqui: centavo inteiro, nunca
+   float. Ver o comentário em app.js.
+   =================================================================== */
+
+:root{
+  /* pergaminho */
+  --papel:#E6D9BA; --papel2:#D8C7A2; --papel3:#F3EAD4; --papel4:#CDB994;
+  /* tinta */
+  --tinta:#31220F; --tinta2:#57401F; --tinta3:#846A4A;
+  /* madeira das tabuletas */
+  --madeira:#4B3418; --madeira2:#6A4C25; --madeira3:#38260F;
+  /* lacre e ouro fosco */
+  --selo:#96271A; --selo2:#B4382A; --ouro:#A87C2B; --ouro2:#C79A44;
+  --verde:#1B5E34;
+
+  --fio:rgba(49,34,15,.22); --fio2:rgba(49,34,15,.42); --fio3:rgba(49,34,15,.1);
+
+  --display:'Rye',Georgia,serif;
+  --placa:'Bevan',Georgia,serif;
+  --corpo:'EB Garamond',Georgia,serif;
+
+  --maxw:1180px;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --ease2:cubic-bezier(.16,1,.3,1);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+/* O atributo hidden esconde por display:none da folha do navegador, e
+   qualquer display do autor ganha dele. O lacre de cera é inline-flex,
+   então aparecia vazio e vermelho em cima da foto de todo lanche que
+   não serve mais de uma pessoa. */
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  font-family:var(--corpo);font-weight:500;font-size:17px;line-height:1.6;
+  color:var(--tinta);background-color:var(--papel);
+  /* Textura do papel. Sem position:fixed e sem mix-blend-mode: a
+     combinação dos dois derrubou o desempenho do site da Honorato.
+     Aqui é pintura estática, custo zero por quadro. */
+  background-image:
+    radial-gradient(ellipse 60% 45% at 15% 8%, rgba(255,250,235,.5), transparent 70%),
+    radial-gradient(ellipse 50% 40% at 88% 30%, rgba(168,124,43,.09), transparent 70%),
+    radial-gradient(ellipse 70% 50% at 50% 100%, rgba(75,52,24,.12), transparent 70%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='4' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 .25 0 0 0 0 .17 0 0 0 0 .06 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)' opacity='.4'/%3E%3C/svg%3E");
+  background-repeat:no-repeat,no-repeat,no-repeat,repeat;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+button,input,select,textarea{font:inherit;color:inherit;background:none;border:none}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--selo);outline-offset:3px}
+::selection{background:var(--ouro);color:var(--papel3)}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px;width:100%}
+
+/* -------------------------------------------------------------------
+   Peças do decreto: fita, tabuleta, lacre, moldura.
+   São as quatro formas que os stories deles repetem.
+   ------------------------------------------------------------------- */
+
+/* Fita entalhada nas duas pontas. O recorte é o que faz ler como
+   faixa de pergaminho, não como retângulo colorido. */
+.fita{
+  display:inline-block;position:relative;
+  background:linear-gradient(180deg,var(--madeira2),var(--madeira) 55%,var(--madeira3));
+  color:var(--papel3);
+  font-family:var(--display);font-size:clamp(15px,2.4vw,22px);
+  letter-spacing:.06em;text-transform:uppercase;
+  padding:13px clamp(38px,6vw,62px);
+  clip-path:polygon(0 0,100% 0,calc(100% - 20px) 50%,100% 100%,0 100%,20px 50%);
+  text-shadow:0 1px 0 rgba(0,0,0,.45);
+}
+
+/* Tabuleta de madeira com veio. O veio é gradiente repetido, não
+   imagem: 300 bytes contra 40 KB e escala em qualquer largura. */
+.tabuleta{
+  display:inline-block;border-radius:3px;
+  background:
+    repeating-linear-gradient(90deg,
+      rgba(0,0,0,.055) 0 2px, transparent 2px 9px,
+      rgba(255,235,200,.04) 9px 11px, transparent 11px 22px),
+    linear-gradient(180deg,var(--madeira2),var(--madeira) 60%,var(--madeira3));
+  color:var(--papel3);
+  box-shadow:inset 0 1px 0 rgba(255,225,180,.16),
+             inset 0 -2px 3px rgba(0,0,0,.35),
+             0 2px 0 rgba(49,34,15,.25);
+  padding:9px 20px;
+  font-family:var(--placa);font-size:15px;letter-spacing:.04em;
+  text-transform:uppercase;text-shadow:0 1px 1px rgba(0,0,0,.5);
+}
+
+/* Lacre de cera. Gira 8 graus de propósito: lacre carimbado reto
+   parece adesivo. */
+.lacre{
+  display:inline-flex;align-items:center;justify-content:center;text-align:center;
+  width:62px;height:62px;border-radius:50%;transform:rotate(-8deg);
+  background:radial-gradient(circle at 35% 28%,var(--selo2),var(--selo) 55%,#6E1B12);
+  color:#F6E3CE;font-family:var(--placa);font-size:11px;line-height:1.1;
+  letter-spacing:.02em;text-transform:uppercase;
+  box-shadow:inset 0 2px 4px rgba(255,180,150,.3),
+             inset 0 -3px 6px rgba(0,0,0,.45),
+             0 2px 5px rgba(49,34,15,.35);
+}
+.lacre::before{
+  content:"";position:absolute;width:48px;height:48px;border-radius:50%;
+  border:1px dashed rgba(246,227,206,.32);
+}
+
+/* Moldura de decreto: fio grosso por fora, fio fino por dentro. */
+.moldura{
+  position:relative;
+  border:3px solid var(--tinta);
+  box-shadow:inset 0 0 0 1px var(--papel), inset 0 0 0 4px rgba(49,34,15,.55);
+  background:linear-gradient(180deg,rgba(255,250,235,.34),rgba(205,185,148,.2));
+}
+/* Losangos nos quatro cantos, no lugar do arabesco impresso. */
+.moldura::before,.moldura::after{
+  content:"";position:absolute;width:11px;height:11px;
+  background:var(--tinta);transform:rotate(45deg);
+}
+.moldura::before{top:-6px;left:-6px}
+.moldura::after{top:-6px;right:-6px}
+.moldura>.cantos::before,.moldura>.cantos::after{
+  content:"";position:absolute;width:11px;height:11px;
+  background:var(--tinta);transform:rotate(45deg);
+}
+.moldura>.cantos::before{bottom:-6px;left:-6px}
+.moldura>.cantos::after{bottom:-6px;right:-6px}
+
+/* Divisória com losango no meio, como separador de bloco de decreto */
+.divisa{display:flex;align-items:center;gap:14px;color:var(--fio2)}
+.divisa::before,.divisa::after{content:"";height:1px;flex:1;background:currentColor}
+.divisa i{width:7px;height:7px;background:var(--tinta);transform:rotate(45deg);flex:none}
+
+/* -------------------------------------------------------------------
+   Botões
+   ------------------------------------------------------------------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  font-family:var(--placa);font-size:14px;letter-spacing:.05em;
+  text-transform:uppercase;padding:14px 26px;border-radius:3px;
+  transition:transform .28s var(--ease2),box-shadow .28s var(--ease),
+             background-color .28s var(--ease);
+  white-space:nowrap;
+}
+.btn svg{width:18px;height:18px;flex:none}
+.btn.cheio{
+  background:linear-gradient(180deg,var(--madeira2),var(--madeira3));
+  color:var(--papel3);text-shadow:0 1px 1px rgba(0,0,0,.5);
+  box-shadow:inset 0 1px 0 rgba(255,225,180,.2),0 3px 0 rgba(49,34,15,.35);
+}
+.btn.cheio:hover{transform:translateY(-2px);box-shadow:inset 0 1px 0 rgba(255,225,180,.2),0 5px 0 rgba(49,34,15,.32)}
+.btn.cheio:active{transform:translateY(1px);box-shadow:inset 0 1px 0 rgba(255,225,180,.2),0 1px 0 rgba(49,34,15,.35)}
+.btn.zap{
+  background:linear-gradient(180deg,#2A8A4C,var(--verde));color:#F3EAD4;
+  box-shadow:inset 0 1px 0 rgba(190,255,215,.25),0 3px 0 rgba(16,60,32,.5);
+  text-shadow:0 1px 1px rgba(0,0,0,.35);
+}
+.btn.zap:hover{transform:translateY(-2px)}
+.btn.zap:active{transform:translateY(1px);box-shadow:inset 0 1px 0 rgba(190,255,215,.25),0 1px 0 rgba(16,60,32,.5)}
+.btn.fio{border:2px solid var(--tinta);color:var(--tinta);background:rgba(255,250,235,.35)}
+.btn.fio:hover{background:rgba(255,250,235,.7);transform:translateY(-2px)}
+
+/* -------------------------------------------------------------------
+   Cabeçalho
+   ------------------------------------------------------------------- */
+/* A moldura é estreita de propósito. Aberta em 1140 o miolo boiava no
+   meio de um retângulo vazio, e o decreto virava moldura de espelho.
+   Cartaz é vertical. */
+.capa{padding:clamp(20px,3.4vw,34px) 0 clamp(12px,1.8vw,20px);text-align:center}
+.capa .moldura{max-width:820px;margin-inline:auto;
+  padding:clamp(22px,3.2vw,32px) clamp(20px,3.4vw,38px) clamp(24px,3.2vw,32px)}
+
+.brasao{
+  width:clamp(74px,11vw,96px);height:clamp(74px,11vw,96px);
+  border-radius:50%;margin:0 auto;object-fit:cover;
+  border:3px solid var(--tinta);
+  box-shadow:0 0 0 5px var(--papel),0 0 0 6px rgba(49,34,15,.35),
+             0 6px 18px rgba(49,34,15,.28);
+}
+.capa .desde{
+  margin-top:13px;font-family:var(--placa);font-size:10.5px;
+  letter-spacing:.24em;text-transform:uppercase;color:var(--tinta3);
+}
+.capa h1{
+  font-family:var(--display);font-weight:400;
+  font-size:clamp(28px,5.4vw,52px);line-height:1.05;margin-top:8px;
+  letter-spacing:.005em;text-wrap:balance;
+  text-shadow:1px 1px 0 rgba(255,250,235,.55);
+}
+.capa .sub{
+  margin-top:10px;font-size:clamp(16px,2.1vw,19px);font-style:italic;
+  color:var(--tinta2);max-width:38ch;margin-inline:auto;text-wrap:pretty;
+}
+.capa .divisa{margin:18px auto 0;max-width:290px}
+.capa .fita{margin-top:20px}
+
+.fichas{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:9px 10px;margin-top:18px;
+}
+.ficha{
+  display:inline-flex;align-items:center;gap:7px;
+  border:1px solid var(--fio2);border-radius:2px;
+  background:rgba(255,250,235,.42);
+  padding:7px 13px;font-size:14.5px;color:var(--tinta2);
+}
+.ficha svg{width:15px;height:15px;flex:none;opacity:.75}
+.ficha b{font-weight:600;color:var(--tinta)}
+
+.aviso{
+  margin-top:16px;font-size:15.5px;color:var(--tinta2);
+  max-width:52ch;margin-inline:auto;text-wrap:pretty;font-style:italic;
+}
+
+/* -------------------------------------------------------------------
+   Decreto real: as promoções do dia
+   ------------------------------------------------------------------- */
+.decreto{padding:clamp(28px,5vw,52px) 0 clamp(10px,2vw,18px)}
+.decreto .topo{text-align:center;margin-bottom:clamp(22px,3.4vw,34px)}
+.decreto .topo p{margin-top:13px;color:var(--tinta2);font-style:italic;font-size:16.5px}
+
+.decretos{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.4vw,26px)}
+
+.pergaminho{
+  position:relative;display:flex;flex-direction:column;overflow:hidden;
+  border:3px solid var(--tinta);border-radius:2px;
+  background:linear-gradient(180deg,rgba(255,250,235,.55),rgba(216,199,162,.42));
+  box-shadow:inset 0 0 0 1px var(--papel),inset 0 0 0 4px rgba(49,34,15,.5),
+             0 4px 0 rgba(49,34,15,.16);
+  transition:transform .4s var(--ease2),box-shadow .4s var(--ease);
+}
+.pergaminho:hover{transform:translateY(-4px);
+  box-shadow:inset 0 0 0 1px var(--papel),inset 0 0 0 4px rgba(49,34,15,.5),
+             0 8px 0 rgba(49,34,15,.14)}
+
+.pergaminho .arte{
+  position:relative;aspect-ratio:4/3;overflow:hidden;
+  background:var(--papel4);
+}
+.pergaminho .arte img{
+  width:100%;height:100%;object-fit:cover;
+  /* sépia forte: a foto tem que virar gravura, senão brigam duas
+     linguagens na mesma peça */
+  filter:sepia(.62) contrast(1.08) saturate(.82) brightness(.98);
+  transition:transform .8s var(--ease2),filter .5s var(--ease);
+}
+.pergaminho:hover .arte img{transform:scale(1.05);filter:sepia(.42) contrast(1.1) saturate(.95)}
+.pergaminho .arte::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 78% 70% at 50% 45%,transparent 40%,rgba(49,34,15,.5));
+}
+.pergaminho .placa{
+  position:absolute;left:50%;bottom:14px;transform:translateX(-50%);
+  white-space:nowrap;z-index:2;
+}
+
+.pergaminho .corpo{padding:clamp(20px,2.6vw,30px);text-align:center;
+  display:flex;flex-direction:column;flex:1}
+.pergaminho .rotulo{
+  font-family:var(--display);font-size:clamp(22px,3.4vw,34px);
+  line-height:1.1;color:var(--tinta);
+  text-shadow:1px 1px 0 rgba(255,250,235,.5);
+}
+.pergaminho .valor{
+  font-family:var(--display);font-size:clamp(34px,5.6vw,54px);line-height:1;
+  margin-top:14px;color:var(--selo);font-variant-numeric:tabular-nums;
+  text-shadow:1px 1px 0 rgba(255,250,235,.55);
+}
+.pergaminho .antes{
+  margin-top:9px;font-size:15px;color:var(--tinta3);
+}
+.pergaminho .antes s{opacity:.85}
+.pergaminho .antes b{color:var(--selo);font-weight:600;font-style:normal}
+.pergaminho .lema{
+  margin-top:auto;padding-top:18px;font-style:italic;font-size:15.5px;color:var(--tinta2);
+}
+.pergaminho .btn{margin-top:16px;width:100%}
+
+/* -------------------------------------------------------------------
+   Barra de categorias, grudada no topo
+   ------------------------------------------------------------------- */
+.abas{
+  position:sticky;top:0;z-index:40;
+  background:linear-gradient(180deg,var(--papel3),var(--papel) 70%);
+  border-bottom:2px solid var(--tinta);
+  box-shadow:0 3px 10px rgba(49,34,15,.14);
+}
+.abas .trilho{
+  display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;
+  padding:9px 20px;max-width:var(--maxw);margin:0 auto;
+}
+.abas .trilho::-webkit-scrollbar{display:none}
+/* As abas ficavam encostadas na esquerda: o trilho e centralizado, mas dentro
+   dele o padrao do flex e comecar da esquerda, e num monitor de 1365px sobrava
+   meia tela vazia a direita.
+
+   justify-content:center resolveria no computador e QUEBRARIA no celular: em
+   container com overflow-x, conteudo centralizado transborda para os dois
+   lados, e o que sai pela esquerda nao tem como ser alcancado pela rolagem. A
+   primeira aba, que e a categoria principal, ficaria inacessivel.
+
+   Margem automatica nas pontas faz as duas coisas certas: divide o espaco que
+   sobra quando cabe, e vira zero quando nao cabe, deixando a rolagem comecar
+   na primeira aba como tem que ser. */
+.abas .trilho > :first-child{margin-inline-start:auto}
+.abas .trilho > :last-child{margin-inline-end:auto}
+.abas a{
+  flex:none;padding:10px 17px;border-radius:2px;
+  font-family:var(--placa);font-size:12.5px;letter-spacing:.04em;
+  text-transform:uppercase;color:var(--tinta2);white-space:nowrap;
+  border:1px solid transparent;
+  transition:background-color .25s var(--ease),color .25s var(--ease),
+             border-color .25s var(--ease);
+}
+.abas a:hover{background:rgba(255,250,235,.7);border-color:var(--fio)}
+.abas a.aqui{
+  background:linear-gradient(180deg,var(--madeira2),var(--madeira3));
+  color:var(--papel3);border-color:var(--madeira3);
+  text-shadow:0 1px 1px rgba(0,0,0,.45);
+}
+/* esmaece a borda quando ainda há aba fora da tela */
+.abas .trilho.rola{
+  mask-image:linear-gradient(90deg,#000 calc(100% - 34px),transparent);
+}
+
+/* -------------------------------------------------------------------
+   Seções do cardápio
+   ------------------------------------------------------------------- */
+/* Uma categoria por vez. Pende de .anima, que só existe com script
+   vivo: sem JS as quatro aparecem em sequência e o cardápio continua
+   inteiro, só que rolando. */
+.anima .secao{display:none}
+.anima .secao.ativa{display:block}
+
+.secao{padding:clamp(26px,4.4vw,52px) 0 0;scroll-margin-top:calc(var(--barra,58px) + 14px)}
+/* A contagem mora DENTRO da régua, entre os dois losangos. Em duas
+   linhas separadas, o cabeçalho da seção comia 110px de altura para
+   dizer "12 opções", e num celular isso é a primeira foto que some. */
+.secao .cabeca{text-align:center;margin-bottom:clamp(18px,2.6vw,28px)}
+.secao .cabeca .divisa{max-width:420px;margin-inline:auto;gap:11px}
+.secao .cabeca .quantos{
+  flex:none;font-family:var(--placa);font-size:10.5px;
+  letter-spacing:.19em;text-transform:uppercase;color:var(--tinta3);
+}
+
+.pratos{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.7vw,18px)}
+
+/* --foto e --pad existem para o lacre saber onde é o canto da foto sem
+   eu repetir número em cada faixa de largura. */
+.prato{
+  --foto:118px; --pad:14px; --lacre:46px;
+  position:relative;display:grid;grid-template-columns:var(--foto) 1fr;gap:16px;
+  text-align:left;width:100%;
+  border:1px solid var(--fio2);border-radius:3px;
+  background:linear-gradient(180deg,rgba(255,250,235,.5),rgba(216,199,162,.26));
+  padding:var(--pad);
+  transition:transform .3s var(--ease2),border-color .3s var(--ease),
+             box-shadow .3s var(--ease);
+}
+.prato:hover{
+  transform:translateY(-3px);border-color:var(--tinta);
+  box-shadow:0 4px 0 rgba(49,34,15,.14);
+}
+.prato:active{transform:translateY(0)}
+
+/* Emblema no lugar da foto: mesma caixa e mesmo tamanho, para a grade nao
+   desalinhar quando um item tem foto e o vizinho nao. Cerveja e porcao entraram
+   sem foto porque nao existe foto delas, e quadrado vazio parece defeito. */
+.prato .foto.semfoto{display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(160deg,var(--papel3),var(--papel2))}
+.prato .foto.semfoto svg{width:56%;height:56%;fill:none;stroke:var(--tinta);
+  stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;opacity:.55}
+.prato .foto{
+  position:relative;width:var(--foto);height:var(--foto);border-radius:2px;overflow:hidden;
+  border:2px solid var(--tinta);background:var(--papel4);
+}
+.prato .foto img{
+  width:100%;height:100%;object-fit:cover;
+  filter:sepia(.34) saturate(.94) contrast(1.04);
+  transition:transform .6s var(--ease2),filter .4s var(--ease);
+}
+.prato:hover .foto img{transform:scale(1.07);filter:sepia(.12) saturate(1.02) contrast(1.05)}
+
+/* Ancorado no canto da foto pela conta, não por right/bottom: o lacre
+   agora é filho do cartão, e o canto da foto fica em pad + foto. Sobra
+   8px para fora, que é o que dá a impressão de carimbo aplicado por
+   cima em vez de adesivo encaixado. */
+/* "Serve 4" em duas palavras não cabe: a segunda linha cai onde o
+   círculo já fechou e o número sai decepado. Lacre de cera carimba
+   numeral, não frase. */
+.prato .selo-serve{
+  position:absolute;z-index:2;flex-direction:column;line-height:1;
+  left:calc(var(--pad) + var(--foto) - var(--lacre) + 8px);
+  top:calc(var(--pad) + var(--foto) - var(--lacre) + 8px);
+  width:var(--lacre);height:var(--lacre);
+  transform:rotate(-10deg);
+}
+.prato .selo-serve i{
+  font-style:normal;font-size:6.5px;letter-spacing:.12em;opacity:.88}
+.prato .selo-serve b{
+  font-family:var(--display);font-weight:400;font-size:17px;margin-top:2px}
+.prato .selo-serve::before{width:calc(var(--lacre) - 12px);height:calc(var(--lacre) - 12px)}
+
+.prato .miolo{min-width:0;display:flex;flex-direction:column}
+.prato .nome{
+  font-family:var(--placa);font-size:clamp(15px,1.55vw,17.5px);line-height:1.18;
+  letter-spacing:.01em;color:var(--tinta);text-transform:uppercase;
+}
+.prato .cod{
+  font-family:var(--placa);font-size:9.5px;letter-spacing:.14em;
+  color:var(--tinta3);margin-top:5px;text-transform:uppercase;
+}
+.prato .desc{
+  margin-top:7px;font-size:14.8px;line-height:1.42;color:var(--tinta2);
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;
+  overflow:hidden;text-wrap:pretty;
+}
+.prato .pe{
+  margin-top:auto;padding-top:11px;display:flex;align-items:flex-end;
+  justify-content:space-between;gap:10px;
+}
+.prato .preco{
+  font-family:var(--display);font-size:clamp(19px,2.1vw,24px);line-height:1;
+  color:var(--tinta);font-variant-numeric:tabular-nums;white-space:nowrap;
+}
+.prato .preco small{
+  display:block;font-family:var(--placa);font-size:9px;letter-spacing:.12em;
+  color:var(--tinta3);margin-bottom:4px;text-transform:uppercase;
+}
+.prato .mais{
+  flex:none;width:38px;height:38px;border-radius:2px;
+  display:grid;place-items:center;
+  background:linear-gradient(180deg,var(--madeira2),var(--madeira3));
+  color:var(--papel3);box-shadow:inset 0 1px 0 rgba(255,225,180,.2),
+                                 0 2px 0 rgba(49,34,15,.3);
+  transition:transform .25s var(--ease2);
+}
+.prato .mais svg{width:19px;height:19px}
+.prato:hover .mais{transform:scale(1.08)}
+
+/* -------------------------------------------------------------------
+   Rodapé
+   ------------------------------------------------------------------- */
+.rodape{
+  margin-top:clamp(46px,7vw,80px);
+  border-top:3px double var(--tinta);
+  background:linear-gradient(180deg,transparent,rgba(75,52,24,.1));
+  padding:clamp(34px,5vw,54px) 0 calc(clamp(30px,4vw,44px) + var(--pe,0px));
+  text-align:center;
+}
+.rodape .divisa{max-width:300px;margin:0 auto 22px}
+.rodape .linhas{display:grid;gap:7px;font-size:16px;color:var(--tinta2)}
+.rodape .linhas b{color:var(--tinta);font-weight:600}
+.rodape .redes{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:22px;
+}
+.rodape .assina{
+  margin-top:30px;padding-top:20px;border-top:1px solid var(--fio);
+  font-size:13.5px;color:var(--tinta3);
+}
+.rodape .assina b{color:var(--tinta2);font-weight:600}
+
+/* -------------------------------------------------------------------
+   Cortina de troca de seção
+
+   visibility, e não só opacity: com opacity:0 o anel continuaria
+   girando atrás da página o tempo todo. Foi decoração invisível
+   custando quadro que derrubou o desempenho do site da Honorato, e
+   aqui a conta seria a mesma.
+   ------------------------------------------------------------------- */
+.cortina{
+  position:fixed;inset:0;z-index:75;display:grid;place-items:center;
+  background:var(--papel);
+  background-image:
+    radial-gradient(ellipse 70% 50% at 50% 40%,rgba(255,250,235,.85),transparent 72%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='4' seed='11'/%3E%3CfeColorMatrix values='0 0 0 0 .25 0 0 0 0 .17 0 0 0 0 .06 0 0 0 .45 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)' opacity='.4'/%3E%3C/svg%3E");
+  opacity:0;visibility:hidden;
+  transition:opacity .26s var(--ease),visibility 0s linear .26s;
+}
+.cortina.ver{opacity:1;visibility:visible;transition-delay:0s,0s}
+.cortina:not(.ver) .giro{animation-play-state:paused}
+
+.carga{text-align:center}
+.anel{position:relative;width:158px;height:158px;margin:0 auto;display:grid;place-items:center}
+.anel img{
+  width:106px;height:106px;border-radius:50%;object-fit:cover;
+  border:3px solid var(--tinta);
+  box-shadow:0 0 0 4px var(--papel),0 4px 14px rgba(49,34,15,.3);
+  animation:pulsa 1.5s var(--ease) infinite;
+}
+.anel .giro{position:absolute;inset:0;width:158px;height:158px;
+  animation:girar 2.6s linear infinite}
+.anel .giro circle{
+  fill:none;stroke:var(--tinta);stroke-width:2;opacity:.5;
+  stroke-dasharray:14 11;stroke-linecap:round;
+}
+@keyframes girar{to{transform:rotate(360deg)}}
+@keyframes pulsa{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.055)}
+}
+
+.carga-txt{
+  margin-top:22px;font-family:var(--placa);font-size:13px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--tinta2);
+}
+.carga-txt span{
+  display:block;margin-top:9px;font-family:var(--display);font-size:clamp(20px,3.6vw,28px);
+  letter-spacing:.01em;text-transform:none;color:var(--tinta);
+}
+
+/* -------------------------------------------------------------------
+   Barra do pedido
+   ------------------------------------------------------------------- */
+.barra{
+  position:fixed;left:0;right:0;bottom:0;z-index:70;
+  background:linear-gradient(180deg,var(--papel3),var(--papel2));
+  border-top:3px solid var(--tinta);
+  box-shadow:0 -4px 18px rgba(49,34,15,.22);
+  padding:11px 20px calc(11px + env(safe-area-inset-bottom,0px));
+  transform:translateY(115%);
+  transition:transform .42s var(--ease2);
+}
+.barra.ver{transform:translateY(0)}
+.barra .dentro{
+  max-width:var(--maxw);margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+}
+.barra .resumo{min-width:0}
+.barra .resumo .qtd{
+  font-family:var(--placa);font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--tinta3);
+}
+.barra .resumo .total{
+  font-family:var(--display);font-size:clamp(20px,3vw,26px);line-height:1.1;
+  color:var(--tinta);font-variant-numeric:tabular-nums;
+}
+
+/* -------------------------------------------------------------------
+   Folhas (detalhe do prato e pedido)
+   ------------------------------------------------------------------- */
+.veu{
+  position:fixed;inset:0;z-index:80;background:rgba(35,24,10,.62);
+  opacity:0;pointer-events:none;transition:opacity .34s var(--ease);
+}
+.veu.ver{opacity:1;pointer-events:auto}
+
+.folha{
+  position:fixed;z-index:90;left:50%;bottom:0;width:min(560px,100%);
+  transform:translate(-50%,102%);
+  max-height:min(92dvh,880px);display:flex;flex-direction:column;
+  background:var(--papel);
+  background-image:
+    radial-gradient(ellipse 70% 40% at 30% 0%,rgba(255,250,235,.6),transparent 70%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='4' seed='3'/%3E%3CfeColorMatrix values='0 0 0 0 .25 0 0 0 0 .17 0 0 0 0 .06 0 0 0 .45 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)' opacity='.4'/%3E%3C/svg%3E");
+  border:3px solid var(--tinta);border-bottom:none;
+  border-radius:6px 6px 0 0;
+  box-shadow:0 -10px 40px rgba(35,24,10,.4);
+  transition:transform .44s var(--ease2);
+}
+.folha.ver{transform:translate(-50%,0)}
+
+.folha .puxador{
+  flex:none;padding:11px 0 4px;display:grid;place-items:center;
+}
+.folha .puxador i{width:44px;height:4px;border-radius:2px;background:var(--fio2)}
+
+.folha .cume{
+  flex:none;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:6px 20px 13px;border-bottom:1px solid var(--fio);
+}
+.folha .cume h2{
+  font-family:var(--display);font-weight:400;font-size:clamp(19px,3vw,25px);
+  line-height:1.15;min-width:0;
+}
+.fechar{
+  flex:none;width:38px;height:38px;border-radius:2px;display:grid;place-items:center;
+  border:1px solid var(--fio2);color:var(--tinta2);
+  transition:background-color .25s var(--ease),color .25s var(--ease);
+}
+.fechar:hover{background:rgba(150,39,26,.12);color:var(--selo)}
+.fechar svg{width:18px;height:18px}
+
+.folha .rolo{overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;
+  padding:20px;flex:1}
+.folha .base{
+  flex:none;padding:14px 20px calc(16px + env(safe-area-inset-bottom,0px));
+  border-top:2px solid var(--tinta);background:rgba(216,199,162,.55);
+}
+.folha .base .btn{width:100%}
+
+/* --- detalhe do prato --- */
+.detalhe .arte{
+  position:relative;aspect-ratio:16/10;border-radius:3px;overflow:hidden;
+  border:2px solid var(--tinta);background:var(--papel4);
+}
+.detalhe .arte img{width:100%;height:100%;object-fit:cover;
+  filter:sepia(.28) saturate(.98) contrast(1.05)}
+.detalhe .arte .lacre{position:absolute;right:12px;bottom:12px}
+.detalhe .cod{
+  margin-top:16px;font-family:var(--placa);font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--tinta3);
+}
+.detalhe .desc{margin-top:9px;font-size:16.5px;line-height:1.55;color:var(--tinta2);text-wrap:pretty}
+
+.grupo{margin-top:24px}
+.grupo>.titulo{
+  display:flex;align-items:baseline;justify-content:space-between;gap:10px;
+  font-family:var(--placa);font-size:11px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--tinta);margin-bottom:11px;
+}
+.grupo>.titulo em{font-family:var(--corpo);font-style:italic;font-size:14px;
+  letter-spacing:0;text-transform:none;color:var(--tinta3)}
+
+.tamanhos{display:grid;grid-template-columns:repeat(auto-fit,minmax(88px,1fr));gap:9px}
+.tam{
+  border:2px solid var(--fio2);border-radius:2px;padding:11px 8px;text-align:center;
+  background:rgba(255,250,235,.4);
+  transition:border-color .25s var(--ease),background-color .25s var(--ease),
+             transform .25s var(--ease2);
+}
+.tam:hover{border-color:var(--tinta3);transform:translateY(-2px)}
+.tam.aqui{
+  border-color:var(--tinta);background:linear-gradient(180deg,var(--madeira2),var(--madeira3));
+  color:var(--papel3);
+}
+/* display:block nos dois: como span inline a letra e o preço colavam
+   numa linha só e saía "MR$ 38,00". */
+.tam .letra{display:block;font-family:var(--placa);font-size:15px;letter-spacing:.05em}
+.tam .val{display:block;font-family:var(--display);font-size:15.5px;margin-top:5px;
+  font-variant-numeric:tabular-nums;white-space:nowrap}
+
+textarea.obs{
+  width:100%;border:2px solid var(--fio2);border-radius:2px;
+  background:rgba(255,250,235,.5);padding:12px 13px;font-size:16px;
+  line-height:1.5;resize:vertical;min-height:78px;
+  transition:border-color .25s var(--ease)}
+textarea.obs:focus{border-color:var(--tinta);outline:none}
+textarea.obs::placeholder{color:var(--tinta3);font-style:italic}
+
+.contador{display:flex;align-items:center;gap:0;border:2px solid var(--tinta);
+  border-radius:2px;overflow:hidden;background:rgba(255,250,235,.45)}
+.contador button{
+  width:44px;height:44px;display:grid;place-items:center;color:var(--tinta);
+  transition:background-color .2s var(--ease)}
+.contador button:hover{background:rgba(75,52,24,.14)}
+.contador button:disabled{opacity:.3;cursor:not-allowed}
+.contador button svg{width:17px;height:17px}
+.contador .n{
+  min-width:46px;text-align:center;font-family:var(--display);font-size:19px;
+  font-variant-numeric:tabular-nums;border-inline:2px solid var(--tinta);
+  line-height:44px}
+
+.linha-qtd{display:flex;align-items:center;justify-content:space-between;gap:14px;
+  margin-top:24px}
+
+/* --- pedido --- */
+.itens{display:grid;gap:11px}
+.item{
+  display:grid;grid-template-columns:1fr auto;gap:12px;align-items:start;
+  border:1px solid var(--fio2);border-radius:2px;padding:13px;
+  background:rgba(255,250,235,.42);
+}
+.item .lado-txt{min-width:0}
+.item .nome{font-family:var(--placa);font-size:14px;text-transform:uppercase;
+  letter-spacing:.01em;line-height:1.25}
+.item .det{margin-top:5px;font-size:14px;color:var(--tinta3);font-style:italic}
+.item .obs-lida{margin-top:6px;font-size:14px;color:var(--tinta2);
+  padding-left:11px;border-left:2px solid var(--ouro)}
+.item .val{font-family:var(--display);font-size:17px;margin-top:8px;
+  font-variant-numeric:tabular-nums}
+.item .lado{display:flex;flex-direction:column;align-items:flex-end;gap:9px}
+.item .contador button{width:34px;height:34px}
+.item .contador .n{min-width:36px;line-height:34px;font-size:16px}
+.tirar{font-size:13.5px;color:var(--tinta3);text-decoration:underline;
+  text-underline-offset:3px;transition:color .2s var(--ease)}
+.tirar:hover{color:var(--selo)}
+
+.conta{margin-top:22px;border-top:2px solid var(--tinta);padding-top:15px;
+  display:grid;gap:8px}
+.conta .l{display:flex;justify-content:space-between;gap:12px;font-size:16px;
+  color:var(--tinta2)}
+.conta .l.soma{font-family:var(--display);font-size:clamp(21px,3.4vw,26px);
+  color:var(--tinta);align-items:baseline}
+.conta .l.soma span:last-child{font-variant-numeric:tabular-nums}
+
+.campos{display:grid;gap:14px}
+.campo{display:grid;gap:6px}
+.campo>label{font-family:var(--placa);font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--tinta2)}
+.campo input{
+  border:2px solid var(--fio2);border-radius:2px;background:rgba(255,250,235,.5);
+  padding:12px 13px;font-size:16px;transition:border-color .25s var(--ease)}
+.campo input:focus{border-color:var(--tinta);outline:none}
+.campo input::placeholder{color:var(--tinta3);font-style:italic}
+.campo.ruim input,.campo.ruim textarea{border-color:var(--selo)}
+.dupla{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.tripla{display:grid;grid-template-columns:1.6fr 1fr;gap:14px}
+
+.escolha{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opc{
+  border:2px solid var(--fio2);border-radius:2px;padding:14px 12px;text-align:center;
+  font-family:var(--placa);font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;
+  background:rgba(255,250,235,.4);
+  transition:border-color .25s var(--ease),background-color .25s var(--ease),
+             transform .25s var(--ease2);
+}
+.opc:hover{border-color:var(--tinta3);transform:translateY(-2px)}
+.opc.aqui{border-color:var(--tinta);
+  background:linear-gradient(180deg,var(--madeira2),var(--madeira3));color:var(--papel3)}
+
+.recado{
+  margin-top:14px;padding:12px 14px;border-left:3px solid var(--selo);
+  background:rgba(150,39,26,.1);font-size:15px;color:var(--tinta);display:none}
+.recado.ver{display:block}
+
+.vazio{text-align:center;padding:40px 10px;color:var(--tinta3)}
+.vazio svg{width:52px;height:52px;margin:0 auto 16px;opacity:.4}
+.vazio p{font-size:16.5px;font-style:italic}
+
+/* -------------------------------------------------------------------
+   Revelação. Só transform e opacity.
+   Sem gatilho por prefers-reduced-motion: a máquina do João tem
+   "reduzir movimento" ligado no sistema e o site inteiro ficaria
+   parado sem que ninguém percebesse o motivo.
+   ------------------------------------------------------------------- */
+/* Tudo aqui pende de .anima, que o <head> só liga se houver script
+   vivo. Sem isso, script quebrado deixaria a página carregada e
+   invisível, que é o pior defeito possível: parece site fora do ar. */
+.anima .rv{opacity:0;transform:translateY(18px);
+  transition:opacity .7s var(--ease),transform .7s var(--ease2)}
+.anima .rv.in{opacity:1;transform:none}
+.anima .esc>*{opacity:0;transform:translateY(16px);
+  transition:opacity .6s var(--ease),transform .6s var(--ease2)}
+.anima .esc.in>*{opacity:1;transform:none}
+.esc.in>*:nth-child(1){transition-delay:0ms}
+.esc.in>*:nth-child(2){transition-delay:60ms}
+.esc.in>*:nth-child(3){transition-delay:120ms}
+.esc.in>*:nth-child(4){transition-delay:180ms}
+.esc.in>*:nth-child(5){transition-delay:240ms}
+.esc.in>*:nth-child(6){transition-delay:300ms}
+.esc.in>*:nth-child(7){transition-delay:340ms}
+.esc.in>*:nth-child(8){transition-delay:380ms}
+.esc.in>*:nth-child(n+9){transition-delay:420ms}
+
+/* -------------------------------------------------------------------
+   Telas estreitas
+   ------------------------------------------------------------------- */
+@media(max-width:900px){
+  .decretos{grid-template-columns:1fr;max-width:460px;margin-inline:auto}
+}
+@media(max-width:760px){
+  body{font-size:16.5px}
+  .pratos{grid-template-columns:1fr}
+  .prato{--foto:96px;--pad:12px;--lacre:40px;gap:13px}
+  .prato .desc{-webkit-line-clamp:2;font-size:14.2px}
+  .prato .selo-serve b{font-size:15px}
+  .folha{width:100%;max-height:94dvh}
+  /* 2x2 no lugar do 3+1 que o auto-fit dava: o UG sozinho na segunda
+     linha parecia sobra, não opção. */
+  .tamanhos{grid-template-columns:1fr 1fr}
+  .dupla,.tripla{grid-template-columns:1fr}
+  .barra .dentro{gap:10px}
+  .barra .btn{padding:13px 18px;font-size:13px}
+}
+@media(max-width:400px){
+  .capa .moldura{padding:22px 15px 26px}
+  .prato{--foto:82px;--lacre:37px}
+  .fita{padding:11px 30px}
+}
+
+/* impressão: o cardápio precisa sair no papel sem os botões */
+@media print{
+  .abas,.barra,.veu,.folha,.prato .mais,.pergaminho .btn{display:none!important}
+  body{background:#fff;color:#000}
+  .prato{break-inside:avoid}
+  .rv,.esc>*{opacity:1!important;transform:none!important}
+}

@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pyxel Digital — Prévias</title>
+<meta name="description" content="Sites e cardápios feitos pela Pyxel Digital. Abra, use no celular, monte um pedido.">
+<meta property="og:title" content="Pyxel Digital — Prévias">
+<meta property="og:description" content="Sites e cardápios feitos pela Pyxel Digital. Abra, use no celular, monte um pedido.">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#08090C; --bg-2:#0C0E13; --surface:#101319; --surface-2:#161A22;
+  --ink:#F1F3F8; --ink-2:#969CAB; --ink-3:#5B6170;
+  --cobalt:#3B2BFF; --cobalt-bright:#7A6BFF; --cobalt-cell:#5B4BFF;
+  --linha:rgba(255,255,255,.08);
+  --display:"Clash Display",system-ui,sans-serif;
+  --corpo:"Satoshi",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"Geist Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--corpo);line-height:1.6;-webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+
+/* ---------- topo ---------- */
+.topo{
+  position:sticky;top:0;z-index:40;background:rgba(8,9,12,.82);
+  backdrop-filter:blur(14px);border-bottom:1px solid var(--linha)
+}
+.topo .wrap{display:flex;align-items:center;gap:18px;height:66px}
+.marca{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);flex:none}
+/* O desenho tem 66x99, então a altura manda e a largura acompanha. Fixar
+   os dois esmagaria a grade de pixels, que é justamente o que faz a marca
+   ser dela e não um quadradinho com letra dentro. */
+.marca .pm{height:26px;width:auto;flex:none;display:block;color:var(--ink)}
+.marca b{font-family:var(--display);font-weight:600;font-size:19px;letter-spacing:-.01em}
+.topo nav{margin-left:auto;display:flex;gap:4px;align-items:center}
+.topo nav a{
+  font-size:13.5px;color:var(--ink-2);text-decoration:none;padding:8px 11px;
+  border-radius:8px;white-space:nowrap
+}
+.topo nav a:hover{color:var(--ink);background:var(--surface-2)}
+.topo nav a.aqui{color:var(--ink);background:var(--surface-2)}
+.zap{
+  flex:none;font-size:13.5px;font-weight:700;text-decoration:none;color:#fff;
+  background:linear-gradient(140deg,var(--cobalt-bright),var(--cobalt));
+  padding:10px 16px;border-radius:10px;white-space:nowrap
+}
+@media(max-width:720px){
+  .topo nav{display:none}
+  .topo .wrap{gap:12px}
+}
+
+/* ---------- capa ---------- */
+.capa{padding:56px 0 34px;border-bottom:1px solid var(--linha);position:relative;overflow:hidden}
+.capa::before{
+  content:"";position:absolute;left:50%;top:-160px;width:620px;height:320px;
+  transform:translateX(-50%);pointer-events:none;
+  background:radial-gradient(ellipse,rgba(91,75,255,.22),transparent 68%);filter:blur(30px)
+}
+.kick{
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--cobalt-bright);margin:0 0 14px;position:relative
+}
+h1{
+  font-family:var(--display);font-weight:700;
+  font-size:clamp(34px,6.4vw,58px);line-height:1.03;letter-spacing:-.028em;
+  margin:0;text-wrap:balance;position:relative
+}
+h1 em{font-style:normal;color:var(--cobalt-bright)}
+.lead{color:var(--ink-2);font-size:16.5px;margin:16px 0 0;max-width:56ch;position:relative}
+
+/* ---------- lista ---------- */
+.lista{padding:38px 0 24px;display:grid;gap:26px}
+@media(min-width:820px){.lista{grid-template-columns:1fr 1fr;gap:26px}}
+
+.trab{
+  background:var(--surface);border:1px solid var(--linha);border-radius:16px;
+  overflow:hidden;display:flex;flex-direction:column;
+  transition:border-color .2s ease, transform .2s ease
+}
+.trab:hover{border-color:rgba(122,107,255,.5);transform:translateY(-3px)}
+.trab .shot{display:block;position:relative;background:var(--bg-2);aspect-ratio:16/10;overflow:hidden}
+.trab .shot img{width:100%;height:100%;object-fit:cover;display:block}
+.trab .corpo{padding:18px 19px 20px;display:flex;flex-direction:column;gap:9px;flex:1}
+.rot{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-3)
+}
+.trab h2{font-family:var(--display);font-weight:600;font-size:22px;letter-spacing:-.015em;margin:0;line-height:1.15}
+.trab p{color:var(--ink-2);font-size:14.5px;margin:0;flex:1}
+.abrir{
+  align-self:flex-start;margin-top:5px;font-size:14px;font-weight:700;text-decoration:none;
+  color:var(--ink);border:1px solid var(--linha);background:var(--surface-2);
+  padding:10px 15px;border-radius:9px;display:inline-flex;align-items:center;gap:7px;min-height:42px
+}
+.abrir:hover{border-color:var(--cobalt-bright);color:#fff}
+.abrir span{color:var(--cobalt-bright)}
+
+/* ---------- fecho ---------- */
+.fecho{
+  margin:16px 0 60px;padding:30px 26px;border-radius:16px;
+  border:1px solid var(--linha);background:
+    radial-gradient(140% 120% at 8% 0%,rgba(91,75,255,.18),transparent 60%),var(--surface)
+}
+.fecho h3{font-family:var(--display);font-weight:600;font-size:clamp(21px,3.6vw,28px);letter-spacing:-.02em;margin:0 0 9px;text-wrap:balance}
+.fecho p{color:var(--ink-2);margin:0 0 19px;max-width:52ch;font-size:15px}
+.pe{border-top:1px solid var(--linha);padding:22px 0 40px;color:var(--ink-3);font-size:13px;display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center}
+.pe a{color:var(--ink-2);text-decoration:none}
+.pe a:hover{color:var(--ink)}
+
+a:focus-visible,button:focus-visible{outline:2px solid var(--cobalt-bright);outline-offset:2px}
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <div class="wrap">
+    <!-- A marca aqui era um "P" dentro de um quadrado com gradiente, e a da
+         home era o P montado em grade de pixels. Duas marcas no mesmo site,
+         e quem chegava pela prévia via a genérica: justamente a página que
+         serve de prova pra quem desconfia. Agora é o mesmo desenho da home,
+         copiado, não reinventado. -->
+    <a class="marca" href="index.html">
+      <svg class="pm" viewBox="0 0 66 99" aria-hidden="true">
+        <g fill="currentColor">
+          <rect x="22" y="0" width="9" height="9" rx="1.5"/><rect x="33" y="0" width="9" height="9" rx="1.5"/><rect x="44" y="0" width="9" height="9" rx="1.5"/>
+          <rect x="22" y="11" width="9" height="9" rx="1.5"/><rect x="33" y="11" width="9" height="9" rx="1.5"/><rect x="44" y="11" width="9" height="9" rx="1.5"/><rect x="55" y="11" width="9" height="9" rx="1.5"/>
+          <rect x="22" y="22" width="9" height="9" rx="1.5"/><rect x="33" y="22" width="9" height="9" rx="1.5"/><rect x="55" y="22" width="9" height="9" rx="1.5"/>
+          <rect x="22" y="33" width="9" height="9" rx="1.5"/><rect x="33" y="33" width="9" height="9" rx="1.5"/><rect x="55" y="33" width="9" height="9" rx="1.5"/>
+          <rect x="22" y="44" width="9" height="9" rx="1.5"/><rect x="33" y="44" width="9" height="9" rx="1.5"/><rect x="44" y="44" width="9" height="9" rx="1.5"/><rect x="55" y="44" width="9" height="9" rx="1.5"/>
+          <rect x="22" y="55" width="9" height="9" rx="1.5"/><rect x="33" y="55" width="9" height="9" rx="1.5"/>
+          <rect x="22" y="66" width="9" height="9" rx="1.5"/><rect x="33" y="66" width="9" height="9" rx="1.5"/>
+          <rect x="22" y="77" width="9" height="9" rx="1.5"/><rect x="33" y="77" width="9" height="9" rx="1.5"/>
+          <rect x="22" y="88" width="9" height="9" rx="1.5"/><rect x="33" y="88" width="9" height="9" rx="1.5"/>
+        </g>
+        <g fill="#6E5EFF"><rect x="11" y="22" width="6" height="6" rx="1"/><rect x="0" y="44" width="6" height="6" rx="1"/><rect x="11" y="66" width="6" height="6" rx="1"/></g>
+      </svg><b>Pyxel</b>
+    </a>
+    <nav>
+      <a href="index.html#sobre">Sobre</a>
+      <a href="index.html#servicos">Serviços</a>
+      <a href="previas.html" class="aqui">Prévias</a>
+      <a href="index.html#planos">Planos</a>
+      <a href="index.html#faq">Dúvidas</a>
+    </nav>
+    <a class="zap" href="https://wa.me/5517997452591?text=Ol%C3%A1!%20Vi%20as%20pr%C3%A9vias%20da%20Pyxel%20e%20queria%20conversar." target="_blank" rel="noopener">Pedir orçamento</a>
+  </div>
+</header>
+
+<section class="capa">
+  <div class="wrap">
+    <p class="kick">Prévias</p>
+    <h1>Não é proposta.<br>É site <em>funcionando</em>.</h1>
+    <p class="lead">Cada endereço abaixo abre de verdade. Entra pelo celular, navega, monta um pedido
+      e vê a mensagem chegar pronta no WhatsApp. É assim que o do seu comércio vai ficar.</p>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="lista">
+
+    <!-- A Doriie vem primeiro: é a prévia mais recente e a primeira que a
+         dona aprovou. Sem lazy na imagem, porque abre a lista. -->
+    <article class="trab">
+      <a class="shot" href="previas/doriie/" target="_blank" rel="noopener" aria-label="Abrir a prévia do site da Doriie Sorveteria">
+        <img src="img/doriie-1600.webp" srcset="img/doriie-800.webp 800w, img/doriie-1600.webp 1600w"
+             sizes="(min-width:820px) 500px, calc(100vw - 44px)"
+             width="1600" height="1000" alt="Site da Doriie Sorveteria">
+      </a>
+      <div class="corpo">
+        <p class="rot">Sorveteria · Ariranha</p>
+        <h2>Doriie Sorveteria</h2>
+        <p>Sorveteria de família com 98 sabores. O cliente monta a taça escolhendo sabor por sabor,
+           vê a foto de cada produto, e o pedido chega pronto no WhatsApp da loja.</p>
+        <a class="abrir" href="previas/doriie/" target="_blank" rel="noopener">Abrir a prévia <span>→</span></a>
+      </div>
+    </article>
+
+    <article class="trab">
+      <a class="shot" href="previas/caue/" target="_blank" rel="noopener" aria-label="Abrir a prévia do site da Cauê Consultoria">
+        <img src="img/caue-1600.webp" srcset="img/caue-800.webp 800w, img/caue-1600.webp 1600w"
+             sizes="(min-width:820px) 500px, calc(100vw - 44px)"
+             width="1600" height="1000" alt="Site da Cauê Consultoria">
+      </a>
+      <div class="corpo">
+        <p class="rot">Consultoria · Treino e alimentação</p>
+        <h2>Cauê Consultoria</h2>
+        <p>Arrasta a linha da foto e vê o antes e depois dele. Escolhe o objetivo, e a mensagem
+           já sai pronta pro WhatsApp do Cauê. Cada seção abre com animação própria.</p>
+        <a class="abrir" href="previas/caue/" target="_blank" rel="noopener">Abrir a prévia <span>→</span></a>
+      </div>
+    </article>
+
+    <article class="trab">
+      <a class="shot" href="previas/taverna/" target="_blank" rel="noopener" aria-label="Abrir a prévia do site da Taverna Bar'n Burguer">
+        <img src="img/taverna-1600.webp" srcset="img/taverna-800.webp 800w, img/taverna-1600.webp 1600w"
+             sizes="(min-width:820px) 500px, calc(100vw - 44px)"
+             width="1600" height="1000" alt="Site da Taverna Bar'n Burguer">
+      </a>
+      <div class="corpo">
+        <p class="rot">Hamburgueria · Santa Adélia</p>
+        <h2>Taverna Bar'n Burguer</h2>
+        <p>Hambúrguer artesanal no centro de Santa Adélia desde 2017. Os lanches têm nome de lenda,
+           e o site apresenta a casa com a cara dela, não com cara de modelo pronto.</p>
+        <a class="abrir" href="previas/taverna/" target="_blank" rel="noopener">Abrir a prévia <span>→</span></a>
+      </div>
+    </article>
+
+    <article class="trab">
+      <a class="shot" href="previas/cardapio/" target="_blank" rel="noopener" aria-label="Abrir a prévia do cardápio digital da Taverna">
+        <img src="img/cardapio-1600.webp" srcset="img/cardapio-800.webp 800w, img/cardapio-1600.webp 1600w"
+             sizes="(min-width:820px) 500px, calc(100vw - 44px)"
+             width="1600" height="1000" loading="lazy" alt="Cardápio digital da Taverna">
+      </a>
+      <div class="corpo">
+        <p class="rot">Cardápio · Pedido no WhatsApp</p>
+        <h2>O pedido chega pronto</h2>
+        <p>O cliente monta o pedido na tela, escolhe tamanho e observação, e a mensagem cai formatada
+           no WhatsApp da cozinha. Sem print de cardápio, sem pedido pela metade, sem comissão de aplicativo.</p>
+        <a class="abrir" href="previas/cardapio/" target="_blank" rel="noopener">Abrir o cardápio <span>→</span></a>
+      </div>
+    </article>
+
+    <article class="trab">
+      <a class="shot" href="previas/espeto/" target="_blank" rel="noopener" aria-label="Abrir a prévia do cardápio da Casa do Espeto">
+        <img src="img/espeto-1600.jpg" srcset="img/espeto-800.jpg 800w, img/espeto-1600.jpg 1600w"
+             sizes="(min-width:820px) 500px, calc(100vw - 44px)"
+             width="1600" height="1000" loading="lazy" alt="Cardápio da Casa do Espeto">
+      </a>
+      <div class="corpo">
+        <p class="rot">Churrascaria · Santa Adélia</p>
+        <h2>Casa do Espeto</h2>
+        <p>Carrinho de compras completo: o cliente escolhe se quer entrega, retirada ou comer no
+           local, monta os combos escolhendo espeto por espeto, e o pedido sai fechado com o troco calculado.</p>
+        <a class="abrir" href="previas/espeto/" target="_blank" rel="noopener">Abrir a prévia <span>→</span></a>
+      </div>
+    </article>
+
+    <article class="trab">
+      <a class="shot" href="previas/honorato/" target="_blank" rel="noopener" aria-label="Abrir a prévia do site da Honorato Barbearia">
+        <img src="img/honorato-1600.webp" srcset="img/honorato-800.webp 800w, img/honorato-1600.webp 1600w"
+             sizes="(min-width:820px) 500px, calc(100vw - 44px)"
+             width="1600" height="1000" loading="lazy" alt="Site da Honorato Barbearia">
+      </a>
+      <div class="corpo">
+        <p class="rot">Barbearia · São José do Rio Preto</p>
+        <h2>Honorato Barbearia</h2>
+        <p>Duas unidades, Santos Dumont e Redentora, cada uma com endereço e horário próprios.
+           Tem a história da casa, a equipe, os serviços, e o agendamento sai direto no WhatsApp da unidade escolhida.</p>
+        <a class="abrir" href="previas/honorato/" target="_blank" rel="noopener">Abrir a prévia <span>→</span></a>
+      </div>
+    </article>
+
+  </div>
+
+  <section class="fecho">
+    <h3>Você vê o seu pronto antes de pagar.</h3>
+    <p>Eu monto uma prévia do site do seu comércio e te mostro funcionando. Se não gostar, não paga
+       e acabou. Quem programa é quem fala com você: sem atendente, sem chamado, sem fila.</p>
+    <a class="zap" href="https://wa.me/5517997452591?text=Ol%C3%A1!%20Vi%20as%20pr%C3%A9vias%20da%20Pyxel%20e%20queria%20uma%20pr%C3%A9via%20do%20meu%20com%C3%A9rcio." target="_blank" rel="noopener">Quero a minha prévia</a>
+  </section>
+
+  <footer class="pe">
+    <span>Pyxel Digital · Santa Adélia, SP</span>
+    <a href="https://www.instagram.com/pyxelldigital/" target="_blank" rel="noopener">@pyxelldigital</a>
+    <a href="https://wa.me/5517997452591" target="_blank" rel="noopener">(17) 99745-2591</a>
+    <a href="index.html">Voltar ao site</a>
+  </footer>
+</div>
+
+</body>
+</html>

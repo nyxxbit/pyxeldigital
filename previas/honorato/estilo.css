@@ -1,0 +1,477 @@
+/* ===================================================================
+   Honorato Barbearia — quarta proposta: clara, conduzida por foto
+   ===================================================================
+
+   As outras três continuam intactas. Esta pega o ritmo da terceira
+   (foto sangrando de ponta a ponta) e troca a pele para clara, com o
+   creme da segunda. Mais três coisas que o João pediu:
+
+     · as fotos voltaram para os serviços
+     · as seções trocam como página, com cortina
+     · tem tela de carregamento na abertura
+
+   A tela de carregamento é CLARA com a logo real. A logo da Honorato é
+   um brasão azul e vermelho com o rosto em traço e o texto vazado em
+   branco: virar silhueta branca a transformaria num disco sem desenho.
+   Em fundo claro ela lê inteira.
+   =================================================================== */
+
+:root{
+  --creme:#E9E4DA; --creme2:#F3EFE7; --papel:#FFFFFF;
+  --tinta:#332C28; --tinta2:#5A4F49; --tinta3:#8A7D75;
+  --ouro:#C9A227; --ouro2:#DFB53E;
+  --linha:rgba(51,44,40,.14);
+
+  --display:'Khand',Impact,sans-serif;
+  --sans:'Poppins',system-ui,-apple-system,sans-serif;
+
+  --maxw:1240px;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --ease2:cubic-bezier(.16,1,.3,1);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  font-family:var(--sans);font-weight:400;font-size:16px;line-height:1.65;
+  color:var(--tinta);background:var(--creme);overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+/* height:auto junto de max-width, senao a foto encolhe na largura,
+   mantem a altura do atributo e estica. */
+img{display:block;max-width:100%;height:auto}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+:focus-visible{outline:2px solid var(--ouro);outline-offset:3px}
+::selection{background:var(--ouro);color:var(--papel)}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;width:100%}
+
+h1,h2,h3{font-family:var(--display);font-weight:700;text-transform:uppercase;
+  line-height:.9;letter-spacing:.004em}
+
+.olho{display:inline-flex;align-items:center;gap:11px;
+  font-family:var(--sans);font-weight:600;font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ouro)}
+.olho::before{content:"";width:26px;height:2px;background:var(--ouro)}
+.lead{font-size:17px;line-height:1.75;color:var(--tinta2);max-width:58ch}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font-family:var(--sans);font-weight:600;font-size:13px;letter-spacing:.1em;
+  text-transform:uppercase;padding:17px 32px;border-radius:1px;
+  transition:transform .3s var(--ease2),background-color .3s var(--ease),
+             color .3s var(--ease),border-color .3s var(--ease)}
+.btn svg{width:18px;height:18px;flex:none}
+.btn.ouro{background:var(--ouro);color:var(--papel)}
+.btn.ouro:hover{background:var(--tinta);transform:translateY(-2px)}
+.btn.fio{border:1px solid var(--tinta);color:var(--tinta)}
+.btn.fio:hover{background:var(--tinta);color:var(--creme2);transform:translateY(-2px)}
+.btn.escuro{background:var(--tinta);color:var(--creme2)}
+.btn.escuro:hover{background:var(--ouro);color:var(--papel);transform:translateY(-2px)}
+/* botão que vive por cima de foto: precisa de contorno claro */
+.btn.claro{border:1px solid rgba(255,255,255,.55);color:#fff}
+.btn.claro:hover{background:#fff;color:var(--tinta);transform:translateY(-2px)}
+
+/* -------------------------------------------------------------------
+   Barra
+   ------------------------------------------------------------------- */
+.topo{position:fixed;top:0;left:0;right:0;z-index:60;
+  border-bottom:1px solid transparent;
+  transition:background-color .4s var(--ease),border-color .4s var(--ease)}
+.topo.solto{background:var(--creme);border-bottom-color:var(--linha)}
+.topo .dentro{display:flex;align-items:center;justify-content:space-between;
+  gap:20px;padding-block:14px}
+.marca{display:flex;align-items:center;gap:12px;flex:none}
+.marca img{width:52px;height:52px;border-radius:50%}
+.marca b{font-family:var(--display);font-weight:700;font-size:22px;
+  text-transform:uppercase;line-height:.95}
+.marca b span{display:block;font-size:10px;font-family:var(--sans);
+  font-weight:600;letter-spacing:.24em;color:var(--tinta3)}
+
+/* Na capa a barra flutua sobre a foto escura: o texto tem que clarear,
+   senão some. Volta ao normal quando a barra ganha fundo. */
+.topo:not(.solto) .marca b,
+.topo:not(.solto) .menu a{color:var(--papel)}
+.topo:not(.solto) .marca b span{color:rgba(255,255,255,.72)}
+
+.menu{display:flex;gap:2px;align-items:center}
+.menu a{font-weight:600;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;
+  padding:11px 13px;color:var(--tinta2);border-radius:2px;
+  transition:color .25s var(--ease),background-color .25s var(--ease)}
+.menu a:hover{color:var(--ouro)}
+.menu a.aqui{color:var(--ouro)}
+.topo.solto .menu a.aqui{background:rgba(201,162,39,.14)}
+
+/* -------------------------------------------------------------------
+   Foto sangrando com texto por cima
+   ------------------------------------------------------------------- */
+.faixa-foto{position:relative;overflow:hidden;display:grid;align-items:center}
+.faixa-foto>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.faixa-foto::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(28,24,21,.5),rgba(28,24,21,.8))}
+.faixa-foto .dentro{position:relative;z-index:2;width:100%;color:var(--papel)}
+.faixa-foto .lead{color:rgba(255,255,255,.9)}
+.faixa-foto .olho{color:var(--ouro2)}
+.faixa-foto .olho::before{background:var(--ouro2)}
+
+.capa{min-height:100svh;padding:130px 0 60px}
+.capa h1{font-size:clamp(58px,11vw,168px);margin-top:18px;color:var(--papel)}
+.capa h1 em{font-style:normal;color:var(--ouro2);display:block}
+.capa .lead{margin-top:24px;font-size:clamp(16px,1.8vw,19px)}
+.capa .acoes{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.capa .conta{display:flex;flex-wrap:wrap;gap:10px 30px;margin-top:44px;padding-top:26px;
+  border-top:1px solid rgba(255,255,255,.2);font-size:14px;color:rgba(255,255,255,.86)}
+.capa .conta b{font-family:var(--display);font-size:28px;color:var(--ouro2);
+  margin-right:6px;line-height:1}
+
+.banda{min-height:clamp(340px,46vw,520px);padding:clamp(52px,7vw,96px) 0}
+.banda h2{font-size:clamp(38px,6.4vw,86px);color:var(--papel)}
+.banda h2 em{font-style:normal;color:var(--ouro2)}
+.banda .lead{margin-top:20px}
+.banda .btn{margin-top:28px}
+
+/* -------------------------------------------------------------------
+   Blocos claros entre as fotos
+   ------------------------------------------------------------------- */
+.bloco{padding:clamp(52px,7vw,100px) 0}
+.bloco.claro{background:var(--creme2)}
+.bloco .cabeca{margin-bottom:clamp(28px,3.8vw,48px)}
+.bloco h2{font-size:clamp(38px,5.6vw,76px);margin-top:14px}
+.bloco h2 em{font-style:normal;color:var(--ouro)}
+
+/* passos */
+.passos{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);
+  gap:clamp(16px,2.4vw,32px);counter-reset:p}
+.passo{counter-increment:p;padding-top:22px;border-top:2px solid var(--ouro)}
+.passo::before{content:"0" counter(p);display:block;font-family:var(--display);
+  font-weight:700;font-size:clamp(32px,4.2vw,54px);color:var(--ouro);line-height:1}
+.passo h3{font-size:clamp(22px,2.6vw,32px);margin-top:10px}
+.passo p{margin-top:12px;font-size:15.5px;line-height:1.7;color:var(--tinta2)}
+
+/* unidades */
+.casas{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2vw,26px)}
+.casa{position:relative;overflow:hidden;border-radius:2px;
+  min-height:clamp(300px,36vw,420px);display:grid;align-items:end;
+  transition:transform .45s var(--ease2)}
+.casa:hover{transform:translateY(-5px)}
+.casa>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transition:transform .9s var(--ease2)}
+.casa:hover>img{transform:scale(1.05)}
+.casa::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 30%,rgba(28,24,21,.92))}
+.casa .info{position:relative;z-index:2;padding:clamp(24px,3vw,34px);color:var(--papel)}
+.casa .q{font-weight:600;font-size:10.5px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ouro2)}
+.casa h3{font-size:clamp(30px,4vw,50px);margin-top:8px;color:var(--papel)}
+.casa .end{margin-top:12px;font-size:14.5px;line-height:1.6;color:rgba(255,255,255,.86)}
+.casa .btn{margin-top:20px}
+
+/* -------------------------------------------------------------------
+   Serviços COM FOTO. O João pediu de volta: numa barbearia, o corte é
+   o produto, e produto se mostra.
+   ------------------------------------------------------------------- */
+.cardapio{display:grid;gap:clamp(16px,2.4vw,30px)}
+.servico{display:grid;grid-template-columns:minmax(0,320px) 1fr;
+  gap:clamp(18px,3vw,42px);align-items:center;
+  padding-bottom:clamp(20px,2.8vw,34px);border-bottom:1px solid var(--linha)}
+.servico:last-child{border-bottom:none;padding-bottom:0}
+/* a foto alterna de lado, senão três linhas iguais viram tabela */
+.servico:nth-child(even){grid-template-columns:1fr minmax(0,320px)}
+.servico:nth-child(even) .retrato{order:2}
+.retrato{border-radius:2px;overflow:hidden;aspect-ratio:4/3;background:var(--tinta3)}
+.retrato img{width:100%;height:100%;object-fit:cover;
+  transition:transform .8s var(--ease2)}
+.servico:hover .retrato img{transform:scale(1.05)}
+.servico .texto{min-width:0}
+.servico h3{font-size:clamp(30px,4.4vw,56px)}
+.servico .marca-mais{display:inline-block;margin-left:12px;font-family:var(--sans);
+  font-weight:600;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--papel);background:var(--ouro);padding:5px 10px;border-radius:1px;
+  vertical-align:middle}
+.servico .valor{font-family:var(--display);font-weight:700;
+  font-size:clamp(32px,4.4vw,56px);color:var(--ouro);line-height:1;margin-top:8px}
+.servico p{margin-top:12px;font-size:15.5px;line-height:1.7;color:var(--tinta2);
+  max-width:46ch}
+.servico .btn{margin-top:20px}
+
+/* equipe */
+.equipe-grade{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,44px);
+  align-items:center}
+.equipe-grade img{border-radius:2px}
+.time{list-style:none;display:grid;grid-template-columns:1fr 1fr;
+  gap:clamp(10px,1.4vw,16px)}
+.barbeiro{padding:clamp(18px,2.2vw,26px);background:var(--papel);border-radius:2px;
+  text-align:center;transition:transform .3s var(--ease2),box-shadow .3s var(--ease)}
+.barbeiro:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(51,44,40,.13)}
+.barbeiro .n{display:block;font-weight:600;font-size:10px;letter-spacing:.18em;
+  color:var(--tinta3)}
+.barbeiro b{display:block;margin-top:9px;font-family:var(--display);font-weight:700;
+  text-transform:uppercase;font-size:clamp(21px,2.4vw,30px);line-height:1}
+.barbeiro:hover b{color:var(--ouro)}
+
+/* avaliações */
+.vozes{columns:3;column-gap:clamp(14px,2vw,22px)}
+.voz{break-inside:avoid;margin:0 0 clamp(14px,2vw,22px);background:var(--papel);
+  border-radius:2px;padding:clamp(22px,2.8vw,30px);
+  box-shadow:0 3px 14px rgba(51,44,40,.06)}
+.voz .estrelas{display:block;color:var(--ouro);font-size:13px;letter-spacing:.2em;
+  margin-bottom:13px}
+.voz blockquote{font-size:15.5px;line-height:1.72;color:var(--tinta2)}
+.voz figcaption{margin-top:16px;padding-top:13px;border-top:1px solid var(--linha);
+  font-weight:600;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--tinta3)}
+
+/* fechamento */
+.fecha{background:var(--ouro);color:var(--papel);padding:clamp(50px,7vw,90px) 0;
+  text-align:center}
+.fecha h2{font-size:clamp(40px,6.6vw,92px);color:var(--papel)}
+.fecha p{margin:18px auto 0;max-width:50ch;font-size:16.5px;line-height:1.7;
+  color:rgba(255,255,255,.94)}
+.fecha .btn{margin-top:28px}
+
+/* rodapé */
+.rodape{background:var(--tinta);color:#C7BCB4;padding:clamp(46px,6vw,74px) 0 0}
+.rodape .marca b{color:var(--creme2)}
+.rodape .marca b span{color:var(--tinta3)}
+.rodape .grade{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:clamp(26px,4vw,54px)}
+.rodape h4{font-family:var(--sans);font-weight:600;font-size:10.5px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ouro2);margin-bottom:15px}
+.rodape ul{list-style:none;display:grid;gap:9px;font-size:14.5px}
+.rodape a:hover{color:var(--ouro2)}
+.rodape .sobre{margin-top:16px;font-size:14.5px;line-height:1.7;max-width:38ch}
+.rodape .fim{margin-top:clamp(32px,5vw,52px);border-top:1px solid rgba(255,255,255,.11);
+  padding:20px 0 24px;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;
+  font-size:13px;color:var(--tinta3)}
+
+/* -------------------------------------------------------------------
+   Seções que trocam como página
+   ------------------------------------------------------------------- */
+.anima .painel{display:none}
+.anima .painel.ativa{display:block}
+
+/* -------------------------------------------------------------------
+   Tela de carregamento e cortina
+
+   A abertura e a troca de seção usam a mesma peça. visibility junto da
+   opacidade: só com opacity o anel continuaria girando atrás da página
+   o tempo todo, que é quadro gasto à toa.
+   ------------------------------------------------------------------- */
+.cortina{position:fixed;inset:0;z-index:120;display:grid;place-items:center;
+  background:var(--creme);
+  opacity:0;visibility:hidden;
+  transition:opacity .3s var(--ease),visibility 0s linear .3s}
+.cortina.ver{opacity:1;visibility:visible;transition-delay:0s,0s}
+/* na abertura ela já nasce visível, antes de qualquer script */
+.cortina.abertura{opacity:1;visibility:visible}
+.cortina:not(.ver):not(.abertura) .giro{animation-play-state:paused}
+
+.carga{text-align:center}
+.anel{position:relative;width:168px;height:168px;margin:0 auto;display:grid;place-items:center}
+.anel img{width:116px;height:116px;border-radius:50%;
+  animation:pulsa 1.7s var(--ease) infinite}
+.anel .giro{position:absolute;inset:0;width:168px;height:168px;
+  animation:girar 2.8s linear infinite}
+.anel .giro circle{fill:none;stroke:var(--ouro);stroke-width:1.5;opacity:.6;
+  stroke-dasharray:16 13;stroke-linecap:round}
+@keyframes girar{to{transform:rotate(360deg)}}
+@keyframes pulsa{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+
+.carga-txt{margin-top:26px;font-family:var(--sans);font-weight:600;font-size:11px;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--tinta3)}
+.carga-txt span{display:block;margin-top:10px;font-family:var(--display);font-weight:700;
+  font-size:clamp(22px,3.4vw,32px);letter-spacing:0;text-transform:uppercase;
+  color:var(--tinta)}
+
+/* -------------------------------------------------------------------
+   Revelação
+   ------------------------------------------------------------------- */
+.anima .rv{opacity:0;transform:translateY(22px);
+  transition:opacity .8s var(--ease),transform .8s var(--ease2)}
+.anima .rv.in{opacity:1;transform:none}
+.anima .esc>*{opacity:0;transform:translateY(18px);
+  transition:opacity .7s var(--ease),transform .7s var(--ease2)}
+.anima .esc.in>*{opacity:1;transform:none}
+.esc.in>*:nth-child(2){transition-delay:80ms}
+.esc.in>*:nth-child(3){transition-delay:160ms}
+.esc.in>*:nth-child(4){transition-delay:240ms}
+.esc.in>*:nth-child(5){transition-delay:320ms}
+.esc.in>*:nth-child(6){transition-delay:400ms}
+
+@media(max-width:1000px){
+  .passos{grid-template-columns:1fr;gap:26px}
+  .casas{grid-template-columns:1fr}
+  .equipe-grade{grid-template-columns:1fr;gap:26px}
+  .vozes{columns:2}
+  .servico,
+  .servico:nth-child(even){grid-template-columns:1fr;gap:18px}
+  .servico:nth-child(even) .retrato{order:0}
+  .retrato{max-width:460px}
+}
+@media(max-width:760px){
+  .menu{order:3;width:100%;overflow-x:auto;scrollbar-width:none;gap:2px;
+    border-top:1px solid var(--linha);padding:4px 0 6px;padding-right:30px;
+    -webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 26px),transparent);
+    mask-image:linear-gradient(90deg,#000 calc(100% - 26px),transparent)}
+  .menu::-webkit-scrollbar{display:none}
+  .menu a{white-space:nowrap;padding:11px 12px}
+  .topo .dentro{flex-wrap:wrap;padding-block:12px 0;row-gap:8px}
+  .topo:not(.solto){background:rgba(28,24,21,.5)}
+  .topo .btn{padding:13px 22px;font-size:12px}
+  .vozes{columns:1}
+  .time{grid-template-columns:1fr 1fr}
+  .anel{width:132px;height:132px}
+  .anel .giro{width:132px;height:132px}
+  .anel img{width:92px;height:92px}
+}
+
+/* O passo seguinte no fim de cada painel. É o trilho que preserva a
+   ordem: quem só clica em "a seguir" percorre a história inteira em vez
+   de saltar entre abas e nunca chegar ao agendamento. */
+.adiante{margin-top:clamp(38px,5vw,64px);padding-top:clamp(22px,3vw,30px);
+  border-top:1px solid var(--linha)}
+.adiante a{display:inline-flex;flex-direction:column;gap:7px;
+  padding:4px 44px 4px 0;position:relative}
+.adiante span{font-family:var(--sans);font-weight:600;font-size:10.5px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--tinta3)}
+.adiante b{font-family:var(--display);font-weight:700;text-transform:uppercase;
+  font-size:clamp(24px,3vw,34px);line-height:1;color:var(--tinta);
+  transition:color .3s var(--ease)}
+.adiante a::after{content:"";position:absolute;right:8px;top:calc(50% + 8px);
+  width:22px;height:2px;background:var(--ouro);
+  transition:width .4s var(--ease2),right .4s var(--ease2)}
+.adiante a:hover b{color:var(--ouro)}
+.adiante a:hover::after{width:32px;right:0}
+
+/* O rodapé nunca ganhou regra de tela estreita e ficava em três colunas
+   fixas: no celular o texto quebrava de uma palavra por linha e o nome
+   da marca encavalava na coluna do lado. Duas colunas no tablet, uma no
+   celular. */
+@media(max-width:1000px){
+  .rodape .grade{grid-template-columns:1fr 1fr}
+}
+@media(max-width:760px){
+  .rodape .grade{grid-template-columns:1fr;gap:30px}
+  .rodape .sobre{max-width:none}
+  .rodape .fim{flex-direction:column;gap:8px}
+}
+
+/* ===================================================================
+   A história — resumo na home e página cheia
+   ===================================================================
+   Texto do Marcos, mandado por ele em 24/08/2026. O resumo é
+   condensação, não invenção.
+   =================================================================== */
+
+/* resumo na home */
+.resumo{max-width:62ch}
+.resumo p{font-size:16.5px;line-height:1.8;color:var(--tinta2)}
+.resumo p + p{margin-top:16px}
+.resumo .btn{margin-top:28px}
+
+/* capa da página da história */
+.capa-historia{min-height:clamp(300px,40vw,440px);padding:130px 0 clamp(40px,6vw,70px)}
+.capa-historia h1{font-size:clamp(42px,7vw,104px);margin-top:16px;color:var(--papel)}
+.capa-historia h1 em{font-style:normal;color:var(--ouro2);display:block}
+
+/* Coluna de leitura estreita. Texto corrido na largura inteira da tela
+   grande passa de 120 caracteres por linha, e o olho perde a linha na
+   volta. Aqui fica em 66. */
+.leitura .wrap{max-width:760px}
+.leitura p{font-size:17px;line-height:1.85;color:var(--tinta2)}
+.leitura p + p{margin-top:20px}
+.leitura .abre{font-size:clamp(19px,2.2vw,23px);line-height:1.65;color:var(--tinta);
+  font-weight:500}
+.leitura b{color:var(--tinta);font-weight:600}
+.leitura h2{font-size:clamp(30px,4vw,48px);margin:clamp(40px,5vw,62px) 0 8px}
+.leitura h2 em{font-style:normal;color:var(--ouro)}
+.leitura .destaque{font-family:var(--display);font-weight:700;text-transform:uppercase;
+  font-size:clamp(24px,3.4vw,40px);line-height:1.05;color:var(--tinta);
+  margin-top:28px;padding-left:22px;border-left:3px solid var(--ouro)}
+
+.detalhes{list-style:none;margin-top:24px;display:grid;gap:11px;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.detalhes li{position:relative;padding-left:26px;font-size:15.5px;color:var(--tinta2)}
+.detalhes li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:8px;
+  border-left:2px solid var(--ouro);border-bottom:2px solid var(--ouro);
+  transform:rotate(-45deg)}
+
+/* linha do tempo */
+.linha{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);
+  gap:clamp(14px,2vw,26px);counter-reset:none}
+.linha li{padding-top:22px;border-top:2px solid var(--ouro)}
+.linha b{display:block;font-family:var(--display);font-weight:700;
+  font-size:clamp(36px,4.6vw,60px);color:var(--ouro);line-height:1}
+.linha span{display:block;margin-top:12px;font-size:15.5px;line-height:1.65;
+  color:var(--tinta2)}
+
+.fecho-historia{margin-top:clamp(36px,5vw,56px);padding-top:clamp(24px,3vw,34px);
+  border-top:1px solid var(--linha);font-family:var(--display);font-weight:700;
+  text-transform:uppercase;font-size:clamp(22px,3vw,34px);line-height:1.15;
+  color:var(--tinta)}
+.fecho-historia em{font-style:normal;color:var(--ouro);display:block;margin-top:6px}
+
+@media(max-width:760px){
+  .linha{grid-template-columns:1fr;gap:20px}
+}
+
+/* O espaço entre parágrafos era p + p, então o parágrafo que vem depois
+   da lista de detalhes nascia colado nela. */
+.leitura .detalhes + p,
+.leitura ul + p{margin-top:26px}
+
+/* O link da história vive no menu mas não é aba: ele sai da página. Por
+   isso ganha o fio de ouro embaixo, que separa "trocar de seção" de
+   "abrir outra página". */
+.menu .abas{display:flex;gap:2px;align-items:center}
+.historia-link{position:relative;font-weight:600;font-size:11.5px;
+  letter-spacing:.12em;text-transform:uppercase;padding:11px 13px;
+  color:var(--tinta2);white-space:nowrap;
+  transition:color .25s var(--ease)}
+.historia-link::after{content:"";position:absolute;left:13px;right:13px;bottom:6px;
+  height:2px;background:var(--ouro);transform:scaleX(.4);transform-origin:left;
+  transition:transform .35s var(--ease2)}
+.historia-link:hover{color:var(--ouro)}
+.historia-link:hover::after{transform:scaleX(1)}
+.historia-link.aqui{color:var(--ouro)}
+.historia-link.aqui::after{transform:scaleX(1)}
+.topo:not(.solto) .historia-link{color:var(--papel)}
+.topo:not(.solto) .historia-link:hover{color:var(--ouro2)}
+@media(max-width:760px){
+  .menu .abas{gap:2px}
+  .historia-link{padding:11px 12px}
+}
+
+/* No celular o menu vira faixa que arrasta, e o link da história caía
+   depois de sete abas: 700px de rolagem para achar justamente o que o
+   cliente quer que seja clicado. Vem primeiro, e ganha o fundo do ouro
+   para se separar das abas. */
+@media(max-width:760px){
+  .historia-link{order:-1;background:rgba(201,162,39,.14);border-radius:2px;
+    color:var(--ouro);margin-right:6px}
+  .historia-link::after{display:none}
+  .topo:not(.solto) .historia-link{background:rgba(255,255,255,.16);color:var(--papel)}
+}
+
+/* A capa só existe na primeira seção. Fora dela, a página começa no
+   conteúdo, e a barra já nasce com fundo porque não tem mais foto
+   escura embaixo dela. */
+.anima:not(.com-capa) .capa{display:none}
+.anima:not(.com-capa) main{padding-top:96px}
+.anima:not(.com-capa) .topo{background:var(--creme);border-bottom-color:var(--linha)}
+.anima:not(.com-capa) .topo .marca b,
+.anima:not(.com-capa) .topo .menu a{color:var(--tinta2)}
+.anima:not(.com-capa) .topo .marca b{color:var(--tinta)}
+.anima:not(.com-capa) .topo .marca b span{color:var(--tinta3)}
+.anima:not(.com-capa) .topo .menu a.aqui,
+.anima:not(.com-capa) .topo .historia-link{color:var(--ouro)}
+@media(max-width:760px){
+  .anima:not(.com-capa) main{padding-top:128px}
+}
+
+/* Foto em pé dentro de faixa larga: o recorte automático pega o meio, e
+   no salão o meio é cadeira e chão. A ação — barbeiro, rosto do cliente,
+   a tesoura na parede — está entre 25% e 55% da altura. Ancorar em 38%
+   traz essa faixa para dentro do corte.
+
+   As outras faixas usam foto deitada e não precisam disto. */
+.faixa-foto > img.alto{object-position:center 38%}

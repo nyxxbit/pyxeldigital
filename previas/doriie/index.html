@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Doriie Sorveteria · Ariranha</title>
+<meta name="description" content="Taças montadas na hora, açaí, bolo de sorvete e 98 sabores. Aberto todo dia das 8h às 23h, feriado também. Peça pelo WhatsApp.">
+<meta name="theme-color" content="#1C0F08">
+<meta property="og:title" content="Doriie Sorveteria">
+<meta property="og:description" content="Sorveteria de família em Ariranha: 98 sabores, taças montadas na hora, todo dia até as 23h.">
+<meta property="og:image" content="img/logo-chocolate.png">
+<link rel="icon" href="img/logo-chocolate.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@500;600&family=Onest:wght@400;500;600;700&family=Young+Serif&display=swap">
+<link rel="stylesheet" href="estilo.css">
+<!-- A cortina com a assinatura só existe com JavaScript. Sem ele, a classe
+     não entra, a cortina fica escondida e as cinco telas aparecem uma
+     embaixo da outra: o site funciona inteiro, só sem a transição. -->
+<script>document.documentElement.className += ' js';</script>
+</head>
+<body>
+
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+<!-- ============ A cortina ============
+     A logo se escreve a cada troca de tela, como assinatura. A borda de
+     baixo é calda escorrendo: a mesma que aparece em metade das fotos. -->
+<div class="cortina" id="cortina" aria-hidden="true">
+  <div class="cortina-miolo">
+    <div class="assinatura" id="assinatura"></div>
+    <p class="cortina-destino" id="cortinaDestino">Doriie Sorveteria</p>
+  </div>
+  <svg class="calda" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 0H1440V36C1402 36 1396 58 1370 58C1344 58 1344 30 1316 30C1284 30 1290 98 1256 98C1222 98 1230 34 1196 34C1164 34 1166 70 1138 70C1110 70 1112 26 1082 26C1050 26 1058 112 1020 112C982 112 994 38 958 38C924 38 930 64 902 64C874 64 872 22 842 22C810 22 818 88 786 88C754 88 762 30 730 30C700 30 704 56 676 56C648 56 650 24 620 24C588 24 596 104 560 104C524 104 536 34 502 34C470 34 474 72 444 72C414 72 418 28 388 28C356 28 364 80 332 80C300 80 308 22 276 22C246 22 250 60 222 60C194 60 196 30 166 30C134 30 142 96 108 96C74 96 84 34 52 34C24 34 22 50 0 50Z"/>
+  </svg>
+</div>
+
+<!-- ============ Topo ============ -->
+<header class="topo" id="topo">
+  <div class="topo-in">
+    <a class="marca" href="#inicio" data-ir="inicio" aria-label="Doriie Sorveteria, início">
+      <span class="marca-logo" aria-hidden="true"></span>
+    </a>
+
+    <nav class="nav" aria-label="Seções">
+      <a href="#inicio" data-ir="inicio">Início</a>
+      <a href="#cardapio" data-ir="cardapio">Cardápio</a>
+      <a href="#sabores" data-ir="sabores">Sabores</a>
+      <a href="#familia" data-ir="familia">A família</a>
+      <a href="#visite" data-ir="visite">Visite</a>
+    </nav>
+
+    <span class="aberto" data-status aria-live="polite"></span>
+
+    <button class="btn-sacola" type="button" data-abrir-sacola aria-label="Abrir sacola">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+      <span class="btn-sacola-txt">Sacola</span>
+      <b class="contador" data-contador>0</b>
+    </button>
+  </div>
+</header>
+
+<main id="conteudo">
+
+<!-- ================================================================
+     INÍCIO
+     ================================================================ -->
+<section class="tela" id="t-inicio" data-tela="inicio" aria-labelledby="h-inicio">
+
+  <div class="heroi">
+    <div class="heroi-texto">
+      <p class="sobretitulo">Doriie Sorveteria · Ariranha</p>
+      <h1 id="h-inicio" tabindex="-1">De família,<br><em>pra família.</em></h1>
+      <p class="heroi-sub">A Doriie leva o nome de seis pessoas da casa. São 98 sabores,
+        taças montadas na hora, açaí e bolo de sorvete, todo dia até as 23h.</p>
+      <div class="acoes">
+        <a class="btn btn-morango" href="#cardapio" data-ir="cardapio">Montar meu pedido</a>
+        <a class="btn btn-linha" data-whats href="#" target="_blank" rel="noopener">Falar no WhatsApp</a>
+      </div>
+    </div>
+
+    <!-- A parede: as fotos correm sozinhas, em colunas que sobem e descem
+         (no celular, uma faixa só, de lado). O método proíbe efeito
+         infinito; o João pediu assim em 28/09, e a decisão é dele. Mouse em
+         cima para a parede; tocar numa foto abre ela grande. -->
+    <div class="parede" id="parede" aria-label="Fotos da Doriie">
+      <div class="parede-col"></div>
+      <div class="parede-col"></div>
+      <div class="parede-col"></div>
+    </div>
+  </div>
+
+  <!-- O sabor com o nome da casa. Não sabemos a receita, então não
+       descrevemos: só apontamos. -->
+  <div class="bloco bloco-sabor">
+    <p class="sobretitulo">Um dos 48 sorvetes se chama</p>
+    <div class="sabor-nome" aria-label="Doriie"></div>
+    <p class="sabor-fala">O sabor que leva o nome da casa. Pede pra provar no balcão.</p>
+    <a class="link-seta" href="#sabores" data-ir="sabores">Ver os 98 sabores</a>
+  </div>
+
+  <!-- A casa: o salão e as fotos passando. Horário, endereço e mapa ficam
+       na tela Visite (o João pediu, 29/09: no início poluía). -->
+  <div class="bloco bloco-salao">
+    <div class="salao-texto">
+      <p class="sobretitulo">A casa</p>
+      <h2>Vem conhecer a Doriie.</h2>
+      <p>O salão tem mesa pra sentar e máquina de pegar pelúcia. Se preferir,
+        monta o pedido aqui e retira na loja.</p>
+      <a class="link-seta" href="#visite" data-ir="visite">Horário e endereço</a>
+    </div>
+    <!-- As fotos dos produtos se revezam aqui, uma de cada vez (pedido do
+         João, 29/09). A primeira fica escrita pra página não abrir com o
+         quadro vazio; o resto o app.js monta. -->
+    <figure class="salao-foto" id="casaFotos" data-ver="acai-kg" data-foto="18-acai-pote-salao">
+      <img class="visivel" src="img/18-acai-pote-salao.webp?v=4" width="880" height="1100" loading="lazy"
+           alt="Pote de açaí no salão da Doriie, com as máquinas de pegar pelúcia ao fundo">
+    </figure>
+  </div>
+
+  <!-- Chamada pra família: as letras, já com cara de tela própria. -->
+  <a class="bloco bloco-letras" href="#familia" data-ir="familia">
+    <span class="letras-mini" aria-hidden="true">D O R I I E</span>
+    <span class="letras-fala">Doriie é o nome de seis pessoas.<br>Conheça quem está em cada letra.</span>
+    <span class="seta" aria-hidden="true">→</span>
+  </a>
+
+  <!-- O fecho leva ao pedido: a página começa na vontade e termina na ação. -->
+  <div class="bloco bloco-fecho">
+    <svg class="calda-fecho" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0H1440V36C1402 36 1396 58 1370 58C1344 58 1344 30 1316 30C1284 30 1290 98 1256 98C1222 98 1230 34 1196 34C1164 34 1166 70 1138 70C1110 70 1112 26 1082 26C1050 26 1058 112 1020 112C982 112 994 38 958 38C924 38 930 64 902 64C874 64 872 22 842 22C810 22 818 88 786 88C754 88 762 30 730 30C700 30 704 56 676 56C648 56 650 24 620 24C588 24 596 104 560 104C524 104 536 34 502 34C470 34 474 72 444 72C414 72 418 28 388 28C356 28 364 80 332 80C300 80 308 22 276 22C246 22 250 60 222 60C194 60 196 30 166 30C134 30 142 96 108 96C74 96 84 34 52 34C24 34 22 50 0 50Z"/></svg>
+    <p class="sobretitulo">Pedido pelo site</p>
+    <h2>Monta aqui.<br><em>Chega pronto no WhatsApp.</em></h2>
+    <p>A Doriie recebe o pedido já escrito, com o total e o jeito de receber.</p>
+    <div class="acoes">
+      <a class="btn btn-morango" href="#cardapio" data-ir="cardapio">Montar meu pedido</a>
+      <a class="btn btn-linha" data-whats href="#" target="_blank" rel="noopener">Falar no WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     CARDÁPIO
+     ================================================================ -->
+<section class="tela claro" id="t-cardapio" data-tela="cardapio" aria-labelledby="h-cardapio">
+  <div class="tela-cab">
+    <p class="sobretitulo">Cardápio</p>
+    <h1 id="h-cardapio" tabindex="-1">Escolha, monte e mande.</h1>
+    <p>Toque em adicionar. No fim, o pedido vai pronto pro WhatsApp da Doriie.</p>
+  </div>
+
+  <nav class="rail" id="rail" aria-label="Categorias do cardápio"></nav>
+  <!-- id diferente da rota de proposito: com id="cardapio", abrir o link
+       #cardapio fazia o navegador rolar ate esta div por conta propria. -->
+  <div class="cardapio" id="listaCardapio"></div>
+</section>
+
+<!-- ================================================================
+     SABORES
+     ================================================================ -->
+<section class="tela" id="t-sabores" data-tela="sabores" aria-labelledby="h-sabores">
+  <div class="sabores-cab">
+    <p class="numero-gordo" aria-hidden="true">98</p>
+    <div>
+      <h1 id="h-sabores" tabindex="-1">sabores</h1>
+      <p>Entre sorvete, picolé, skimo e açaí. Procure o seu.</p>
+    </div>
+  </div>
+
+  <div class="busca">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    <input id="buscaSabor" type="search" placeholder="Procurar um sabor" autocomplete="off" aria-label="Procurar um sabor">
+  </div>
+  <div class="chips" id="filtroSabor" role="group" aria-label="Tipo"></div>
+  <p class="contagem" id="contagemSabor" aria-live="polite"></p>
+  <div class="paredao" id="paredao"></div>
+</section>
+
+<!-- ================================================================
+     FAMÍLIA
+     ================================================================ -->
+<section class="tela caramelo" id="t-familia" data-tela="familia" aria-labelledby="h-familia">
+  <div class="familia-cab">
+    <p class="sobretitulo">O nome</p>
+    <h1 id="h-familia" tabindex="-1">Seis letras, seis pessoas.</h1>
+  </div>
+
+  <!-- Escritas aqui, e nao geradas por script: sao o conteudo da tela, e
+       ficam de pe mesmo se o JavaScript nao carregar. A Renata vem
+       destacada porque foi ela quem contou. -->
+  <ol class="letras" id="letras" aria-label="As seis letras do nome Doriie">
+    <li class="letra"><b aria-hidden="true">D</b><span>Daniel</span></li>
+    <li class="letra"><b aria-hidden="true">O</b><span>Otavão</span></li>
+    <li class="letra renata"><b aria-hidden="true">R</b><span>Renata</span></li>
+    <li class="letra"><b aria-hidden="true">I</b><span>Ícaro</span></li>
+    <li class="letra"><b aria-hidden="true">I</b><span>Ítalo</span></li>
+    <li class="letra"><b aria-hidden="true">E</b><span>Eloá</span></li>
+  </ol>
+
+  <div class="familia-texto">
+    <p>Doriie não é uma palavra inventada. Cada letra é alguém da casa.</p>
+    <p class="assinado">Quem contou foi a Renata.</p>
+  </div>
+
+  <div class="casa-fotos">
+    <figure data-ver="sorvete-kg">
+      <img src="img/19-casquinhas-quatro-maos.webp?v=4" width="880" height="1100" loading="lazy" alt="Quatro casquinhas de sabores diferentes, uma em cada mão">
+    </figure>
+    <figure data-ver="acai-kg">
+      <img src="img/18-acai-pote-salao.webp?v=4" width="880" height="1100" loading="lazy" alt="Pote de açaí com o salão da sorveteria e as máquinas de pegar pelúcia ao fundo">
+      <figcaption>O salão, com máquina de pegar pelúcia e tudo.</figcaption>
+    </figure>
+    <figure data-ver="acai-copo">
+      <img src="img/17-acai-copo-fachada.webp?v=4" width="880" height="1100" loading="lazy" alt="Açaí no copo sobre o balcão de inox da sorveteria">
+    </figure>
+  </div>
+</section>
+
+<!-- ================================================================
+     VISITE
+     ================================================================ -->
+<section class="tela" id="t-visite" data-tela="visite" aria-labelledby="h-visite">
+  <div class="visite-horas">
+    <p class="sobretitulo">Horário</p>
+    <h1 id="h-visite" tabindex="-1"><span>8h</span><i aria-hidden="true">—</i><span>23h</span></h1>
+    <p class="horas-sub">Todo dia da semana. Feriado também.</p>
+    <p class="aberto aberto-grande" data-status></p>
+  </div>
+
+  <div class="unidades">
+    <article class="unidade">
+      <p class="sobretitulo">Ariranha</p>
+      <p class="unidade-end" data-endereco></p>
+      <a class="btn btn-caramelo" id="mapaAriranha" href="#" target="_blank" rel="noopener">Abrir no mapa</a>
+    </article>
+  </div>
+
+  <div class="contatos">
+    <a class="contato" data-whats href="#" target="_blank" rel="noopener">
+      <span class="contato-rot">WhatsApp</span>
+      <span class="contato-val">(17) 99754-8783</span>
+    </a>
+    <a class="contato" id="linkInsta" href="#" target="_blank" rel="noopener">
+      <span class="contato-rot">Instagram</span>
+      <span class="contato-val">@doriiesorveteria</span>
+    </a>
+  </div>
+</section>
+
+</main>
+
+<footer class="rodape">
+  <span class="rodape-logo" aria-hidden="true"></span>
+  <p>Rua São João, 335 · Ariranha, SP · Todo dia das 8h às 23h</p>
+  <p class="rodape-pyxel">Feito pela <a href="https://www.instagram.com/pyxelldigital/" target="_blank" rel="noopener">Pyxel Digital</a></p>
+</footer>
+
+<!-- Barra de baixo, só no celular: a navegação fica onde o polegar está. -->
+<nav class="barra" aria-label="Navegação">
+  <a href="#inicio" data-ir="inicio"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11 12 4l8 7v9h-5v-6H9v6H4z"/></svg><span>Início</span></a>
+  <a href="#cardapio" data-ir="cardapio"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10v18H7z"/><path d="M10 7h4M10 11h4M10 15h2"/></svg><span>Cardápio</span></a>
+  <a href="#sabores" data-ir="sabores"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="5"/><path d="m8 12 4 9 4-9"/></svg><span>Sabores</span></a>
+  <a href="#familia" data-ir="familia"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg><span>Família</span></a>
+  <a href="#visite" data-ir="visite"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h16l-1.5-4h-13z"/><path d="M5 9v11h14V9"/><path d="M10 20v-6h4v6"/></svg><span>Visite</span></a>
+  <button type="button" data-abrir-sacola><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span>Sacola</span><b class="contador" data-contador>0</b></button>
+</nav>
+
+<!-- ============ Opções do item ============
+     Abre quando o produto pede escolha: tamanho, sabor, peso. -->
+<div class="veu" id="veuOpcoes" hidden></div>
+<section class="folha" id="opcoes" role="dialog" aria-modal="true" aria-labelledby="opTitulo" hidden>
+  <button class="fechar" type="button" data-fechar aria-label="Fechar">×</button>
+  <div class="folha-rolagem">
+    <p class="sobretitulo" id="opCat"></p>
+    <h2 id="opTitulo"></h2>
+    <div id="opCorpo"></div>
+  </div>
+  <div class="folha-pe">
+    <div class="qtd" aria-label="Quantidade">
+      <button type="button" id="opMenos" aria-label="Diminuir">−</button>
+      <output id="opQtd">1</output>
+      <button type="button" id="opMais" aria-label="Aumentar">+</button>
+    </div>
+    <button class="btn btn-morango btn-cheio" type="button" id="opAdicionar">Adicionar</button>
+  </div>
+</section>
+
+<!-- ============ Foto ampliada ============
+     Abre ao tocar na foto de qualquer produto. Mostra as outras fotos do
+     mesmo produto e já deixa adicionar dali. -->
+<div class="veu veu-visor" id="veuVisor" hidden></div>
+<section class="visor" id="visor" role="dialog" aria-modal="true" aria-labelledby="visorTitulo" hidden>
+  <button class="fechar" type="button" data-fechar aria-label="Fechar foto">×</button>
+  <div class="visor-palco" id="visorPalco">
+    <img id="visorImg" alt="" draggable="false">
+    <button class="visor-seta ant" type="button" id="visorAnt" aria-label="Foto anterior">‹</button>
+    <button class="visor-seta prox" type="button" id="visorProx" aria-label="Próxima foto">›</button>
+  </div>
+  <div class="visor-pe">
+    <div class="visor-nome">
+      <p class="sobretitulo" id="visorConta"></p>
+      <h2 id="visorTitulo"></h2>
+    </div>
+    <div class="visor-compra">
+      <span class="preco" id="visorPreco"></span>
+      <button class="btn btn-morango" type="button" id="visorAdd">Adicionar</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Sacola ============ -->
+<div class="veu" id="veuSacola" hidden></div>
+<aside class="sacola" id="sacola" role="dialog" aria-modal="true" aria-labelledby="sacolaTitulo" hidden>
+  <div class="sacola-cab">
+    <h2 id="sacolaTitulo">Sua sacola</h2>
+    <button class="fechar" type="button" data-fechar aria-label="Fechar sacola">×</button>
+  </div>
+  <div class="sacola-rolagem">
+    <ul class="sacola-itens" id="sacolaItens"></ul>
+    <div class="sacola-vazia" id="sacolaVazia">
+      <p>A sacola está vazia.</p>
+      <a class="link-seta" href="#cardapio" data-ir="cardapio" data-fechar-sacola>Ver o cardápio</a>
+    </div>
+
+    <form class="pedido" id="pedido" novalidate>
+      <label class="campo"><span>Seu nome</span>
+        <input name="nome" type="text" autocomplete="name" required placeholder="Como a Doriie te chama">
+      </label>
+
+      <fieldset class="campo">
+        <legend>Como quer receber</legend>
+        <div class="opcoes-lista">
+          <label class="opcao"><input type="radio" name="receber" value="Retirar em Ariranha" checked><span>Retirar em Ariranha</span></label>
+          <label class="opcao"><input type="radio" name="receber" value="Entrega"><span>Entrega</span></label>
+        </div>
+      </fieldset>
+
+      <label class="campo" id="campoEndereco" hidden><span>Endereço</span>
+        <input name="endereco" type="text" autocomplete="street-address" placeholder="Rua, número e bairro">
+        <small>A Doriie confirma pelo WhatsApp se entrega no seu endereço e quanto fica.</small>
+      </label>
+
+      <fieldset class="campo">
+        <legend>Como prefere pagar</legend>
+        <div class="opcoes-lista opcoes-linha">
+          <label class="opcao"><input type="radio" name="pagamento" value="PIX" checked><span>PIX</span></label>
+          <label class="opcao"><input type="radio" name="pagamento" value="Cartão"><span>Cartão</span></label>
+          <label class="opcao"><input type="radio" name="pagamento" value="Dinheiro"><span>Dinheiro</span></label>
+        </div>
+      </fieldset>
+
+      <label class="campo"><span>Observação</span>
+        <textarea name="obs" rows="2" placeholder="Sem cereja, mais calda..."></textarea>
+      </label>
+    </form>
+  </div>
+
+  <div class="sacola-pe" id="sacolaPe">
+    <div class="total">
+      <span>Total</span>
+      <b id="sacolaTotal">R$ 0,00</b>
+    </div>
+    <p class="total-nota" id="totalNota"></p>
+    <button class="btn btn-morango btn-cheio" type="button" id="enviarPedido">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11 11 0 0 0 3.3 17.1L2 22l5-1.3A11 11 0 0 0 20.5 3.5Z"/></svg>
+      Mandar pedido no WhatsApp
+    </button>
+  </div>
+</aside>
+
+<div class="aviso" id="aviso" role="status" aria-live="polite"></div>
+
+<script src="dados.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

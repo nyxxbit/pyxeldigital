@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Honorato Barbearia — Barbearia em São José do Rio Preto</title>
+<meta name="description" content="Barbearia em São José do Rio Preto. Duas unidades, seis barbeiros, ambiente climatizado, estacionamento próprio e agendamento online.">
+<meta name="theme-color" content="#E9E4DA">
+<link rel="icon" href="img/logo-160.webp">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Khand:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css">
+
+<!-- A troca de seção e a tela de abertura só existem com script vivo.
+     Sem esta classe nada é escondido: script quebrado deixa a página
+     comprida, não em branco. O relógio é a rede de segurança. -->
+<script>
+  document.documentElement.className = 'anima';
+  setTimeout(function(){
+    if (!window.__vivo) {
+      document.documentElement.className = '';
+      var c = document.getElementById('cortina');
+      if (c) c.className = 'cortina';
+    }
+  }, 2500);
+</script>
+</head>
+<body>
+
+<!-- tela de abertura: nasce visível, antes de qualquer script rodar -->
+<div class="cortina abertura" id="cortina" aria-hidden="true">
+  <div class="carga">
+    <div class="anel">
+      <svg class="giro" viewBox="0 0 168 168" aria-hidden="true"><circle cx="84" cy="84" r="80"/></svg>
+      <img src="img/logo-160.webp" srcset="img/logo-160.webp 160w, img/logo-512.webp 512w"
+           sizes="116px" alt="" width="116" height="116">
+    </div>
+    <p class="carga-txt">Honorato<span id="carga-txt">Barbearia</span></p>
+  </div>
+</div>
+
+<header class="topo" id="topo">
+  <div class="wrap dentro">
+    <a class="marca" href="#inicio">
+      <img src="img/logo-160.webp" srcset="img/logo-160.webp 160w, img/logo-512.webp 512w"
+           sizes="52px" alt="Honorato Barbearia" width="52" height="52">
+      <b>Honorato<span>Barbearia</span></b>
+    </a>
+    <nav class="menu">
+      <span class="abas" role="tablist">
+        <a href="#honorato" id="aba-honorato" role="tab" aria-controls="honorato" aria-selected="true" class="aqui">A Honorato</a>
+        <a href="#unidades" id="aba-unidades" role="tab" aria-controls="unidades" aria-selected="false">Unidades</a>
+        <a href="#experiencia" id="aba-experiencia" role="tab" aria-controls="experiencia" aria-selected="false">Experiência</a>
+        <a href="#casa" id="aba-casa" role="tab" aria-controls="casa" aria-selected="false">A casa</a>
+        <a href="#servicos" id="aba-servicos" role="tab" aria-controls="servicos" aria-selected="false">Serviços</a>
+        <a href="#equipe" id="aba-equipe" role="tab" aria-controls="equipe" aria-selected="false">Equipe</a>
+        <a href="#avaliacoes" id="aba-avaliacoes" role="tab" aria-controls="avaliacoes" aria-selected="false">Avaliações</a>
+      </span>
+      <a class="historia-link" href="historia.html">Nossa história</a>
+    </nav>
+    <a class="btn ouro" href="https://agendamentos.bestbarbers.app/barbershop/honoratobarbearia" target="_blank" rel="noopener">Agendar</a>
+  </div>
+</header>
+
+<main id="inicio">
+
+<!-- capa: sempre visível, fora das abas -->
+<section class="faixa-foto capa" id="hero">
+  <img src="img/hero-1920.webp" srcset="img/hero-1280.webp 1280w, img/hero-1920.webp 1920w"
+       sizes="100vw" alt="Salão da Honorato Barbearia" width="1920" height="1080" fetchpriority="high">
+  <div class="dentro">
+    <div class="wrap">
+      <span class="olho rv">São José do Rio Preto · duas unidades</span>
+      <h1 class="rv">Barba, cabelo,<br><em>hora marcada</em></h1>
+      <p class="lead rv">Você escolhe o horário, chega e senta. Sem fila, sem ligar,
+         sem dar volta no quarteirão procurando vaga.</p>
+      <div class="acoes rv">
+        <a class="btn ouro" href="https://agendamentos.bestbarbers.app/barbershop/honoratobarbearia" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="1"/><path d="M8 3v4M16 3v4M3 11h18"/></svg>
+          Escolher meu horário
+        </a>
+        <a class="btn claro" href="#honorato" data-adiante="honorato">Conhecer a casa</a>
+      </div>
+      <p class="conta rv">
+        <span><b>4,9</b> no Google</span>
+        <span><b>162</b> avaliações</span>
+        <span><b>2</b> unidades</span>
+        <span><b>6</b> barbeiros</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 1. UNIDADES -->
+<!-- 1. A HONORATO — resumo da história
+     Texto do Marcos, condensado. Os dois anos em Tanabi, a lista de
+     detalhes e o fechamento ficaram só na página cheia: resumo de três
+     parágrafos que tenta dizer tudo não resume nada. -->
+<section class="bloco painel ativa" id="honorato" role="tabpanel" aria-labelledby="aba-honorato">
+  <div class="wrap">
+    <div class="cabeca rv">
+      <span class="olho">Nossa história</span>
+      <h2>Uma história construída <em>entre irmãos</em></h2>
+    </div>
+    <div class="resumo">
+      <p class="rv">Em 2019, em Tanabi, três irmãos — <b>Marcos, Igor e Vitor</b> —
+         abriram uma barbearia com um objetivo simples: construir algo que tivesse
+         identidade, qualidade e uma maneira própria de cuidar dos clientes.</p>
+      <p class="rv">Em 2021 a Honorato mudou para São José do Rio Preto. Foi preciso
+         começar de novo: conquistar clientes e construir reputação numa cidade maior.
+         Foi nesse processo que ela ganhou a forma que tem hoje.</p>
+      <p class="rv">São sete anos, duas unidades e uma equipe inteira trabalhando pelo
+         mesmo propósito. Cada unidade com sua personalidade, todas com a mesma
+         essência.</p>
+      <a class="btn ouro rv" href="historia.html">Conheça nossa história</a>
+    </div>
+    <p class="adiante rv"><a href="#unidades" data-adiante="unidades"><span>A seguir</span><b>As unidades</b></a></p>
+  </div>
+</section>
+
+<!-- 2. UNIDADES -->
+<section class="bloco painel" id="unidades" role="tabpanel" aria-labelledby="aba-unidades" tabindex="-1">
+  <div class="wrap">
+    <div class="cabeca rv">
+      <span class="olho">Onde a gente está</span>
+      <h2>Duas casas em <em>Rio Preto</em></h2>
+    </div>
+    <div class="casas esc">
+      <article class="casa">
+        <img src="img/fachada-1400.webp"
+             srcset="img/fachada-640.webp 640w, img/fachada-1000.webp 1000w, img/fachada-1400.webp 1400w"
+             sizes="(max-width:1000px) 92vw, 46vw"
+             alt="Fachada da Honorato Barbearia, unidade Santos Dumont"
+             width="1400" height="787" loading="lazy" decoding="async">
+        <div class="info">
+          <span class="q">Unidade 01</span>
+          <h3>Santos Dumont</h3>
+          <p class="end">R. Bonfá Natale, 2066 — Santos Dumont<br>Abre às 9h</p>
+          <a class="btn ouro" href="https://agendamentos.bestbarbers.app/barbershop/honoratobarbearia" target="_blank" rel="noopener">Agendar aqui</a>
+        </div>
+      </article>
+      <article class="casa">
+        <img src="img/red-505.webp" srcset="img/red-488.webp 488w, img/red-505.webp 505w"
+             sizes="(max-width:1000px) 92vw, 46vw"
+             alt="Fachada da Honorato Barbearia, unidade Redentora"
+             width="505" height="505" loading="lazy" decoding="async">
+        <div class="info">
+          <span class="q">Unidade 02</span>
+          <h3>Redentora</h3>
+          <p class="end">R. Cel. Spínola de Castro, 4030 — Centro<br>Abre às 9h</p>
+          <a class="btn ouro" href="https://agendamentos.bestbarbers.app/barbershop/honoratobarbearia" target="_blank" rel="noopener">Agendar aqui</a>
+        </div>
+      </article>
+    </div>
+    <p class="adiante rv"><a href="#experiencia" data-adiante="experiencia"><span>A seguir</span><b>A experiência</b></a></p>
+  </div>
+</section>
+
+<!-- 2. EXPERIÊNCIA -->
+<section class="painel" id="experiencia" role="tabpanel" aria-labelledby="aba-experiencia" tabindex="-1">
+  <div class="faixa-foto banda">
+    <img class="alto" src="img/espaco-3-1200.webp" srcset="img/espaco-3-640.webp 640w, img/espaco-3-1200.webp 1200w"
+         sizes="100vw" alt="Atendimento na Honorato Barbearia"
+         width="1200" height="1600" loading="lazy" decoding="async">
+    <div class="dentro">
+      <div class="wrap">
+        <span class="olho rv">O ofício</span>
+        <h2 class="rv">Feito com <em>tempo</em></h2>
+        <p class="lead rv">O corte sai com acabamento na navalha, e não com a máquina
+           passada às pressas para liberar a cadeira. Na barba entram toalha quente,
+           desenho e hidratação.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bloco">
+    <div class="wrap">
+      <div class="cabeca rv">
+        <span class="olho">A experiência</span>
+        <h2>Aqui o horário é <em>seu de verdade</em></h2>
+      </div>
+      <ol class="passos esc">
+        <li class="passo">
+          <h3>Você escolhe</h3>
+          <p>Abre a agenda e marca dia, hora e em qual das duas unidades quer ser
+             atendido. Leva menos de um minuto e não depende de ninguém responder.</p>
+        </li>
+        <li class="passo">
+          <h3>Você chega</h3>
+          <p>No horário marcado, sem fila e sem esperar a vez. Quando chegar, o barbeiro
+             já está te esperando.</p>
+        </li>
+        <li class="passo">
+          <h3>Você senta</h3>
+          <p>Ar-condicionado, frigobar e um espaço reservado, longe da vitrine da rua.
+             Criança é atendida do mesmo jeito, com hora marcada igual.</p>
+        </li>
+      </ol>
+      <p class="adiante rv"><a href="#casa" data-adiante="casa"><span>A seguir</span><b>A casa</b></a></p>
+    </div>
+  </div>
+</section>
+
+<!-- 3. A CASA -->
+<section class="painel" id="casa" role="tabpanel" aria-labelledby="aba-casa" tabindex="-1">
+  <div class="faixa-foto banda">
+    <img src="img/gourmet-1400.webp" srcset="img/gourmet-1000.webp 1000w, img/gourmet-1400.webp 1400w"
+         sizes="100vw" alt="Espaço da Honorato Barbearia"
+         width="1400" height="787" loading="lazy" decoding="async">
+    <div class="dentro">
+      <div class="wrap">
+        <span class="olho rv">A casa</span>
+        <h2 class="rv">Um lugar pra <em>ficar</em></h2>
+        <p class="lead rv">Ambiente totalmente climatizado, estacionamento próprio e
+           gratuito, espaço de atendimento reservado, produtos premium para cabelo e
+           barba, e frigobar com bebidas selecionadas.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bloco claro">
+    <div class="wrap">
+      <div class="cabeca rv">
+        <span class="olho">Da calçada até a cadeira</span>
+        <h2>O que você <em>encontra</em></h2>
+      </div>
+      <div class="casas esc">
+        <article class="casa">
+          <img src="img/espaco-1-1200.webp" srcset="img/espaco-1-640.webp 640w, img/espaco-1-1200.webp 1200w"
+               sizes="(max-width:1000px) 92vw, 46vw" alt="Salão da Honorato Barbearia"
+               width="1200" height="1600" loading="lazy" decoding="async">
+          <div class="info"><h3>O salão</h3></div>
+        </article>
+        <article class="casa">
+          <img src="img/espaco-2-1200.webp" srcset="img/espaco-2-640.webp 640w, img/espaco-2-1200.webp 1200w"
+               sizes="(max-width:1000px) 92vw, 46vw" alt="Bancada da Honorato Barbearia"
+               width="1200" height="1600" loading="lazy" decoding="async">
+          <div class="info"><h3>A bancada</h3></div>
+        </article>
+      </div>
+      <p class="adiante rv"><a href="#servicos" data-adiante="servicos"><span>A seguir</span><b>Serviços</b></a></p>
+    </div>
+  </div>
+</section>
+
+<!-- 4. SERVIÇOS, com foto -->
+<section class="bloco painel" id="servicos" role="tabpanel" aria-labelledby="aba-servicos" tabindex="-1">
+  <div class="wrap">
+    <div class="cabeca rv">
+      <span class="olho">O que a gente faz</span>
+      <h2>Preço fechado, <em>sem surpresa</em></h2>
+    </div>
+
+    <div class="cardapio esc">
+      <article class="servico">
+        <div class="retrato">
+          <img src="img/cabelo-380.webp" srcset="img/cabelo-264.webp 264w, img/cabelo-380.webp 380w, img/cabelo.webp 760w"
+               sizes="(max-width:1000px) 92vw, 320px"
+               alt="Corte de cabelo na Honorato Barbearia" width="380" height="380" loading="lazy" decoding="async">
+        </div>
+        <div class="texto">
+          <h3>Cabelo</h3>
+          <div class="valor">R$ 70</div>
+          <p>Acabamento na navalha, feito com tempo. Técnicas modernas e acabamento de
+             alta qualidade. O corte que ainda tem formato na terceira semana.</p>
+          <a class="btn fio" href="https://agendamentos.bestbarbers.app/barbershop/honoratobarbearia" target="_blank" rel="noopener">Agendar cabelo</a>
+        </div>
+      </article>
+
+      <article class="servico">
+        <div class="retrato">
+          <img src="img/barba-380.webp" srcset="img/barba-264.webp 264w, img/barba-380.webp 380w, img/barba.webp 760w"
+               sizes="(max-width:1000px) 92vw, 320px"
+               alt="Barba feita na Honorato Barbearia" width="380" height="380" loading="lazy" decoding="async">
+        </div>
+        <div class="texto">
+          <h3>Barba</h3>
+          <div class="valor">R$ 60</div>
+          <p>Barbaterapia com toalha quente. Desenho e hidratação a cada visita.
+             Não é só aparar.</p>
+          <a class="btn fio" href="https://agendamentos.bestbarbers.app/barbershop/honoratobarbearia" target="_blank" rel="noopener">Agendar barba</a>
+        </div>
+      </article>
+
+      <article class="servico">
+        <div class="retrato">
+          <img src="img/cabelo-barba-380.webp" srcset="img/cabelo-barba-264.webp 264w, img/cabelo-barba-380.webp 380w, img/cabelo-barba.webp 760w"
+               sizes="(max-width:1000px) 92vw, 320px"
+               alt="Cabelo e barba na Honorato Barbearia" width="380" height="380" loading="lazy" decoding="async">
+        </div>
+        <div class="texto">
+          <h3>Cabelo + Barba <span class="marca-mais">O mais escolhido</span></h3>
+          <div class="valor">R$ 130</div>
+          <p>Os dois na mesma sessão. Navalha no acabamento e toalha quente na barba.
+             A experiência completa, sem voltar outro dia.</p>
+          <a class="btn escuro" href="https://agendamentos.bestbarbers.app/barbershop/honoratobarbearia" target="_blank" rel="noopener">Agendar os dois</a>
+        </div>
+      </article>
+    </div>
+    <p class="adiante rv"><a href="#equipe" data-adiante="equipe"><span>A seguir</span><b>A equipe</b></a></p>
+  </div>
+</section>
+
+<!-- 5. EQUIPE -->
+<section class="bloco claro painel" id="equipe" role="tabpanel" aria-labelledby="aba-equipe" tabindex="-1">
+  <div class="wrap">
+    <div class="cabeca rv">
+      <span class="olho">Quem te atende</span>
+      <h2>Seis barbeiros, <em>o mesmo padrão</em></h2>
+    </div>
+    <div class="equipe-grade">
+      <div class="rv">
+        <img src="img/equipe-606.webp" srcset="img/equipe-480.webp 480w, img/equipe-606.webp 606w"
+             sizes="(max-width:1000px) 92vw, 48vw"
+             alt="Barbeiros da Honorato Barbearia" width="606" height="606"
+             loading="lazy" decoding="async">
+      </div>
+      <ul class="time esc">
+        <li class="barbeiro"><span class="n">01</span><b>Higor</b></li>
+        <li class="barbeiro"><span class="n">02</span><b>Otávio</b></li>
+        <li class="barbeiro"><span class="n">03</span><b>Junio</b></li>
+        <li class="barbeiro"><span class="n">04</span><b>Vitor</b></li>
+        <li class="barbeiro"><span class="n">05</span><b>Marcos</b></li>
+        <li class="barbeiro"><span class="n">06</span><b>Rafael</b></li>
+      </ul>
+    </div>
+    <p class="adiante rv"><a href="#avaliacoes" data-adiante="avaliacoes"><span>A seguir</span><b>Avaliações</b></a></p>
+  </div>
+</section>
+
+<!-- 6. AVALIAÇÕES. Texto exato do Google, nenhuma palavra escrita aqui. -->
+<section class="bloco painel" id="avaliacoes" role="tabpanel" aria-labelledby="aba-avaliacoes" tabindex="-1">
+  <div class="wrap">
+    <div class="cabeca rv">
+      <span class="olho">O que dizem</span>
+      <h2><em>4,9</em> no Google, em 162 avaliações</h2>
+    </div>
+    <div class="vozes">
+      <figure class="voz">
+        <span class="estrelas" aria-label="5 de 5 estrelas">★★★★★</span>
+        <blockquote>Frequento a barbearia toda semana e virou meu momento de relaxar.
+          O atendimento é sempre excelente e o serviço de altíssima qualidade, com muito
+          cuidado nos detalhes. O ambiente é confortável, bem pensado e ainda conta com
+          aquela cerveja gelada que faz toda a diferença.</blockquote>
+        <figcaption>Higor Rampaso</figcaption>
+      </figure>
+      <figure class="voz">
+        <span class="estrelas" aria-label="5 de 5 estrelas">★★★★★</span>
+        <blockquote>Já sou cliente e sempre volto porque confio no trabalho dos meninos.
+          Faço cabelo e barba e o padrão de qualidade se mantém toda vez. É uma barbearia
+          que me sinto à vontade e sei que vou sair satisfeito.</blockquote>
+        <figcaption>Diego Henrique</figcaption>
+      </figure>
+      <figure class="voz">
+        <span class="estrelas" aria-label="5 de 5 estrelas">★★★★★</span>
+        <blockquote>Ambiente extremamente agradável, para mim, o melhor de Rio Preto.
+          Profissionais excelentes, muito gente boa e sempre atualizados com as novidades
+          da profissão. Cerveja gelada, café coado na hora e uma resenha boa demais!</blockquote>
+        <figcaption>Rafael Lisboa</figcaption>
+      </figure>
+      <figure class="voz">
+        <span class="estrelas" aria-label="5 de 5 estrelas">★★★★★</span>
+        <blockquote>Conheci a barbearia há pouco tempo e confesso que me surpreendi.
+          Desde a recepção, com um atendimento educado e atencioso, até o barbeiro, que
+          fez um trabalho de muita qualidade. Dá pra ver o cuidado em cada detalhe e o
+          respeito com o cliente.</blockquote>
+        <figcaption>Willy Henrique</figcaption>
+      </figure>
+      <figure class="voz">
+        <span class="estrelas" aria-label="5 de 5 estrelas">★★★★★</span>
+        <blockquote>Excelente barbearia, detalhes nos cuidados. Gostei muito do meu corte
+          de cabelo e do profissional Vitor que me atendeu. E não podia faltar um café.
+          A cada 20 dias eu tô na barbearia.</blockquote>
+        <figcaption>Lucas Miller</figcaption>
+      </figure>
+      <figure class="voz">
+        <span class="estrelas" aria-label="5 de 5 estrelas">★★★★★</span>
+        <blockquote>Lugar show! Muito aconchegante e os meninos são muito receptivos.
+          Corte nota 10, sempre que puder vou voltar.</blockquote>
+        <figcaption>Augusto Ladario</figcaption>
+      </figure>
+      <figure class="voz">
+        <span class="estrelas" aria-label="5 de 5 estrelas">★★★★★</span>
+        <blockquote>Atendimento e serviço de qualidade. Funcionários totalmente
+          competentes e qualificados, sem dizer da atenção fenomenal! Com certeza a melhor
+          barbearia de Rio Preto!</blockquote>
+        <figcaption>Fabio</figcaption>
+      </figure>
+    </div>
+    <p class="adiante rv"><a href="https://agendamentos.bestbarbers.app/barbershop/honoratobarbearia" target="_blank" rel="noopener"><span>Pra terminar</span><b>Escolher meu horário</b></a></p>
+  </div>
+</section>
+
+<!-- fechamento: sempre visível -->
+<section class="fecha">
+  <div class="wrap rv">
+    <h2>Só falta marcar</h2>
+    <p>Leva menos tempo escolher o horário do que decidir se vale a pena.</p>
+    <a class="btn escuro" href="https://agendamentos.bestbarbers.app/barbershop/honoratobarbearia" target="_blank" rel="noopener">Escolher meu horário</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="rodape">
+  <div class="wrap">
+    <div class="grade">
+      <div>
+        <div class="marca">
+          <img src="img/logo-160.webp" alt="" width="52" height="52">
+          <b>Honorato<span>Barbearia</span></b>
+        </div>
+        <p class="sobre">Barbearia em São José do Rio Preto, com duas unidades e o mesmo
+           padrão de atendimento nas duas.</p>
+      </div>
+      <div>
+        <h4>Unidades</h4>
+        <ul>
+          <li>R. Bonfá Natale, 2066 — Santos Dumont</li>
+          <li>R. Cel. Spínola de Castro, 4030 — Centro</li>
+          <li>Abrem às 9h</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Falar com a gente</h4>
+        <ul>
+          <li><a href="https://wa.me/5517992740026" target="_blank" rel="noopener">WhatsApp (17) 99274-0026</a></li>
+          <li><a href="https://www.instagram.com/honoratobarbearia" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.facebook.com/honoratoobarbearia" target="_blank" rel="noopener">Facebook</a></li>
+          <li><a href="https://agendamentos.bestbarbers.app/barbershop/honoratobarbearia" target="_blank" rel="noopener">Agendar horário</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fim">
+      <span>Honorato Barbearia · São José do Rio Preto/SP</span>
+      <span><a href="https://pyxeldigital.netlify.app" target="_blank" rel="noopener">Site por <b>Pyxel Digital</b></a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="pagina.js"></script>
+</body>
+</html>

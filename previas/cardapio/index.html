@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Cardápio — Taverna Bar'n Burguer · Santa Adélia</title>
+<meta name="description" content="Cardápio da Taverna Bar'n Burguer: 75 itens entre hambúrgueres artesanais, combos, janta completa e bebidas. Monte o pedido e envie pelo WhatsApp.">
+<meta name="theme-color" content="#E6D9BA">
+<link rel="icon" href="logo.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rye&family=Bevan&family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css?v=78771e5f">
+
+<!-- A revelação só existe com script vivo. Sem esta classe nada é
+     escondido, então script quebrado deixa o cardápio feio, não em
+     branco. O relógio é a rede de segurança: se o app.js não se
+     anunciar, a classe cai e o conteúdo aparece de qualquer jeito. -->
+<script>
+  document.documentElement.className = 'anima';
+  setTimeout(function(){
+    if (!window.__vivo) document.documentElement.className = '';
+  }, 2500);
+</script>
+<noscript><style>.rv,.esc>*{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body>
+
+<header class="capa">
+  <div class="wrap">
+    <div class="moldura rv"><span class="cantos"></span>
+      <img class="brasao" src="logo.jpg" alt="Brasão da Taverna Bar'n Burguer" width="116" height="116">
+      <p class="desde">Hambúrguer artesanal · Santa Adélia · desde 2017</p>
+      <h1>Taverna Bar'n Burguer</h1>
+      <p class="sub">Da nossa chapa pra tua mesa.</p>
+
+      <div class="divisa"><i></i></div>
+      <span class="fita">Cardápio</span>
+
+      <div class="fichas">
+        <span class="ficha"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg><b>Av. Santa Adélia, 293</b> — Centro</span>
+        <span class="ficha"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.4l3.4 2"/></svg>Todos os dias, <b>16h às 23h30</b></span>
+        <span class="ficha"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="5.5" cy="17" r="3"/><circle cx="18.5" cy="17" r="3"/><path d="M8.5 17h7l-3-7H9m3.5 0 2-4h2.5"/></svg>Entrega <b>R$ 4,00</b> ou retirada</span>
+      </div>
+
+      <p class="aviso">Escolha os itens, escreva a observação de cada um e envie.
+         O pedido chega pronto no WhatsApp da Taverna.</p>
+    </div>
+  </div>
+</header>
+
+
+
+<nav class="abas" aria-label="Categorias do cardápio">
+  <div class="trilho" role="tablist">
+    <a href="#hamburgueres-artesanais" id="aba-hamburgueres-artesanais" role="tab" aria-controls="hamburgueres-artesanais" aria-selected="true" class="aqui">Hambúrgueres Artesanais</a>
+    <a href="#hamburguer-de-frango" id="aba-hamburguer-de-frango" role="tab" aria-controls="hamburguer-de-frango" aria-selected="false">Hambúrguer de Frango</a>
+    <a href="#porcoes" id="aba-porcoes" role="tab" aria-controls="porcoes" aria-selected="false">Porções</a>
+    <a href="#combos" id="aba-combos" role="tab" aria-controls="combos" aria-selected="false">Combos</a>
+    <a href="#janta-completa" id="aba-janta-completa" role="tab" aria-controls="janta-completa" aria-selected="false">Janta Completa</a>
+    <a href="#bebidas" id="aba-bebidas" role="tab" aria-controls="bebidas" aria-selected="false">Bebidas</a>
+    <a href="#cervejas" id="aba-cervejas" role="tab" aria-controls="cervejas" aria-selected="false">Cervejas</a>
+    <a href="#caipirinhas" id="aba-caipirinhas" role="tab" aria-controls="caipirinhas" aria-selected="false">Caipirinhas</a>
+  </div>
+</nav>
+
+<main>
+  <section class="secao ativa" id="hamburgueres-artesanais"
+           role="tabpanel" aria-labelledby="aba-hamburgueres-artesanais">
+    <div class="wrap">
+      <!-- Sem o nome da categoria aqui: a aba grudada no topo já diz, e
+           as duas em fita de madeira a 60px uma da outra liam como
+           repetição. A fita voltou para a capa, onde não tem par. -->
+      <div class="cabeca rv">
+        <div class="divisa"><i></i><span class="quantos">18 opções</span><i></i></div>
+      </div>
+      <div class="pratos esc">
+        <button type="button" class="prato" data-prato="ragnarok">
+            <div class="foto">
+              <img src="img/burger-ragnarok.jpg" alt="Ragnarok" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Ragnarok</span>
+              <span class="cod">Nº 155</span>
+              <span class="desc">2 hambúrgueres, cheddar fatiado, bacon, onion rings, molho barbecue, maionese, alface, tomate, cebola e pão brioche.</span>
+              <span class="pe">
+                <span class="preco">R$ 45,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="the-killer">
+            <div class="foto">
+              <img src="img/the-killer.jpg" alt="The Killer" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">The Killer</span>
+              <span class="cod">Nº 154</span>
+              <span class="desc">Hambúrguer, cheddar fatiado, bacon, maionese, cebola e pão brioche.</span>
+              <span class="pe">
+                <span class="preco"><small>a partir de</small>R$ 38,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="mjolnir">
+            <div class="foto">
+              <img src="img/burger-mijolnir.jpg" alt="Mjolnir" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Mjolnir</span>
+              <span class="cod">Nº 161</span>
+              <span class="desc">Hambúrguer, cheddar fatiado, bacon, onion rings, sweet chili, maionese defumada e pão brioche.</span>
+              <span class="pe">
+                <span class="preco"><small>a partir de</small>R$ 35,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="thor">
+            <div class="foto">
+              <img src="img/burger-thor.jpg" alt="Thor" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Thor</span>
+              <span class="cod">Nº 153</span>
+              <span class="desc">Hambúrguer, mussarela, maionese, bacon, tomate e pão de hambúrguer.</span>
+              <span class="pe">
+                <span class="preco"><small>a partir de</small>R$ 31,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="loki">
+            <div class="foto">
+              <img src="img/burger-loki.jpg" alt="Loki" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Loki</span>
+              <span class="cod">Nº 152</span>
+              <span class="desc">Hambúrguer, mussarela, maionese, alface, tomate e pão de hambúrguer.</span>
+              <span class="pe">
+                <span class="preco"><small>a partir de</small>R$ 26,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="peasant">
+            <div class="foto">
+              <img src="img/burger-peasant.jpg" alt="Peasant" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Peasant</span>
+              <span class="cod">Nº 150</span>
+              <span class="desc">Hambúrguer, mussarela e pão brioche.</span>
+              <span class="pe">
+                <span class="preco"><small>a partir de</small>R$ 24,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="the-wizard">
+            <div class="foto">
+              <img src="img/burger-the-wizard.jpg" alt="The Wizard" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">The Wizard</span>
+              <span class="cod">Nº 158</span>
+              <span class="desc">Hambúrguer, cheddar fatiado, polenghinho empanado, bacon, maionese de rúcula, maionese defumada, alface, tomate, cebola e pão de hambúrguer.</span>
+              <span class="pe">
+                <span class="preco"><small>a partir de</small>R$ 40,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="cheese-dragon">
+            <div class="foto">
+              <img src="img/cheese-dragon.jpg" alt="Cheese Dragon" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Cheese Dragon</span>
+              <span class="cod">Nº 1542</span>
+              <span class="desc">2 hambúrgueres, cheddar fatiado, bacon, disco de mussarela empanada, maionese defumada, maionese de rúcula e pão de hambúrguer.</span>
+              <span class="pe">
+                <span class="preco">R$ 50,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="cheese-throne">
+            <div class="foto">
+              <img src="img/cheese-throne.jpg" alt="Cheese Throne" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Cheese Throne</span>
+              <span class="cod">Nº 1541</span>
+              <span class="desc">2 hambúrgueres, cheddar fatiado, disco de mussarela empanada, cebola caramelizada, maionese, sweet chili, alface, tomate e pão de hambúrguer.</span>
+              <span class="pe">
+                <span class="preco">R$ 50,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="lord-cheddar">
+            <div class="foto">
+              <img src="img/burger-lord-cheddar.jpg" alt="Lord Cheddar" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Lord Cheddar</span>
+              <span class="cod">Nº 147</span>
+              <span class="desc">Hambúrguer, cheddar cremoso, bacon, onion rings, maionese de rúcula e pão de hambúrguer.</span>
+              <span class="pe">
+                <span class="preco"><small>a partir de</small>R$ 37,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="lord">
+            <div class="foto">
+              <img src="img/burger-lord.jpg" alt="Lord" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Lord</span>
+              <span class="cod">Nº 102</span>
+              <span class="desc">Hambúrguer, mussarela, bacon, onion rings, maionese, alface, tomate e pão brioche.</span>
+              <span class="pe">
+                <span class="preco"><small>a partir de</small>R$ 35,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="knight">
+            <div class="foto">
+              <img src="img/burger-knight.jpg" alt="Knight" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Knight</span>
+              <span class="cod">Nº 108</span>
+              <span class="desc">Hambúrguer, bacon, mussarela, onion rings, maionese, molho barbecue, tomate e brioche.</span>
+              <span class="pe">
+                <span class="preco"><small>a partir de</small>R$ 35,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="trabuco">
+            <div class="foto">
+              <img src="img/burger-trabuco.jpg" alt="Trabuco" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Trabuco</span>
+              <span class="cod">Nº 114</span>
+              <span class="desc">Hambúrguer, queijo mussarela, uma camada de bacon para cada hambúrguer, alface, tomate e pão brioche.</span>
+              <span class="pe">
+                <span class="preco"><small>a partir de</small>R$ 48,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="honey-princess">
+            <div class="foto">
+              <img src="img/burger-honey-princess.jpg" alt="Honey Princess" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Honey Princess</span>
+              <span class="cod">Nº 120</span>
+              <span class="desc">Hambúrguer, bacon, queijo gouda empanado, tomate, maionese defumada, molho mostarda e mel e pão brioche.</span>
+              <span class="pe">
+                <span class="preco"><small>a partir de</small>R$ 40,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="spartan">
+            <div class="foto">
+              <img src="img/burger-spartan.jpg" alt="Spartan" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Spartan</span>
+              <span class="cod">Nº 118</span>
+              <span class="desc">Hambúrguer, bacon, mussarela, cebola caramelizada, maionese defumada e pão de hambúrguer.</span>
+              <span class="pe">
+                <span class="preco"><small>a partir de</small>R$ 35,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="the-onion-knight">
+            <div class="foto">
+              <img src="img/burger-onion-knight.jpg" alt="The Onion Knight" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">The Onion Knight</span>
+              <span class="cod">Nº 147</span>
+              <span class="desc">Hambúrguer, mussarela, bacon, cebola caramelizada, onion rings, sweet chili, maionese defumada, alface, tomate e pão brioche.</span>
+              <span class="pe">
+                <span class="preco"><small>a partir de</small>R$ 38,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="asgard">
+            <div class="foto">
+              <img src="img/burger-asgard.jpg" alt="Asgard" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Asgard</span>
+              <span class="cod">Nº 157</span>
+              <span class="desc">Hambúrguer, cheddar fatiado, bacon, cebola, picles, mostarda, ketchup e pão de hambúrguer.</span>
+              <span class="pe">
+                <span class="preco"><small>a partir de</small>R$ 33,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="huskarl">
+            <div class="foto">
+              <img src="img/burger-huskarl.jpg" alt="Huskarl" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Huskarl</span>
+              <span class="cod">Nº 156</span>
+              <span class="desc">Hambúrguer, cheddar fatiado, molho especial, maionese, picles, cebola, alface, tomate e pão brioche.</span>
+              <span class="pe">
+                <span class="preco"><small>a partir de</small>R$ 28,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao" id="hamburguer-de-frango"
+           role="tabpanel" aria-labelledby="aba-hamburguer-de-frango" tabindex="-1">
+    <div class="wrap">
+      <!-- Sem o nome da categoria aqui: a aba grudada no topo já diz, e
+           as duas em fita de madeira a 60px uma da outra liam como
+           repetição. A fita voltou para a capa, onde não tem par. -->
+      <div class="cabeca rv">
+        <div class="divisa"><i></i><span class="quantos">3 opções</span><i></i></div>
+      </div>
+      <div class="pratos esc">
+        <button type="button" class="prato" data-prato="the-fool">
+            <div class="foto semfoto">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M18 34c-5-2-8-7-8-12 0-7 6-13 13-13 6 0 10 3 12 8l5-2-2 5c2 2 3 5 3 8 0 7-6 12-13 12"/><circle cx="19" cy="14" r="1.4"/><path d="M28 9c1-3 4-4 6-3"/></svg>
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">The Fool</span>
+              <span class="cod">Nº 111</span>
+              <span class="desc">2 hambúrgueres empanados de frango, maionese, alface, tomate e pão brioche.</span>
+              <span class="pe">
+                <span class="preco">R$ 30,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="tartar-fowler">
+            <div class="foto semfoto">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M18 34c-5-2-8-7-8-12 0-7 6-13 13-13 6 0 10 3 12 8l5-2-2 5c2 2 3 5 3 8 0 7-6 12-13 12"/><circle cx="19" cy="14" r="1.4"/><path d="M28 9c1-3 4-4 6-3"/></svg>
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Tartar Fowler</span>
+              <span class="cod">Nº 151</span>
+              <span class="desc">2 hambúrgueres empanados de frango, cebola, molho especial de picles, alface, tomate e pão brioche.</span>
+              <span class="pe">
+                <span class="preco">R$ 32,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="sir-chicken">
+            <div class="foto">
+              <img src="img/burger-sir-chicken.jpg" alt="Sir Chicken" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Sir Chicken</span>
+              <span class="cod">Nº 1543</span>
+              <span class="desc">2 hambúrgueres empanados de frango, bacon, cheddar fatiado, maionese, alface, tomate e pão de hambúrguer.</span>
+              <span class="pe">
+                <span class="preco">R$ 38,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao" id="porcoes"
+           role="tabpanel" aria-labelledby="aba-porcoes" tabindex="-1">
+    <div class="wrap">
+      <!-- Sem o nome da categoria aqui: a aba grudada no topo já diz, e
+           as duas em fita de madeira a 60px uma da outra liam como
+           repetição. A fita voltou para a capa, onde não tem par. -->
+      <div class="cabeca rv">
+        <div class="divisa"><i></i><span class="quantos">12 opções</span><i></i></div>
+      </div>
+      <div class="pratos esc">
+        <button type="button" class="prato" data-prato="fritas">
+            <div class="foto semfoto">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M12 18h24l-3 20H15zM12 18l-2-6h28l-2 6"/><path d="M19 22v12M24 22v12M29 22v12"/></svg>
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Fritas</span>
+              <span class="cod">Nº 201</span>
+              
+              <span class="pe">
+                <span class="preco"><small>a partir de</small>R$ 17,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="fritas-com-catupiry-e-bacon">
+            <div class="foto semfoto">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M12 18h24l-3 20H15zM12 18l-2-6h28l-2 6"/><path d="M19 22v12M24 22v12M29 22v12"/></svg>
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Fritas com catupiry e bacon</span>
+              <span class="cod">Nº 202</span>
+              
+              <span class="pe">
+                <span class="preco"><small>a partir de</small>R$ 27,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="fritas-com-cheddar-e-bacon">
+            <div class="foto semfoto">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M12 18h24l-3 20H15zM12 18l-2-6h28l-2 6"/><path d="M19 22v12M24 22v12M29 22v12"/></svg>
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Fritas com cheddar e bacon</span>
+              <span class="cod">Nº 203</span>
+              
+              <span class="pe">
+                <span class="preco"><small>a partir de</small>R$ 27,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="onion-rings">
+            <div class="foto semfoto">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M12 18h24l-3 20H15zM12 18l-2-6h28l-2 6"/><path d="M19 22v12M24 22v12M29 22v12"/></svg>
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Onion rings</span>
+              <span class="cod">Nº 204</span>
+              
+              <span class="pe">
+                <span class="preco"><small>a partir de</small>R$ 19,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="mandioca-frita">
+            <div class="foto semfoto">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M12 18h24l-3 20H15zM12 18l-2-6h28l-2 6"/><path d="M19 22v12M24 22v12M29 22v12"/></svg>
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Mandioca frita</span>
+              <span class="cod">Nº 212</span>
+              
+              <span class="pe">
+                <span class="preco"><small>a partir de</small>R$ 18,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="file-na-chapa">
+            <div class="foto semfoto">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M12 18h24l-3 20H15zM12 18l-2-6h28l-2 6"/><path d="M19 22v12M24 22v12M29 22v12"/></svg>
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Filé na chapa</span>
+              <span class="cod">Nº 210</span>
+              
+              <span class="pe">
+                <span class="preco"><small>a partir de</small>R$ 40,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="file-com-catupiry">
+            <div class="foto semfoto">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M12 18h24l-3 20H15zM12 18l-2-6h28l-2 6"/><path d="M19 22v12M24 22v12M29 22v12"/></svg>
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Filé com catupiry</span>
+              <span class="cod">Nº 211</span>
+              
+              <span class="pe">
+                <span class="preco"><small>a partir de</small>R$ 50,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="frango-na-chapa">
+            <div class="foto semfoto">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M12 18h24l-3 20H15zM12 18l-2-6h28l-2 6"/><path d="M19 22v12M24 22v12M29 22v12"/></svg>
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Frango na chapa</span>
+              <span class="cod">Nº 213</span>
+              
+              <span class="pe">
+                <span class="preco"><small>a partir de</small>R$ 25,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="rolinho-de-carne-seca">
+            <div class="foto semfoto">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M12 18h24l-3 20H15zM12 18l-2-6h28l-2 6"/><path d="M19 22v12M24 22v12M29 22v12"/></svg>
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Rolinho de carne seca</span>
+              <span class="cod">Nº 206</span>
+              <span class="desc">Porção inteira.</span>
+              <span class="pe">
+                <span class="preco">R$ 40,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="iscas-de-frango">
+            <div class="foto semfoto">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M12 18h24l-3 20H15zM12 18l-2-6h28l-2 6"/><path d="M19 22v12M24 22v12M29 22v12"/></svg>
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Iscas de frango</span>
+              <span class="cod">Nº 208</span>
+              <span class="desc">Porção inteira.</span>
+              <span class="pe">
+                <span class="preco">R$ 40,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="iscas-de-peixe">
+            <div class="foto semfoto">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M12 18h24l-3 20H15zM12 18l-2-6h28l-2 6"/><path d="M19 22v12M24 22v12M29 22v12"/></svg>
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Iscas de peixe</span>
+              <span class="cod">Nº 207</span>
+              <span class="desc">Porção inteira.</span>
+              <span class="pe">
+                <span class="preco">R$ 40,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="panceta-frita">
+            <div class="foto semfoto">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M12 18h24l-3 20H15zM12 18l-2-6h28l-2 6"/><path d="M19 22v12M24 22v12M29 22v12"/></svg>
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Panceta frita</span>
+              <span class="cod">Nº 209</span>
+              <span class="desc">Porção inteira.</span>
+              <span class="pe">
+                <span class="preco">R$ 45,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao" id="combos"
+           role="tabpanel" aria-labelledby="aba-combos" tabindex="-1">
+    <div class="wrap">
+      <!-- Sem o nome da categoria aqui: a aba grudada no topo já diz, e
+           as duas em fita de madeira a 60px uma da outra liam como
+           repetição. A fita voltou para a capa, onde não tem par. -->
+      <div class="cabeca rv">
+        <div class="divisa"><i></i><span class="quantos">11 opções</span><i></i></div>
+      </div>
+      <div class="pratos esc">
+        <button type="button" class="prato" data-prato="combo-burger-1">
+            <div class="foto">
+              <img src="img/combo-burger-1.jpg" alt="Combo Burger 1" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            <span class="lacre selo-serve"><i>serve</i><b>2</b></span>
+            <div class="miolo">
+              <span class="nome">Combo Burger 1</span>
+              
+              <span class="desc">1 Loki P, 1 Thor P, batata palito, onion rings, iscas de frango e 2 molhos. Serve 2 pessoas.</span>
+              <span class="pe">
+                <span class="preco">R$ 110,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="combo-burger-2">
+            <div class="foto">
+              <img src="img/combo-burger-2.jpg" alt="Combo Burger 2" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            <span class="lacre selo-serve"><i>serve</i><b>4</b></span>
+            <div class="miolo">
+              <span class="nome">Combo Burger 2</span>
+              
+              <span class="desc">2 Loki M, 2 Thor M, batata palito, onion rings, iscas de frango e 3 molhos. Serve 4 pessoas.</span>
+              <span class="pe">
+                <span class="preco">R$ 185,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="combo-file-1">
+            <div class="foto">
+              <img src="img/combo-file-1.jpg" alt="Combo Filé 1" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            <span class="lacre selo-serve"><i>serve</i><b>2</b></span>
+            <div class="miolo">
+              <span class="nome">Combo Filé 1</span>
+              
+              <span class="desc">1 porção de filé na chapa e 1 porção de mandioca frita. Serve 2 pessoas.</span>
+              <span class="pe">
+                <span class="preco">R$ 85,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="combo-file-2">
+            <div class="foto">
+              <img src="img/combo-file-2.jpg" alt="Combo Filé 2" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            <span class="lacre selo-serve"><i>serve</i><b>2</b></span>
+            <div class="miolo">
+              <span class="nome">Combo Filé 2</span>
+              
+              <span class="desc">1 porção de filé na chapa com catupiry e 1 porção de mandioca frita. Serve 2 pessoas.</span>
+              <span class="pe">
+                <span class="preco">R$ 100,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="combo-file-3">
+            <div class="foto">
+              <img src="img/combo-file-3.jpg" alt="Combo Filé 3" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            <span class="lacre selo-serve"><i>serve</i><b>3</b></span>
+            <div class="miolo">
+              <span class="nome">Combo Filé 3</span>
+              
+              <span class="desc">Filé na chapa com catupiry, mandioca frita e iscas de frango. Serve 3 pessoas.</span>
+              <span class="pe">
+                <span class="preco">R$ 130,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="combo-file-4">
+            <div class="foto">
+              <img src="img/combo-file-4.jpg" alt="Combo Filé 4" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            <span class="lacre selo-serve"><i>serve</i><b>3</b></span>
+            <div class="miolo">
+              <span class="nome">Combo Filé 4</span>
+              
+              <span class="desc">Filé na chapa com catupiry, mandioca frita e iscas de peixe. Serve 3 pessoas.</span>
+              <span class="pe">
+                <span class="preco">R$ 130,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="combo-janta-1">
+            <div class="foto semfoto">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 16h32v6H8zM11 22h26v18H11z"/><path d="M24 16v24"/><path d="M24 16c-4-6-12-6-12-1 0 3 5 4 12 1zM24 16c4-6 12-6 12-1 0 3-5 4-12 1z"/></svg>
+            </div>
+            <span class="lacre selo-serve"><i>serve</i><b>2</b></span>
+            <div class="miolo">
+              <span class="nome">Combo Janta 1</span>
+              
+              <span class="desc">2 jantas de contra-filé.</span>
+              <span class="pe">
+                <span class="preco">R$ 70,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="combo-janta-2">
+            <div class="foto semfoto">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 16h32v6H8zM11 22h26v18H11z"/><path d="M24 16v24"/><path d="M24 16c-4-6-12-6-12-1 0 3 5 4 12 1zM24 16c4-6 12-6 12-1 0 3-5 4-12 1z"/></svg>
+            </div>
+            <span class="lacre selo-serve"><i>serve</i><b>2</b></span>
+            <div class="miolo">
+              <span class="nome">Combo Janta 2</span>
+              
+              <span class="desc">2 jantas de frango à parmegiana.</span>
+              <span class="pe">
+                <span class="preco">R$ 70,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="combo-janta-3">
+            <div class="foto semfoto">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 16h32v6H8zM11 22h26v18H11z"/><path d="M24 16v24"/><path d="M24 16c-4-6-12-6-12-1 0 3 5 4 12 1zM24 16c4-6 12-6 12-1 0 3-5 4-12 1z"/></svg>
+            </div>
+            <span class="lacre selo-serve"><i>serve</i><b>2</b></span>
+            <div class="miolo">
+              <span class="nome">Combo Janta 3</span>
+              
+              <span class="desc">2 jantas de peixe à parmegiana.</span>
+              <span class="pe">
+                <span class="preco">R$ 70,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="combo-janta-4">
+            <div class="foto semfoto">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 16h32v6H8zM11 22h26v18H11z"/><path d="M24 16v24"/><path d="M24 16c-4-6-12-6-12-1 0 3 5 4 12 1zM24 16c4-6 12-6 12-1 0 3-5 4-12 1z"/></svg>
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Combo Janta 4</span>
+              
+              <span class="desc">200g de contra-filé, mandioca frita (4 unidades) e salada.</span>
+              <span class="pe">
+                <span class="preco">R$ 30,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="combo-cerveja">
+            <div class="foto semfoto">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 16h32v6H8zM11 22h26v18H11z"/><path d="M24 16v24"/><path d="M24 16c-4-6-12-6-12-1 0 3 5 4 12 1zM24 16c4-6 12-6 12-1 0 3-5 4-12 1z"/></svg>
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Combo Cerveja</span>
+              
+              <span class="desc">6 romarinhos Antarctica.</span>
+              <span class="pe">
+                <span class="preco">R$ 24,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao" id="janta-completa"
+           role="tabpanel" aria-labelledby="aba-janta-completa" tabindex="-1">
+    <div class="wrap">
+      <!-- Sem o nome da categoria aqui: a aba grudada no topo já diz, e
+           as duas em fita de madeira a 60px uma da outra liam como
+           repetição. A fita voltou para a capa, onde não tem par. -->
+      <div class="cabeca rv">
+        <div class="divisa"><i></i><span class="quantos">8 opções</span><i></i></div>
+      </div>
+      <div class="pratos esc">
+        <button type="button" class="prato" data-prato="contra-file">
+            <div class="foto">
+              <img src="img/janta-contra-file.jpg" alt="Contra-filé" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Contra-filé</span>
+              
+              <span class="desc">Acompanha arroz, feijão, mandioca frita, farofa, vinagrete e salada. Servido de segunda a sexta.</span>
+              <span class="pe">
+                <span class="preco">R$ 38,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="frango-a-parmegiana">
+            <div class="foto">
+              <img src="img/janta-frango-parmegiana.jpg" alt="Frango à parmegiana" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Frango à parmegiana</span>
+              
+              <span class="desc">Acompanha arroz, feijão, mandioca frita, farofa, vinagrete e salada. Servido de segunda a sexta.</span>
+              <span class="pe">
+                <span class="preco">R$ 38,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="peixe-a-parmegiana">
+            <div class="foto">
+              <img src="img/janta-peixe-parmegiana.jpg" alt="Peixe à parmegiana" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Peixe à parmegiana</span>
+              
+              <span class="desc">Acompanha arroz, feijão, mandioca frita, farofa, vinagrete e salada. Servido de segunda a sexta.</span>
+              <span class="pe">
+                <span class="preco">R$ 38,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="prato-feito">
+            <div class="foto semfoto">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M14 6v16a4 4 0 0 0 8 0V6M18 6v34"/><path d="M32 6c-3 0-5 4-5 9s2 8 5 8v17"/></svg>
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Prato-feito</span>
+              
+              <span class="desc">Prato do dia. Confira a opção do dia. Servido de segunda a sexta.</span>
+              <span class="pe">
+                <span class="preco"><small>a partir de</small>R$ 26,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="adicional-contra-file-200g">
+            <div class="foto semfoto">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M14 6v16a4 4 0 0 0 8 0V6M18 6v34"/><path d="M32 6c-3 0-5 4-5 9s2 8 5 8v17"/></svg>
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Adicional: contra-filé 200g</span>
+              
+              
+              <span class="pe">
+                <span class="preco">R$ 25,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="adicional-salada">
+            <div class="foto semfoto">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M14 6v16a4 4 0 0 0 8 0V6M18 6v34"/><path d="M32 6c-3 0-5 4-5 9s2 8 5 8v17"/></svg>
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Adicional: salada</span>
+              
+              
+              <span class="pe">
+                <span class="preco">R$ 6,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="adicional-arroz">
+            <div class="foto semfoto">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M14 6v16a4 4 0 0 0 8 0V6M18 6v34"/><path d="M32 6c-3 0-5 4-5 9s2 8 5 8v17"/></svg>
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Adicional: arroz</span>
+              
+              
+              <span class="pe">
+                <span class="preco">R$ 10,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="adicional-ovo">
+            <div class="foto semfoto">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M14 6v16a4 4 0 0 0 8 0V6M18 6v34"/><path d="M32 6c-3 0-5 4-5 9s2 8 5 8v17"/></svg>
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Adicional: ovo</span>
+              
+              
+              <span class="pe">
+                <span class="preco">R$ 4,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao" id="bebidas"
+           role="tabpanel" aria-labelledby="aba-bebidas" tabindex="-1">
+    <div class="wrap">
+      <!-- Sem o nome da categoria aqui: a aba grudada no topo já diz, e
+           as duas em fita de madeira a 60px uma da outra liam como
+           repetição. A fita voltou para a capa, onde não tem par. -->
+      <div class="cabeca rv">
+        <div class="divisa"><i></i><span class="quantos">12 opções</span><i></i></div>
+      </div>
+      <div class="pratos esc">
+        <button type="button" class="prato" data-prato="coca-cola-ks-290ml">
+            <div class="foto">
+              <img src="img/beb-coca-ks.jpg" alt="Coca-Cola KS 290ml" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Coca-Cola KS 290ml</span>
+              
+              
+              <span class="pe">
+                <span class="preco">R$ 5,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="refrigerante-lata-350ml">
+            <div class="foto">
+              <img src="img/beb-refri-lata.jpg" alt="Refrigerante lata 350ml" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Refrigerante lata 350ml</span>
+              
+              <span class="desc">Coca-Cola, Coca Zero, Sprite, Guaraná, Fanta laranja, uva ou maracujá, Schweppes.</span>
+              <span class="pe">
+                <span class="preco">R$ 6,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="refrigerante-600ml">
+            <div class="foto">
+              <img src="img/beb-refri-600.jpg" alt="Refrigerante 600ml" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Refrigerante 600ml</span>
+              
+              <span class="desc">Coca-Cola ou Coca Zero.</span>
+              <span class="pe">
+                <span class="preco">R$ 8,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="refrigerante-1l">
+            <div class="foto">
+              <img src="img/beb-refri-1l.jpg" alt="Refrigerante 1L" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Refrigerante 1L</span>
+              
+              <span class="desc">Coca-Cola ou Coca Zero.</span>
+              <span class="pe">
+                <span class="preco">R$ 10,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="refrigerante-2l">
+            <div class="foto">
+              <img src="img/beb-refri-2l.jpg" alt="Refrigerante 2L" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Refrigerante 2L</span>
+              
+              <span class="desc">Coca-Cola ou Guaraná Antárctica.</span>
+              <span class="pe">
+                <span class="preco">R$ 18,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="suco-kmais-900ml">
+            <div class="foto">
+              <img src="img/beb-kmais-900.jpg" alt="Suco Kmais 900ml" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Suco Kmais 900ml</span>
+              
+              <span class="desc">Laranja.</span>
+              <span class="pe">
+                <span class="preco">R$ 18,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="suco-kmais-300ml">
+            <div class="foto">
+              <img src="img/beb-kmais-300.jpg" alt="Suco Kmais 300ml" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Suco Kmais 300ml</span>
+              
+              <span class="desc">Uva ou laranja.</span>
+              <span class="pe">
+                <span class="preco">R$ 7,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="agua-com-gas-500ml">
+            <div class="foto">
+              <img src="img/beb-agua-com-gas.jpg" alt="Água com gás 500ml" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Água com gás 500ml</span>
+              
+              
+              <span class="pe">
+                <span class="preco">R$ 5,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="agua-sem-gas-500ml">
+            <div class="foto">
+              <img src="img/beb-agua-sem-gas.jpg" alt="Água sem gás 500ml" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Água sem gás 500ml</span>
+              
+              
+              <span class="pe">
+                <span class="preco">R$ 4,50</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="h2oh-limoneto-500ml">
+            <div class="foto">
+              <img src="img/beb-h2oh-limoneto.jpg" alt="H2OH! Limoneto 500ml" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">H2OH! Limoneto 500ml</span>
+              
+              
+              <span class="pe">
+                <span class="preco">R$ 7,50</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="soda-italiana">
+            <div class="foto">
+              <img src="img/beb-soda-italiana.jpg" alt="Soda Italiana" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Soda Italiana</span>
+              
+              <span class="desc">Morango, cereja ou maçã verde.</span>
+              <span class="pe">
+                <span class="preco">R$ 13,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="pink-lemonade">
+            <div class="foto">
+              <img src="img/beb-pink-lemonade.jpg" alt="Pink Lemonade" width="118" height="118" loading="lazy" decoding="async">
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Pink Lemonade</span>
+              
+              <span class="desc">Morango e cereja.</span>
+              <span class="pe">
+                <span class="preco">R$ 14,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao" id="cervejas"
+           role="tabpanel" aria-labelledby="aba-cervejas" tabindex="-1">
+    <div class="wrap">
+      <!-- Sem o nome da categoria aqui: a aba grudada no topo já diz, e
+           as duas em fita de madeira a 60px uma da outra liam como
+           repetição. A fita voltou para a capa, onde não tem par. -->
+      <div class="cabeca rv">
+        <div class="divisa"><i></i><span class="quantos">8 opções</span><i></i></div>
+      </div>
+      <div class="pratos esc">
+        <button type="button" class="prato" data-prato="heineken-600ml">
+            <div class="foto semfoto">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M13 12h20v26a4 4 0 0 1-4 4H17a4 4 0 0 1-4-4z"/><path d="M33 17h5a4 4 0 0 1 4 4v6a4 4 0 0 1-4 4h-5"/><path d="M13 12c0-4 4-6 10-6s10 2 10 6"/><path d="M19 20v14M27 20v14"/></svg>
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Heineken 600ml</span>
+              
+              <span class="desc">Garrafa 600ml.</span>
+              <span class="pe">
+                <span class="preco">R$ 18,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="antarctica-600ml">
+            <div class="foto semfoto">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M13 12h20v26a4 4 0 0 1-4 4H17a4 4 0 0 1-4-4z"/><path d="M33 17h5a4 4 0 0 1 4 4v6a4 4 0 0 1-4 4h-5"/><path d="M13 12c0-4 4-6 10-6s10 2 10 6"/><path d="M19 20v14M27 20v14"/></svg>
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Antarctica 600ml</span>
+              
+              <span class="desc">Garrafa 600ml.</span>
+              <span class="pe">
+                <span class="preco">R$ 12,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="heineken-long-neck">
+            <div class="foto semfoto">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M13 12h20v26a4 4 0 0 1-4 4H17a4 4 0 0 1-4-4z"/><path d="M33 17h5a4 4 0 0 1 4 4v6a4 4 0 0 1-4 4h-5"/><path d="M13 12c0-4 4-6 10-6s10 2 10 6"/><path d="M19 20v14M27 20v14"/></svg>
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Heineken long neck</span>
+              
+              <span class="desc">Long neck.</span>
+              <span class="pe">
+                <span class="preco">R$ 10,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="corona-long-neck">
+            <div class="foto semfoto">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M13 12h20v26a4 4 0 0 1-4 4H17a4 4 0 0 1-4-4z"/><path d="M33 17h5a4 4 0 0 1 4 4v6a4 4 0 0 1-4 4h-5"/><path d="M13 12c0-4 4-6 10-6s10 2 10 6"/><path d="M19 20v14M27 20v14"/></svg>
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Corona long neck</span>
+              
+              <span class="desc">Long neck.</span>
+              <span class="pe">
+                <span class="preco">R$ 10,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="heineken-0-long-neck">
+            <div class="foto semfoto">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M13 12h20v26a4 4 0 0 1-4 4H17a4 4 0 0 1-4-4z"/><path d="M33 17h5a4 4 0 0 1 4 4v6a4 4 0 0 1-4 4h-5"/><path d="M13 12c0-4 4-6 10-6s10 2 10 6"/><path d="M19 20v14M27 20v14"/></svg>
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Heineken 0% long neck</span>
+              
+              <span class="desc">Long neck sem álcool.</span>
+              <span class="pe">
+                <span class="preco">R$ 10,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="romarinho-antarctica">
+            <div class="foto semfoto">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M13 12h20v26a4 4 0 0 1-4 4H17a4 4 0 0 1-4-4z"/><path d="M33 17h5a4 4 0 0 1 4 4v6a4 4 0 0 1-4 4h-5"/><path d="M13 12c0-4 4-6 10-6s10 2 10 6"/><path d="M19 20v14M27 20v14"/></svg>
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Romarinho Antarctica</span>
+              
+              <span class="desc">Romarinho.</span>
+              <span class="pe">
+                <span class="preco">R$ 4,50</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="romarinho-skol">
+            <div class="foto semfoto">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M13 12h20v26a4 4 0 0 1-4 4H17a4 4 0 0 1-4-4z"/><path d="M33 17h5a4 4 0 0 1 4 4v6a4 4 0 0 1-4 4h-5"/><path d="M13 12c0-4 4-6 10-6s10 2 10 6"/><path d="M19 20v14M27 20v14"/></svg>
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Romarinho Skol</span>
+              
+              <span class="desc">Romarinho.</span>
+              <span class="pe">
+                <span class="preco">R$ 4,50</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="romarinho-original">
+            <div class="foto semfoto">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M13 12h20v26a4 4 0 0 1-4 4H17a4 4 0 0 1-4-4z"/><path d="M33 17h5a4 4 0 0 1 4 4v6a4 4 0 0 1-4 4h-5"/><path d="M13 12c0-4 4-6 10-6s10 2 10 6"/><path d="M19 20v14M27 20v14"/></svg>
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Romarinho Original</span>
+              
+              <span class="desc">Romarinho.</span>
+              <span class="pe">
+                <span class="preco">R$ 5,50</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao" id="caipirinhas"
+           role="tabpanel" aria-labelledby="aba-caipirinhas" tabindex="-1">
+    <div class="wrap">
+      <!-- Sem o nome da categoria aqui: a aba grudada no topo já diz, e
+           as duas em fita de madeira a 60px uma da outra liam como
+           repetição. A fita voltou para a capa, onde não tem par. -->
+      <div class="cabeca rv">
+        <div class="divisa"><i></i><span class="quantos">3 opções</span><i></i></div>
+      </div>
+      <div class="pratos esc">
+        <button type="button" class="prato" data-prato="caipirinha-de-limao">
+            <div class="foto semfoto">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M12 12h24l-4 14v14h-6v-14z"/><path d="M20 40h12"/><circle cx="18" cy="18" r="2.5"/><circle cx="27" cy="20" r="2.5"/><path d="M30 8l4-4"/></svg>
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Caipirinha de limão</span>
+              
+              <span class="desc">Saquê, vodka ou pinga.</span>
+              <span class="pe">
+                <span class="preco">R$ 15,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="caipirinha-de-morango">
+            <div class="foto semfoto">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M12 12h24l-4 14v14h-6v-14z"/><path d="M20 40h12"/><circle cx="18" cy="18" r="2.5"/><circle cx="27" cy="20" r="2.5"/><path d="M30 8l4-4"/></svg>
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Caipirinha de morango</span>
+              
+              <span class="desc">Saquê, vodka ou pinga.</span>
+              <span class="pe">
+                <span class="preco">R$ 20,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+        <button type="button" class="prato" data-prato="caipirinha-de-maracuja">
+            <div class="foto semfoto">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M12 12h24l-4 14v14h-6v-14z"/><path d="M20 40h12"/><circle cx="18" cy="18" r="2.5"/><circle cx="27" cy="20" r="2.5"/><path d="M30 8l4-4"/></svg>
+            </div>
+            
+            <div class="miolo">
+              <span class="nome">Caipirinha de maracujá</span>
+              
+              <span class="desc">Saquê, vodka ou pinga.</span>
+              <span class="pe">
+                <span class="preco">R$ 20,00</span>
+                <span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </span>
+            </div>
+          </button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <div class="wrap">
+    <div class="divisa"><i></i></div>
+    <div class="linhas">
+      <div><b>Taverna Bar'n Burguer</b> · Hambúrguer artesanal desde 2017</div>
+      <div>Av. Santa Adélia, 293 — Centro · Santa Adélia/SP · 15950-000</div>
+      <div>Todos os dias, das <b>16h às 23h30</b> · janta completa de segunda a sexta</div>
+      <div>WhatsApp <b>(17) 98135-5978</b> · tavernadohamb@gmail.com</div>
+    </div>
+    <div class="redes">
+      <a class="btn fio" href="https://www.instagram.com/tavernabarnburger/" target="_blank" rel="noopener">Instagram</a>
+      <a class="btn fio" href="https://www.google.com/maps/search/?api=1&amp;query=Taverna%20Bar%27n%20Burguer%20Av%20Santa%20Ad%C3%A9lia%20293%20Santa%20Ad%C3%A9lia%20SP" target="_blank" rel="noopener">Como chegar</a>
+      <a class="btn fio" href="tel:+5517981355978">Ligar</a>
+    </div>
+    <p class="assina">Cardápio feito por <b>Pyxel Digital</b></p>
+  </div>
+</footer>
+
+<div class="barra">
+  <div class="dentro">
+    <div class="resumo">
+      <div class="qtd">0 itens no pedido</div>
+      <div class="total">R$ 0,00</div>
+    </div>
+    <button type="button" class="btn cheio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M8 7h11M8 12h11M8 17h11M4 7h.01M4 12h.01M4 17h.01"/></svg> Ver comanda</button>
+  </div>
+</div>
+
+<div class="veu"></div>
+
+<!-- cortina da troca de seção -->
+<div class="cortina" id="cortina" aria-hidden="true">
+  <div class="carga">
+    <div class="anel">
+      <svg class="giro" viewBox="0 0 158 158" aria-hidden="true"><circle cx="79" cy="79" r="76"/></svg>
+      <img src="logo.jpg" alt="" width="106" height="106">
+    </div>
+    <p class="carga-txt">Virando a página<span id="carga-txt"></span></p>
+  </div>
+</div>
+
+<!-- detalhe do prato -->
+<aside class="folha detalhe" id="detalhe" aria-hidden="true" aria-label="Detalhe do item">
+  <div class="puxador"><i></i></div>
+  <div class="cume">
+    <h2 id="det-n"></h2>
+    <button type="button" class="fechar" aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="rolo">
+    <div class="arte">
+      <img id="det-img" src="" alt="" width="520" height="325">
+      <span class="lacre" id="det-lacre" hidden></span>
+    </div>
+    <p class="cod" id="det-cod" hidden></p>
+    <p class="desc" id="det-desc" hidden></p>
+
+    <div class="grupo" id="g-tam" hidden>
+      <div class="titulo">Tamanho <em>P 1 carne · M 2 · G 3 · GG 4 · UG 5</em></div>
+      <div class="tamanhos"></div>
+    </div>
+
+    <div class="grupo">
+      <div class="titulo">Observação <em>opcional</em></div>
+      <textarea class="obs" id="det-obs" rows="3"
+        placeholder="Sem cebola, ponto da carne, molho à parte..."></textarea>
+    </div>
+
+    <div class="linha-qtd">
+      <div class="contador">
+        <button type="button" id="det-menos" aria-label="Tirar um"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14"/></svg></button>
+        <span class="n" id="det-q">1</span>
+        <button type="button" id="det-mais" aria-label="Somar um"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+      </div>
+    </div>
+  </div>
+  <div class="base">
+    <button type="button" class="btn cheio" id="det-add">
+      Pôr na comanda · <span class="quanto">R$ 0,00</span>
+    </button>
+  </div>
+</aside>
+
+<!-- comanda -->
+<aside class="folha" id="pedido" aria-hidden="true" aria-label="Seu pedido">
+  <div class="puxador"><i></i></div>
+  <div class="cume">
+    <h2>Sua comanda</h2>
+    <button type="button" class="fechar" aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="rolo">
+    <div id="lista"></div>
+
+    <div class="conta" id="conta" hidden>
+      <div class="l"><span>Itens</span><span id="c-itens">R$ 0,00</span></div>
+      <div class="l" id="c-taxa-l" hidden><span>Entrega</span><span id="c-taxa">R$ 0,00</span></div>
+      <div class="l soma"><span>Total</span><span id="c-total">R$ 0,00</span></div>
+    </div>
+
+    <div id="forma" hidden>
+      <div class="grupo">
+        <div class="titulo">Como vai ser</div>
+        <div class="escolha" id="escolha">
+          <button type="button" class="opc aqui" data-tipo="retirada">Retirar na loja</button>
+          <button type="button" class="opc" data-tipo="entrega">Entrega · R$ 4,00</button>
+        </div>
+      </div>
+
+      <div class="grupo">
+        <div class="titulo">Seus dados</div>
+        <div class="campos">
+          <div class="campo">
+            <label for="f-nome">Nome</label>
+            <input id="f-nome" type="text" autocomplete="name" placeholder="Como te chamamos">
+          </div>
+
+          <div id="endereco" hidden>
+            <div class="campos">
+              <div class="tripla">
+                <div class="campo">
+                  <label for="f-rua">Rua</label>
+                  <input id="f-rua" type="text" autocomplete="address-line1" placeholder="Nome da rua">
+                </div>
+                <div class="campo">
+                  <label for="f-num">Número</label>
+                  <input id="f-num" type="text" inputmode="numeric" placeholder="123">
+                </div>
+              </div>
+              <div class="dupla">
+                <div class="campo">
+                  <label for="f-bairro">Bairro</label>
+                  <input id="f-bairro" type="text" placeholder="Centro">
+                </div>
+                <div class="campo">
+                  <label for="f-compl">Complemento</label>
+                  <input id="f-compl" type="text" placeholder="Apto, bloco, fundos">
+                </div>
+              </div>
+              <div class="campo">
+                <label for="f-ref">Referência</label>
+                <input id="f-ref" type="text" placeholder="Perto de que, portão de que cor">
+              </div>
+            </div>
+          </div>
+
+          <div class="campo">
+            <label for="f-obs">Recado para a cozinha</label>
+            <input id="f-obs" type="text" placeholder="Opcional">
+          </div>
+        </div>
+      </div>
+
+      <div class="recado" id="recado"></div>
+    </div>
+  </div>
+  <div class="base">
+    <button type="button" class="btn zap" id="ped-enviar">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.05-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.47s1.06 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.28.17-1.41-.07-.13-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.13h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.36c0-4.54 3.7-8.24 8.24-8.24a8.18 8.18 0 0 1 5.82 2.42 8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24z"/></svg> Enviar no WhatsApp · <span class="quanto">R$ 0,00</span>
+    </button>
+  </div>
+</aside>
+
+<script type="application/json" id="dados">{"zap":"5517981355978","taxa":400,"cats":[{"id":"hamburgueres-artesanais","nome":"Hambúrgueres Artesanais","emoji":"🍔","itens":[{"id":"ragnarok","n":"Ragnarok","foto":"img/burger-ragnarok.jpg","cat":"🍔 Hambúrgueres Artesanais","cod":"155","desc":"2 hambúrgueres, cheddar fatiado, bacon, onion rings, molho barbecue, maionese, alface, tomate, cebola e pão brioche.","c":4500},{"id":"the-killer","n":"The Killer","foto":"img/the-killer.jpg","cat":"🍔 Hambúrgueres Artesanais","cod":"154","desc":"Hambúrguer, cheddar fatiado, bacon, maionese, cebola e pão brioche.","t":[["M",3800],["G",4600],["GG",5400],["UG",6200]]},{"id":"mjolnir","n":"Mjolnir","foto":"img/burger-mijolnir.jpg","cat":"🍔 Hambúrgueres Artesanais","cod":"161","desc":"Hambúrguer, cheddar fatiado, bacon, onion rings, sweet chili, maionese defumada e pão brioche.","t":[["P",3500],["M",4300],["G",5000],["GG",5800]]},{"id":"thor","n":"Thor","foto":"img/burger-thor.jpg","cat":"🍔 Hambúrgueres Artesanais","cod":"153","desc":"Hambúrguer, mussarela, maionese, bacon, tomate e pão de hambúrguer.","t":[["P",3100],["M",3800],["G",4500],["GG",5200]]},{"id":"loki","n":"Loki","foto":"img/burger-loki.jpg","cat":"🍔 Hambúrgueres Artesanais","cod":"152","desc":"Hambúrguer, mussarela, maionese, alface, tomate e pão de hambúrguer.","t":[["P",2600],["M",3400],["G",4200],["GG",5000]]},{"id":"peasant","n":"Peasant","foto":"img/burger-peasant.jpg","cat":"🍔 Hambúrgueres Artesanais","cod":"150","desc":"Hambúrguer, mussarela e pão brioche.","t":[["P",2400],["M",3200],["G",4000],["GG",4800]]},{"id":"the-wizard","n":"The Wizard","foto":"img/burger-the-wizard.jpg","cat":"🍔 Hambúrgueres Artesanais","cod":"158","desc":"Hambúrguer, cheddar fatiado, polenghinho empanado, bacon, maionese de rúcula, maionese defumada, alface, tomate, cebola e pão de hambúrguer.","t":[["P",4000],["M",4800],["G",5500],["GG",6300]]},{"id":"cheese-dragon","n":"Cheese Dragon","foto":"img/cheese-dragon.jpg","cat":"🍔 Hambúrgueres Artesanais","cod":"1542","desc":"2 hambúrgueres, cheddar fatiado, bacon, disco de mussarela empanada, maionese defumada, maionese de rúcula e pão de hambúrguer.","c":5000},{"id":"cheese-throne","n":"Cheese Throne","foto":"img/cheese-throne.jpg","cat":"🍔 Hambúrgueres Artesanais","cod":"1541","desc":"2 hambúrgueres, cheddar fatiado, disco de mussarela empanada, cebola caramelizada, maionese, sweet chili, alface, tomate e pão de hambúrguer.","c":5000},{"id":"lord-cheddar","n":"Lord Cheddar","foto":"img/burger-lord-cheddar.jpg","cat":"🍔 Hambúrgueres Artesanais","cod":"147","desc":"Hambúrguer, cheddar cremoso, bacon, onion rings, maionese de rúcula e pão de hambúrguer.","t":[["P",3700],["M",4500],["G",5300],["GG",6000]]},{"id":"lord","n":"Lord","foto":"img/burger-lord.jpg","cat":"🍔 Hambúrgueres Artesanais","cod":"102","desc":"Hambúrguer, mussarela, bacon, onion rings, maionese, alface, tomate e pão brioche.","t":[["P",3500],["M",4300],["G",5000],["GG",5800]]},{"id":"knight","n":"Knight","foto":"img/burger-knight.jpg","cat":"🍔 Hambúrgueres Artesanais","cod":"108","desc":"Hambúrguer, bacon, mussarela, onion rings, maionese, molho barbecue, tomate e brioche.","t":[["P",3500],["M",4300],["G",5000],["GG",5800]]},{"id":"trabuco","n":"Trabuco","cat":"🍔 Hambúrgueres Artesanais","cod":"114","desc":"Hambúrguer, queijo mussarela, uma camada de bacon para cada hambúrguer, alface, tomate e pão brioche.","t":[["M",4800],["G",5800],["GG",6800],["UG",7800]]},{"id":"honey-princess","n":"Honey Princess","cat":"🍔 Hambúrgueres Artesanais","cod":"120","desc":"Hambúrguer, bacon, queijo gouda empanado, tomate, maionese defumada, molho mostarda e mel e pão brioche.","t":[["P",4000],["M",4800],["G",5500],["GG",6300]]},{"id":"spartan","n":"Spartan","cat":"🍔 Hambúrgueres Artesanais","cod":"118","desc":"Hambúrguer, bacon, mussarela, cebola caramelizada, maionese defumada e pão de hambúrguer.","t":[["P",3500],["M",4300],["G",5200],["GG",6000]]},{"id":"the-onion-knight","n":"The Onion Knight","cat":"🍔 Hambúrgueres Artesanais","cod":"147","desc":"Hambúrguer, mussarela, bacon, cebola caramelizada, onion rings, sweet chili, maionese defumada, alface, tomate e pão brioche.","t":[["P",3800],["M",4600],["G",5400],["GG",6200]]},{"id":"asgard","n":"Asgard","cat":"🍔 Hambúrgueres Artesanais","cod":"157","desc":"Hambúrguer, cheddar fatiado, bacon, cebola, picles, mostarda, ketchup e pão de hambúrguer.","t":[["P",3300],["M",4100],["G",4900],["GG",5700]]},{"id":"huskarl","n":"Huskarl","cat":"🍔 Hambúrgueres Artesanais","cod":"156","desc":"Hambúrguer, cheddar fatiado, molho especial, maionese, picles, cebola, alface, tomate e pão brioche.","t":[["P",2800],["M",3600],["G",4400],["GG",5200]]}]},{"id":"hamburguer-de-frango","nome":"Hambúrguer de Frango","emoji":"🍗","itens":[{"id":"the-fool","n":"The Fool","cat":"🍗 Hambúrguer de Frango","cod":"111","desc":"2 hambúrgueres empanados de frango, maionese, alface, tomate e pão brioche.","c":3000},{"id":"tartar-fowler","n":"Tartar Fowler","cat":"🍗 Hambúrguer de Frango","cod":"151","desc":"2 hambúrgueres empanados de frango, cebola, molho especial de picles, alface, tomate e pão brioche.","c":3200},{"id":"sir-chicken","n":"Sir Chicken","cat":"🍗 Hambúrguer de Frango","cod":"1543","desc":"2 hambúrgueres empanados de frango, bacon, cheddar fatiado, maionese, alface, tomate e pão de hambúrguer.","c":3800}]},{"id":"porcoes","nome":"Porções","emoji":"🍟","itens":[{"id":"fritas","n":"Fritas","cat":"🍟 Porções","cod":"201","t":[["Meia",1700],["Inteira",2500]]},{"id":"fritas-com-catupiry-e-bacon","n":"Fritas com catupiry e bacon","cat":"🍟 Porções","cod":"202","t":[["Meia",2700],["Inteira",4000]]},{"id":"fritas-com-cheddar-e-bacon","n":"Fritas com cheddar e bacon","cat":"🍟 Porções","cod":"203","t":[["Meia",2700],["Inteira",4000]]},{"id":"onion-rings","n":"Onion rings","cat":"🍟 Porções","cod":"204","t":[["Meia",1900],["Inteira",3000]]},{"id":"mandioca-frita","n":"Mandioca frita","cat":"🍟 Porções","cod":"212","t":[["Meia",1800],["Inteira",3000]]},{"id":"file-na-chapa","n":"Filé na chapa","cat":"🍟 Porções","cod":"210","t":[["Meia",4000],["Inteira",7000]]},{"id":"file-com-catupiry","n":"Filé com catupiry","cat":"🍟 Porções","cod":"211","t":[["Meia",5000],["Inteira",8500]]},{"id":"frango-na-chapa","n":"Frango na chapa","cat":"🍟 Porções","cod":"213","t":[["Meia",2500],["Inteira",4000]]},{"id":"rolinho-de-carne-seca","n":"Rolinho de carne seca","cat":"🍟 Porções","cod":"206","desc":"Porção inteira.","c":4000},{"id":"iscas-de-frango","n":"Iscas de frango","cat":"🍟 Porções","cod":"208","desc":"Porção inteira.","c":4000},{"id":"iscas-de-peixe","n":"Iscas de peixe","cat":"🍟 Porções","cod":"207","desc":"Porção inteira.","c":4000},{"id":"panceta-frita","n":"Panceta frita","cat":"🍟 Porções","cod":"209","desc":"Porção inteira.","c":4500}]},{"id":"combos","nome":"Combos","emoji":"🍟","itens":[{"id":"combo-burger-1","n":"Combo Burger 1","foto":"img/combo-burger-1.jpg","cat":"🍟 Combos","desc":"1 Loki P, 1 Thor P, batata palito, onion rings, iscas de frango e 2 molhos. Serve 2 pessoas.","serve":"Serve 2","c":11000},{"id":"combo-burger-2","n":"Combo Burger 2","foto":"img/combo-burger-2.jpg","cat":"🍟 Combos","desc":"2 Loki M, 2 Thor M, batata palito, onion rings, iscas de frango e 3 molhos. Serve 4 pessoas.","serve":"Serve 4","c":18500},{"id":"combo-file-1","n":"Combo Filé 1","foto":"img/combo-file-1.jpg","cat":"🍟 Combos","desc":"1 porção de filé na chapa e 1 porção de mandioca frita. Serve 2 pessoas.","serve":"Serve 2","c":8500},{"id":"combo-file-2","n":"Combo Filé 2","foto":"img/combo-file-2.jpg","cat":"🍟 Combos","desc":"1 porção de filé na chapa com catupiry e 1 porção de mandioca frita. Serve 2 pessoas.","serve":"Serve 2","c":10000},{"id":"combo-file-3","n":"Combo Filé 3","foto":"img/combo-file-3.jpg","cat":"🍟 Combos","desc":"Filé na chapa com catupiry, mandioca frita e iscas de frango. Serve 3 pessoas.","serve":"Serve 3","c":13000},{"id":"combo-file-4","n":"Combo Filé 4","foto":"img/combo-file-4.jpg","cat":"🍟 Combos","desc":"Filé na chapa com catupiry, mandioca frita e iscas de peixe. Serve 3 pessoas.","serve":"Serve 3","c":13000},{"id":"combo-janta-1","n":"Combo Janta 1","cat":"🍟 Combos","desc":"2 jantas de contra-filé.","serve":"Serve 2","c":7000},{"id":"combo-janta-2","n":"Combo Janta 2","cat":"🍟 Combos","desc":"2 jantas de frango à parmegiana.","serve":"Serve 2","c":7000},{"id":"combo-janta-3","n":"Combo Janta 3","cat":"🍟 Combos","desc":"2 jantas de peixe à parmegiana.","serve":"Serve 2","c":7000},{"id":"combo-janta-4","n":"Combo Janta 4","cat":"🍟 Combos","desc":"200g de contra-filé, mandioca frita (4 unidades) e salada.","c":3000},{"id":"combo-cerveja","n":"Combo Cerveja","cat":"🍟 Combos","desc":"6 romarinhos Antarctica.","c":2400}]},{"id":"janta-completa","nome":"Janta Completa","emoji":"🍽️","itens":[{"id":"contra-file","n":"Contra-filé","foto":"img/janta-contra-file.jpg","cat":"🍽️ Janta Completa","desc":"Acompanha arroz, feijão, mandioca frita, farofa, vinagrete e salada. Servido de segunda a sexta.","c":3800},{"id":"frango-a-parmegiana","n":"Frango à parmegiana","foto":"img/janta-frango-parmegiana.jpg","cat":"🍽️ Janta Completa","desc":"Acompanha arroz, feijão, mandioca frita, farofa, vinagrete e salada. Servido de segunda a sexta.","c":3800},{"id":"peixe-a-parmegiana","n":"Peixe à parmegiana","foto":"img/janta-peixe-parmegiana.jpg","cat":"🍽️ Janta Completa","desc":"Acompanha arroz, feijão, mandioca frita, farofa, vinagrete e salada. Servido de segunda a sexta.","c":3800},{"id":"prato-feito","n":"Prato-feito","cat":"🍽️ Janta Completa","desc":"Prato do dia. Confira a opção do dia. Servido de segunda a sexta.","t":[["Pequeno",2600],["Médio",3000],["Grande",3400]]},{"id":"adicional-contra-file-200g","n":"Adicional: contra-filé 200g","cat":"🍽️ Janta Completa","c":2500},{"id":"adicional-salada","n":"Adicional: salada","cat":"🍽️ Janta Completa","c":600},{"id":"adicional-arroz","n":"Adicional: arroz","cat":"🍽️ Janta Completa","c":1000},{"id":"adicional-ovo","n":"Adicional: ovo","cat":"🍽️ Janta Completa","c":400}]},{"id":"bebidas","nome":"Bebidas","emoji":"🥤","itens":[{"id":"coca-cola-ks-290ml","n":"Coca-Cola KS 290ml","foto":"img/beb-coca-ks.jpg","cat":"🥤 Bebidas","c":500},{"id":"refrigerante-lata-350ml","n":"Refrigerante lata 350ml","foto":"img/beb-refri-lata.jpg","cat":"🥤 Bebidas","desc":"Coca-Cola, Coca Zero, Sprite, Guaraná, Fanta laranja, uva ou maracujá, Schweppes.","c":600},{"id":"refrigerante-600ml","n":"Refrigerante 600ml","foto":"img/beb-refri-600.jpg","cat":"🥤 Bebidas","desc":"Coca-Cola ou Coca Zero.","c":800},{"id":"refrigerante-1l","n":"Refrigerante 1L","foto":"img/beb-refri-1l.jpg","cat":"🥤 Bebidas","desc":"Coca-Cola ou Coca Zero.","c":1000},{"id":"refrigerante-2l","n":"Refrigerante 2L","foto":"img/beb-refri-2l.jpg","cat":"🥤 Bebidas","desc":"Coca-Cola ou Guaraná Antárctica.","c":1800},{"id":"suco-kmais-900ml","n":"Suco Kmais 900ml","foto":"img/beb-kmais-900.jpg","cat":"🥤 Bebidas","desc":"Laranja.","c":1800},{"id":"suco-kmais-300ml","n":"Suco Kmais 300ml","foto":"img/beb-kmais-300.jpg","cat":"🥤 Bebidas","desc":"Uva ou laranja.","c":700},{"id":"agua-com-gas-500ml","n":"Água com gás 500ml","foto":"img/beb-agua-com-gas.jpg","cat":"🥤 Bebidas","c":500},{"id":"agua-sem-gas-500ml","n":"Água sem gás 500ml","foto":"img/beb-agua-sem-gas.jpg","cat":"🥤 Bebidas","c":450},{"id":"h2oh-limoneto-500ml","n":"H2OH! Limoneto 500ml","foto":"img/beb-h2oh-limoneto.jpg","cat":"🥤 Bebidas","c":750},{"id":"soda-italiana","n":"Soda Italiana","foto":"img/beb-soda-italiana.jpg","cat":"🥤 Bebidas","desc":"Morango, cereja ou maçã verde.","c":1300},{"id":"pink-lemonade","n":"Pink Lemonade","foto":"img/beb-pink-lemonade.jpg","cat":"🥤 Bebidas","desc":"Morango e cereja.","c":1400}]},{"id":"cervejas","nome":"Cervejas","emoji":"🍺","itens":[{"id":"heineken-600ml","n":"Heineken 600ml","cat":"🍺 Cervejas","desc":"Garrafa 600ml.","c":1800},{"id":"antarctica-600ml","n":"Antarctica 600ml","cat":"🍺 Cervejas","desc":"Garrafa 600ml.","c":1200},{"id":"heineken-long-neck","n":"Heineken long neck","cat":"🍺 Cervejas","desc":"Long neck.","c":1000},{"id":"corona-long-neck","n":"Corona long neck","cat":"🍺 Cervejas","desc":"Long neck.","c":1000},{"id":"heineken-0-long-neck","n":"Heineken 0% long neck","cat":"🍺 Cervejas","desc":"Long neck sem álcool.","c":1000},{"id":"romarinho-antarctica","n":"Romarinho Antarctica","cat":"🍺 Cervejas","desc":"Romarinho.","c":450},{"id":"romarinho-skol","n":"Romarinho Skol","cat":"🍺 Cervejas","desc":"Romarinho.","c":450},{"id":"romarinho-original","n":"Romarinho Original","cat":"🍺 Cervejas","desc":"Romarinho.","c":550}]},{"id":"caipirinhas","nome":"Caipirinhas","emoji":"🍹","itens":[{"id":"caipirinha-de-limao","n":"Caipirinha de limão","cat":"🍹 Caipirinhas","desc":"Saquê, vodka ou pinga.","c":1500},{"id":"caipirinha-de-morango","n":"Caipirinha de morango","cat":"🍹 Caipirinhas","desc":"Saquê, vodka ou pinga.","c":2000},{"id":"caipirinha-de-maracuja","n":"Caipirinha de maracujá","cat":"🍹 Caipirinhas","desc":"Saquê, vodka ou pinga.","c":2000}]}],"promos":[]}</script>
+<script src="app.js?v=5949a1f8"></script>
+</body>
+</html>
